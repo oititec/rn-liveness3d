@@ -1,0 +1,11 @@
+platform :ios, '10.0'
+
+
+target 'RnLiveness3d' do
+    # Comment the next line if you don't want to use dynamic frameworks
+    use_frameworks!
+    
+    # Pods for sampleUsageLivenessSDK
+    pod 'FaceCaptcha', '4.0.9-beta1', :source => 'https://github.com/oititec/liveness-ios-specs.git'
+  
+  end

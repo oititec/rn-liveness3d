@@ -1,0 +1,11 @@
+framework module FaceCaptcha {
+  umbrella header "FaceCaptcha.h"
+
+  export *
+  module * { export * }
+}
+
+module FaceCaptcha.Swift {
+    header "FaceCaptcha-Swift.h"
+    requires objc
+}
