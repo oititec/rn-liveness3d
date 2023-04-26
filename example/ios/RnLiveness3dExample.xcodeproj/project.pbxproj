@@ -489,6 +489,7 @@
 				DEVELOPMENT_TEAM = 9R994B9R3V;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = RnLiveness3dExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -516,6 +517,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 9R994B9R3V;
 				INFOPLIST_FILE = RnLiveness3dExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

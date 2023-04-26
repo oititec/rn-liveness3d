@@ -79,8 +79,8 @@ PODS:
     - hermes-engine/Pre-built (= 0.71.4)
   - hermes-engine/Pre-built (0.71.4)
   - libevent (2.1.12)
-  - OILiveness3D_FT (9.6.10)
-  - oiti-rn-liveness3d (0.1.0):
+  - OILiveness3D_FT (9.6.25)
+  - oiti-rn-liveness3d (1.0.0):
     - FaceCaptcha (~> 4.0.9-beta1)
     - React-Core
   - OpenSSL-Universal (1.1.1100)
@@ -615,8 +615,8 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: a1f157c49ea579c28b0296bda8530e980c45bdb3
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  OILiveness3D_FT: c2b3b70fbd86e2fd5efc58f47d32b0aead995ae1
-  oiti-rn-liveness3d: 31748b1e66d40fcdf43e744ee414e40a2b51037a
+  OILiveness3D_FT: 9c794249edb23f2e9ba627392450ed385cb816e9
+  oiti-rn-liveness3d: 52524d528122e29320bdb5d071de10eaefccb1da
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 5a024fdf458fa8c0d82fc262e76f982d4dcdecdd
@@ -651,6 +651,6 @@ SPEC CHECKSUMS:
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 24218dd6c2d74c696338262d49a816c5b3c1d40d
+PODFILE CHECKSUM: 77c82507cf7ebf38b7afe9b5db65c1988dd4601f
 
 COCOAPODS: 1.12.0
