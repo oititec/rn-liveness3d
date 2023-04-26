@@ -2,6 +2,12 @@
 
 Este repositório é responsável pela biblioteca NPM do Liveness Oiti, com ele é possível instalar e usar a função de `startLiveness3d()` e a view `<Liveness3dView />` da Oititec disponíveis para aplicativos híbridos em React Native.
 
+## 1.1 Requisitos Mínimos
+
+| Android     | iOS     |
+| ----------- | ------- |
+| Gradle: 6.8 | iOS: 11 |
+
 # 2. O que é a biblioteca?
 
 O NPM (node package manager) é o gerenciador de pacotes do node.js (runtime de javascript).
