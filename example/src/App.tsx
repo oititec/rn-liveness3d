@@ -1,11 +1,11 @@
 import * as React from 'react';
 
-import { startLiveness3d } from '@oiti/rn-liveness3d';
+import { startLiveness3d, Liveness3dView } from '@oiti/rn-liveness3d';
 import { StyleSheet, View, Text, Button } from 'react-native';
 
 export default function App() {
   const appKey =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiNzg3MzdCRjY1N0NEOTMwOEQyNzlBODIxRUM4MDEzQjU3fG9pdGkuZmFjZXRlYy5obWwiLCJlbXBDb2QiOiIwMDAwMDAwMDAxIiwiZmlsQ29kIjoiMDAwMDAwMjc2OSIsImNwZiI6IjU0MjczOTY2MDg1Iiwibm9tZSI6IkYxQTJFNDE5OTY0QkJEQ0RGMzU1MDBCNDY3QzhCMUUwNkU5MTIwMTA0NDZGMDYwNkI5QUFGODU5ODI1MTREMTAwQjU0MTZFNUJGM0U4Rjg1OEVGNUNGQkRERTQ0MkYzQjhEOUIyREY3MTU4RDdENTg1RDNDN0YzRDk3ODlDRkEwfEFTSEFVQVMgQVNVSEFTSFUgQVNVSCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTkxIiwiZWFzeS1pbmRleCI6IkFBQUFFc1RVL1hNSjNuQWN3UVJWeWl3Nmo1Zi9uVzdGYVUvdEdrbFErUTI4dklRWUN1VkNONnA5aFIwNXVBPT0iLCJrZXkiOiJRV0pzWlNCaGJpQm9iM0JsSUc5bUlHSnZaSGt1SUVGdWVTQnVZWGtnYzJoNWJtVT0iLCJleHAiOjE2NzkwNjIwOTAsImlhdCI6MTY3OTA2MTc5MH0.ll6M-OK5Y5WchhCebGCnB4Mye6GuKwqH6zmhjyxZP8I';
+    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiODY4ODMxMzczN0RBRDA0MTk2NzgyQzJGNkQyMjkxQkJEN0MxfHNhZnJhLmVwZi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNTc2IiwiZmlsQ29kIjoiMDAwMDAwMjY2MiIsImNwZiI6IjA4NjcwODMzOTU2Iiwibm9tZSI6IjBENjc3OTZBREMyMUFENzdERDAzNzYwRTY0OTE4QjlERDRDQ0M3NDI2QjYyNDUxOUM0ODAwMjQwNDcxNzE0NjZDRDc2RTdDNDI4REZCQkI0QUQ1RDYwQjYwM0NFMDlCNkJCNTdDOTMxNEYwMTEzQUE5REQ0RkYzOEI2OTE5M3xHQUJSSUVMIENBVEVMTEkgR09VTEFSVCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTk2IiwiZWFzeS1pbmRleCI6IkFBQUFFaTNTZVptUHI5dEd5dDFBUmlRTXM2SFdRYkJpc3BUTHFvdlFvVi94NVNGeXVmbnRhU3dLL2Q2VzZnPT0iLCJrZXkiOiJRV0pzWlNCaGJpQm9iM0JsSUc5bUlHSnZaSGt1SUVGdWVTQnVZWGtnYzJoNWJtVT0iLCJleHAiOjE2ODI2Nzg2OTAsImlhdCI6MTY4MjY3Njg5MH0.VlwCLfP2WzYImdklnoiJVAwVT5uX1Ug2nptPM1X2NXo';
 
   const options = {
     appkey: appKey,
@@ -56,18 +56,7 @@ export default function App() {
     },
   };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.box}>Exemplo Oiti - Hibridos</Text>
-      <View style={styles.button}>
-        <Button onPress={() => startLiveness3d(options)} title="Liveness3D" />
-        <Button
-          onPress={() => startLiveness3d(options)}
-          title="L3D Custom View"
-        />
-      </View>
-    </View>
-  );
+  return <Liveness3dView options={options} />;
 }
 
 const styles = StyleSheet.create({

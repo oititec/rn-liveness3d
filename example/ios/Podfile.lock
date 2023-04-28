@@ -2,8 +2,8 @@ PODS:
   - boost (1.76.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
-  - FaceCaptcha (4.0.9-beta1):
-    - OILiveness3D_FT (~> 9.6.10)
+  - FaceCaptcha (4.1.1):
+    - OILiveness3D_FT (= 9.6.25)
   - FBLazyVector (0.71.4)
   - FBReactNativeSpec (0.71.4):
     - RCT-Folly (= 2021.07.22.00)
@@ -80,8 +80,8 @@ PODS:
   - hermes-engine/Pre-built (0.71.4)
   - libevent (2.1.12)
   - OILiveness3D_FT (9.6.25)
-  - oiti-rn-liveness3d (1.0.0):
-    - FaceCaptcha (~> 4.0.9-beta1)
+  - oiti-rn-liveness3d (1.0.1):
+    - FaceCaptcha (~> 4.1.1)
     - React-Core
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
@@ -436,7 +436,7 @@ PODS:
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
-  - FaceCaptcha (= 4.0.9-beta1)
+  - FaceCaptcha (= 4.1.1)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Flipper (= 0.125.0)
@@ -599,7 +599,7 @@ SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
-  FaceCaptcha: 333c990eabb3c837bab2e65dc6f497abfe64a12e
+  FaceCaptcha: 3ff2433d23d74df3ed18a591f7be5393f39c844f
   FBLazyVector: 446e84642979fff0ba57f3c804c2228a473aeac2
   FBReactNativeSpec: 241709e132e3bf1526c1c4f00bc5384dd39dfba9
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0
@@ -616,7 +616,7 @@ SPEC CHECKSUMS:
   hermes-engine: a1f157c49ea579c28b0296bda8530e980c45bdb3
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OILiveness3D_FT: 9c794249edb23f2e9ba627392450ed385cb816e9
-  oiti-rn-liveness3d: 52524d528122e29320bdb5d071de10eaefccb1da
+  oiti-rn-liveness3d: daa8816d4d3a8b0435dde2a1dedbb39d776c9be6
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 5a024fdf458fa8c0d82fc262e76f982d4dcdecdd
@@ -651,6 +651,6 @@ SPEC CHECKSUMS:
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 77c82507cf7ebf38b7afe9b5db65c1988dd4601f
+PODFILE CHECKSUM: 85b497cc37cb2cf221854fd8ab6739d8f8aeaa16
 
 COCOAPODS: 1.12.0

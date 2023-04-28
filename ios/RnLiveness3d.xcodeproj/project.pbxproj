@@ -28,6 +28,7 @@
 		134814201AA4EA6300B7C361 /* libRnLiveness3d.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRnLiveness3d.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E1566ED421C8D7B743E92EE /* Pods-RnLiveness3d.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnLiveness3d.debug.xcconfig"; path = "Target Support Files/Pods-RnLiveness3d/Pods-RnLiveness3d.debug.xcconfig"; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* RnLiveness3d.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RnLiveness3d.m; sourceTree = "<group>"; };
+		E87784D929FA8BDB003B8C90 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* RnLiveness3d-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RnLiveness3d-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* RnLiveness3d.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RnLiveness3d.swift; sourceTree = "<group>"; };
 		F9437267F5654BF2D7E973CF /* Pods_RnLiveness3d.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RnLiveness3d.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,6 +65,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				E87784D929FA8BDB003B8C90 /* info.plist */,
 				F4FF95D6245B92E800C19C63 /* RnLiveness3d.swift */,
 				B3E7B5891CC2AC0600A0062D /* RnLiveness3d.m */,
 				F4FF95D5245B92E700C19C63 /* RnLiveness3d-Bridging-Header.h */,
@@ -79,7 +81,6 @@
 				8E1566ED421C8D7B743E92EE /* Pods-RnLiveness3d.debug.xcconfig */,
 				0C6F69B2E2D5C79297667B24 /* Pods-RnLiveness3d.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};

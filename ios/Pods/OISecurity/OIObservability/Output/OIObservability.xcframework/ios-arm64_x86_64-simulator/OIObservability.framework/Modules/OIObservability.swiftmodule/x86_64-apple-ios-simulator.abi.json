@@ -1,0 +1,1787 @@
+{
+  "ABIRoot": {
+    "kind": "Root",
+    "name": "TopLevel",
+    "printedName": "TopLevel",
+    "children": [
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EventTypes",
+        "printedName": "EventTypes",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "ACTION_L3FT_instructionContinue",
+            "printedName": "ACTION_L3FT_instructionContinue",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO31ACTION_L3FT_instructionContinueyA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO31ACTION_L3FT_instructionContinueyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "ACTION_L3FT_permissionVerify",
+            "printedName": "ACTION_L3FT_permissionVerify",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO28ACTION_L3FT_permissionVerifyyA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO28ACTION_L3FT_permissionVerifyyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "STATE_L3FT_instructionView",
+            "printedName": "STATE_L3FT_instructionView",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO26STATE_L3FT_instructionViewyA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO26STATE_L3FT_instructionViewyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "STATE_L3FT_permissionView",
+            "printedName": "STATE_L3FT_permissionView",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO25STATE_L3FT_permissionViewyA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO25STATE_L3FT_permissionViewyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "STATE_L3FT_flow",
+            "printedName": "STATE_L3FT_flow",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO15STATE_L3FT_flowyA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO15STATE_L3FT_flowyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "LOG_L3FT_permissionCallback",
+            "printedName": "LOG_L3FT_permissionCallback",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO27LOG_L3FT_permissionCallbackyA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO27LOG_L3FT_permissionCallbackyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "ERROR_L3FT_callbackError",
+            "printedName": "ERROR_L3FT_callbackError",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO24ERROR_L3FT_callbackErroryA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO24ERROR_L3FT_callbackErroryA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "SYSTEM_L3FT_callbackError",
+            "printedName": "SYSTEM_L3FT_callbackError",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO25SYSTEM_L3FT_callbackErroryA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO25SYSTEM_L3FT_callbackErroryA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "SYSTEM_L3FT_instructionView",
+            "printedName": "SYSTEM_L3FT_instructionView",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO27SYSTEM_L3FT_instructionViewyA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO27SYSTEM_L3FT_instructionViewyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Var",
+            "name": "SYSTEM_L3FT_callbackSuccess",
+            "printedName": "SYSTEM_L3FT_callbackSuccess",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.EventTypes.Type) -> OIObservability.EventTypes",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.EventTypes.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability10EventTypesO27SYSTEM_L3FT_callbackSuccessyA2CmF",
+            "mangledName": "$s15OIObservability10EventTypesO27SYSTEM_L3FT_callbackSuccessyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "OIObservability.EventTypes?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15OIObservability10EventTypesO8rawValueACSgSS_tcfc",
+            "mangledName": "$s15OIObservability10EventTypesO8rawValueACSgSS_tcfc",
+            "moduleName": "OIObservability",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15OIObservability10EventTypesO8rawValueSSvp",
+            "mangledName": "$s15OIObservability10EventTypesO8rawValueSSvp",
+            "moduleName": "OIObservability",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15OIObservability10EventTypesO8rawValueSSvg",
+                "mangledName": "$s15OIObservability10EventTypesO8rawValueSSvg",
+                "moduleName": "OIObservability",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "allCases",
+            "printedName": "allCases",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[OIObservability.EventTypes]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15OIObservability10EventTypesO8allCasesSayACGvpZ",
+            "mangledName": "$s15OIObservability10EventTypesO8allCasesSayACGvpZ",
+            "moduleName": "OIObservability",
+            "static": true,
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[OIObservability.EventTypes]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15OIObservability10EventTypesO8allCasesSayACGvgZ",
+                "mangledName": "$s15OIObservability10EventTypesO8allCasesSayACGvgZ",
+                "moduleName": "OIObservability",
+                "static": true,
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:15OIObservability10EventTypesO",
+        "mangledName": "$s15OIObservability10EventTypesO",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "enumRawTypeName": "String",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          },
+          {
+            "kind": "Conformance",
+            "name": "CaseIterable",
+            "printedName": "CaseIterable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "AllCases",
+                "printedName": "AllCases",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Array",
+                    "printedName": "[OIObservability.EventTypes]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "EventTypes",
+                        "printedName": "OIObservability.EventTypes",
+                        "usr": "s:15OIObservability10EventTypesO"
+                      }
+                    ],
+                    "usr": "s:Sa"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s12CaseIterableP",
+            "mangledName": "$ss12CaseIterableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FirebaseInitializeProtocol",
+        "printedName": "FirebaseInitializeProtocol",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "initializeFirebase",
+            "printedName": "initializeFirebase()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability26FirebaseInitializeProtocolP010initializeB0yyF",
+            "mangledName": "$s15OIObservability26FirebaseInitializeProtocolP010initializeB0yyF",
+            "moduleName": "OIObservability",
+            "genericSig": "<τ_0_0 where τ_0_0 : OIObservability.FirebaseInitializeProtocol>",
+            "sugared_genericSig": "<Self where Self : OIObservability.FirebaseInitializeProtocol>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:15OIObservability26FirebaseInitializeProtocolP",
+        "mangledName": "$s15OIObservability26FirebaseInitializeProtocolP",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FirebaseCreateEventProtocol",
+        "printedName": "FirebaseCreateEventProtocol",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "createEvent",
+            "printedName": "createEvent(eventModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EventModel",
+                "printedName": "OIObservability.EventModel",
+                "usr": "s:15OIObservability10EventModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability27FirebaseCreateEventProtocolP06createD010eventModelyAA0dH0V_tF",
+            "mangledName": "$s15OIObservability27FirebaseCreateEventProtocolP06createD010eventModelyAA0dH0V_tF",
+            "moduleName": "OIObservability",
+            "genericSig": "<τ_0_0 where τ_0_0 : OIObservability.FirebaseCreateEventProtocol>",
+            "sugared_genericSig": "<Self where Self : OIObservability.FirebaseCreateEventProtocol>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:15OIObservability27FirebaseCreateEventProtocolP",
+        "mangledName": "$s15OIObservability27FirebaseCreateEventProtocolP",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FirebaseWrapperWorker",
+        "printedName": "FirebaseWrapperWorker",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(firebaseWrapperInternal:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FirebaseWrapperWorker",
+                "printedName": "OIObservability.FirebaseWrapperWorker",
+                "usr": "s:15OIObservability21FirebaseWrapperWorkerC"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "FirebaseWrapperInternalProtocol",
+                "printedName": "OIObservability.FirebaseWrapperInternalProtocol",
+                "usr": "s:15OIObservability31FirebaseWrapperInternalProtocolP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15OIObservability21FirebaseWrapperWorkerC08firebaseC8InternalAcA0bcF8Protocol_p_tcfc",
+            "mangledName": "$s15OIObservability21FirebaseWrapperWorkerC08firebaseC8InternalAcA0bcF8Protocol_p_tcfc",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "initializeFirebase",
+            "printedName": "initializeFirebase()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability21FirebaseWrapperWorkerC010initializeB0yyF",
+            "mangledName": "$s15OIObservability21FirebaseWrapperWorkerC010initializeB0yyF",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "createEvent",
+            "printedName": "createEvent(eventModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EventModel",
+                "printedName": "OIObservability.EventModel",
+                "usr": "s:15OIObservability10EventModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability21FirebaseWrapperWorkerC11createEvent10eventModelyAA0fH0V_tF",
+            "mangledName": "$s15OIObservability21FirebaseWrapperWorkerC11createEvent10eventModelyAA0fH0V_tF",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:15OIObservability21FirebaseWrapperWorkerC",
+        "mangledName": "$s15OIObservability21FirebaseWrapperWorkerC",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "FirebaseInitializeProtocol",
+            "printedName": "FirebaseInitializeProtocol",
+            "usr": "s:15OIObservability26FirebaseInitializeProtocolP",
+            "mangledName": "$s15OIObservability26FirebaseInitializeProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "FirebaseCreateEventProtocol",
+            "printedName": "FirebaseCreateEventProtocol",
+            "usr": "s:15OIObservability27FirebaseCreateEventProtocolP",
+            "mangledName": "$s15OIObservability27FirebaseCreateEventProtocolP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EventConfigurationProtocol",
+        "printedName": "EventConfigurationProtocol",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "eventManager",
+            "printedName": "eventManager",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventManagerProtocol",
+                "printedName": "OIObservability.EventManagerProtocol",
+                "usr": "s:15OIObservability20EventManagerProtocolP"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15OIObservability26EventConfigurationProtocolP12eventManagerAA0bfD0_pvp",
+            "mangledName": "$s15OIObservability26EventConfigurationProtocolP12eventManagerAA0bfD0_pvp",
+            "moduleName": "OIObservability",
+            "protocolReq": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventManagerProtocol",
+                    "printedName": "OIObservability.EventManagerProtocol",
+                    "usr": "s:15OIObservability20EventManagerProtocolP"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15OIObservability26EventConfigurationProtocolP12eventManagerAA0bfD0_pvg",
+                "mangledName": "$s15OIObservability26EventConfigurationProtocolP12eventManagerAA0bfD0_pvg",
+                "moduleName": "OIObservability",
+                "genericSig": "<τ_0_0 where τ_0_0 : OIObservability.EventConfigurationProtocol>",
+                "sugared_genericSig": "<Self where Self : OIObservability.EventConfigurationProtocol>",
+                "protocolReq": true,
+                "reqNewWitnessTableEntry": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:15OIObservability26EventConfigurationProtocolP",
+        "mangledName": "$s15OIObservability26EventConfigurationProtocolP",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EventConfiguration",
+        "printedName": "EventConfiguration",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "eventManager",
+            "printedName": "eventManager",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventManagerProtocol",
+                "printedName": "OIObservability.EventManagerProtocol",
+                "usr": "s:15OIObservability20EventManagerProtocolP"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15OIObservability18EventConfigurationC12eventManagerAA0bE8Protocol_pvp",
+            "mangledName": "$s15OIObservability18EventConfigurationC12eventManagerAA0bE8Protocol_pvp",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "Lazy",
+              "SetterAccess"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventManagerProtocol",
+                    "printedName": "OIObservability.EventManagerProtocol",
+                    "usr": "s:15OIObservability20EventManagerProtocolP"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15OIObservability18EventConfigurationC12eventManagerAA0bE8Protocol_pvg",
+                "mangledName": "$s15OIObservability18EventConfigurationC12eventManagerAA0bE8Protocol_pvg",
+                "moduleName": "OIObservability",
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventConfiguration",
+                "printedName": "OIObservability.EventConfiguration",
+                "usr": "s:15OIObservability18EventConfigurationC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15OIObservability18EventConfigurationCACycfc",
+            "mangledName": "$s15OIObservability18EventConfigurationCACycfc",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:15OIObservability18EventConfigurationC",
+        "mangledName": "$s15OIObservability18EventConfigurationC",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "Final",
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "EventConfigurationProtocol",
+            "printedName": "EventConfigurationProtocol",
+            "usr": "s:15OIObservability26EventConfigurationProtocolP",
+            "mangledName": "$s15OIObservability26EventConfigurationProtocolP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EventModel",
+        "printedName": "EventModel",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "type",
+            "printedName": "type",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventTypes",
+                "printedName": "OIObservability.EventTypes",
+                "usr": "s:15OIObservability10EventTypesO"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15OIObservability10EventModelV4typeAA0B5TypesOvp",
+            "mangledName": "$s15OIObservability10EventModelV4typeAA0B5TypesOvp",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "EventTypes",
+                    "printedName": "OIObservability.EventTypes",
+                    "usr": "s:15OIObservability10EventTypesO"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15OIObservability10EventModelV4typeAA0B5TypesOvg",
+                "mangledName": "$s15OIObservability10EventModelV4typeAA0B5TypesOvg",
+                "moduleName": "OIObservability",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "parameters",
+            "printedName": "parameters",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Any]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Any]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15OIObservability10EventModelV10parametersSDySSypGSgvp",
+            "mangledName": "$s15OIObservability10EventModelV10parametersSDySSypGSgvp",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "[Swift.String : Any]?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Dictionary",
+                        "printedName": "[Swift.String : Any]",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "String",
+                            "printedName": "Swift.String",
+                            "usr": "s:SS"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "ProtocolComposition",
+                            "printedName": "Any"
+                          }
+                        ],
+                        "usr": "s:SD"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15OIObservability10EventModelV10parametersSDySSypGSgvg",
+                "mangledName": "$s15OIObservability10EventModelV10parametersSDySSypGSgvg",
+                "moduleName": "OIObservability",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(type:parameters:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "EventModel",
+                "printedName": "OIObservability.EventModel",
+                "usr": "s:15OIObservability10EventModelV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EventTypes",
+                "printedName": "OIObservability.EventTypes",
+                "usr": "s:15OIObservability10EventTypesO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Any]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Any]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15OIObservability10EventModelV4type10parametersAcA0B5TypesO_SDySSypGSgtcfc",
+            "mangledName": "$s15OIObservability10EventModelV4type10parametersAcA0B5TypesO_SDySSypGSgtcfc",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:15OIObservability10EventModelV",
+        "mangledName": "$s15OIObservability10EventModelV",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EventManagerProtocol",
+        "printedName": "EventManagerProtocol",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "logEvent",
+            "printedName": "logEvent(type:parameters:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EventTypes",
+                "printedName": "OIObservability.EventTypes",
+                "usr": "s:15OIObservability10EventTypesO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Any]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Any]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability20EventManagerProtocolP03logB04type10parametersyAA0B5TypesO_SDySSypGSgtF",
+            "mangledName": "$s15OIObservability20EventManagerProtocolP03logB04type10parametersyAA0B5TypesO_SDySSypGSgtF",
+            "moduleName": "OIObservability",
+            "genericSig": "<τ_0_0 where τ_0_0 : OIObservability.EventManagerProtocol>",
+            "sugared_genericSig": "<Self where Self : OIObservability.EventManagerProtocol>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:15OIObservability20EventManagerProtocolP",
+        "mangledName": "$s15OIObservability20EventManagerProtocolP",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "EventManager",
+        "printedName": "EventManager",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "logEvent",
+            "printedName": "logEvent(type:parameters:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EventTypes",
+                "printedName": "OIObservability.EventTypes",
+                "usr": "s:15OIObservability10EventTypesO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Any]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Any]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability12EventManagerC03logB04type10parametersyAA0B5TypesO_SDySSypGSgtF",
+            "mangledName": "$s15OIObservability12EventManagerC03logB04type10parametersyAA0B5TypesO_SDySSypGSgtF",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "isFromExtension": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:15OIObservability12EventManagerC",
+        "mangledName": "$s15OIObservability12EventManagerC",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "EventManagerProtocol",
+            "printedName": "EventManagerProtocol",
+            "usr": "s:15OIObservability20EventManagerProtocolP",
+            "mangledName": "$s15OIObservability20EventManagerProtocolP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FirebaseFileNames",
+        "printedName": "FirebaseFileNames",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "DEVELOPMENT",
+            "printedName": "DEVELOPMENT",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(OIObservability.FirebaseFileNames.Type) -> OIObservability.FirebaseFileNames",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FirebaseFileNames",
+                    "printedName": "OIObservability.FirebaseFileNames",
+                    "usr": "s:15OIObservability17FirebaseFileNamesO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "OIObservability.FirebaseFileNames.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "FirebaseFileNames",
+                        "printedName": "OIObservability.FirebaseFileNames",
+                        "usr": "s:15OIObservability17FirebaseFileNamesO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:15OIObservability17FirebaseFileNamesO11DEVELOPMENTyA2CmF",
+            "mangledName": "$s15OIObservability17FirebaseFileNamesO11DEVELOPMENTyA2CmF",
+            "moduleName": "OIObservability"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(rawValue:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "OIObservability.FirebaseFileNames?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "FirebaseFileNames",
+                    "printedName": "OIObservability.FirebaseFileNames",
+                    "usr": "s:15OIObservability17FirebaseFileNamesO"
+                  }
+                ],
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15OIObservability17FirebaseFileNamesO8rawValueACSgSS_tcfc",
+            "mangledName": "$s15OIObservability17FirebaseFileNamesO8rawValueACSgSS_tcfc",
+            "moduleName": "OIObservability",
+            "implicit": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Var",
+            "name": "rawValue",
+            "printedName": "rawValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:15OIObservability17FirebaseFileNamesO8rawValueSSvp",
+            "mangledName": "$s15OIObservability17FirebaseFileNamesO8rawValueSSvp",
+            "moduleName": "OIObservability",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:15OIObservability17FirebaseFileNamesO8rawValueSSvg",
+                "mangledName": "$s15OIObservability17FirebaseFileNamesO8rawValueSSvg",
+                "moduleName": "OIObservability",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:15OIObservability17FirebaseFileNamesO",
+        "mangledName": "$s15OIObservability17FirebaseFileNamesO",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "enumRawTypeName": "String",
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          },
+          {
+            "kind": "Conformance",
+            "name": "RawRepresentable",
+            "printedName": "RawRepresentable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "RawValue",
+                "printedName": "RawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:SY",
+            "mangledName": "$sSY"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "FirebaseCore",
+        "printedName": "FirebaseCore",
+        "declKind": "Import",
+        "moduleName": "OIObservability"
+      },
+      {
+        "kind": "Import",
+        "name": "FirebaseAnalytics",
+        "printedName": "FirebaseAnalytics",
+        "declKind": "Import",
+        "moduleName": "OIObservability"
+      },
+      {
+        "kind": "Import",
+        "name": "FirebaseCrashlytics",
+        "printedName": "FirebaseCrashlytics",
+        "declKind": "Import",
+        "moduleName": "OIObservability"
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FirebaseWrapperInternalProtocol",
+        "printedName": "FirebaseWrapperInternalProtocol",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "logEvent",
+            "printedName": "logEvent(type:parameters:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Any]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Any]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability31FirebaseWrapperInternalProtocolP8logEvent4type10parametersySS_SDySSypGSgtF",
+            "mangledName": "$s15OIObservability31FirebaseWrapperInternalProtocolP8logEvent4type10parametersySS_SDySSypGSgtF",
+            "moduleName": "OIObservability",
+            "genericSig": "<τ_0_0 where τ_0_0 : OIObservability.FirebaseWrapperInternalProtocol>",
+            "sugared_genericSig": "<Self where Self : OIObservability.FirebaseWrapperInternalProtocol>",
+            "protocolReq": true,
+            "reqNewWitnessTableEntry": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Protocol",
+        "usr": "s:15OIObservability31FirebaseWrapperInternalProtocolP",
+        "mangledName": "$s15OIObservability31FirebaseWrapperInternalProtocolP",
+        "moduleName": "OIObservability",
+        "genericSig": "<τ_0_0 : OIObservability.FirebaseCreateEventProtocol, τ_0_0 : OIObservability.FirebaseInitializeProtocol>",
+        "sugared_genericSig": "<Self : OIObservability.FirebaseCreateEventProtocol, Self : OIObservability.FirebaseInitializeProtocol>",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "FirebaseInitializeProtocol",
+            "printedName": "FirebaseInitializeProtocol",
+            "usr": "s:15OIObservability26FirebaseInitializeProtocolP",
+            "mangledName": "$s15OIObservability26FirebaseInitializeProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "FirebaseCreateEventProtocol",
+            "printedName": "FirebaseCreateEventProtocol",
+            "usr": "s:15OIObservability27FirebaseCreateEventProtocolP",
+            "mangledName": "$s15OIObservability27FirebaseCreateEventProtocolP"
+          }
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "FirebaseWrapperInternalWorker",
+        "printedName": "FirebaseWrapperInternalWorker",
+        "children": [
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "FirebaseWrapperInternalWorker",
+                "printedName": "OIObservability.FirebaseWrapperInternalWorker",
+                "usr": "s:15OIObservability29FirebaseWrapperInternalWorkerC"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:15OIObservability29FirebaseWrapperInternalWorkerCACycfc",
+            "mangledName": "$s15OIObservability29FirebaseWrapperInternalWorkerCACycfc",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "initializeFirebase",
+            "printedName": "initializeFirebase()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability29FirebaseWrapperInternalWorkerC010initializeB0yyF",
+            "mangledName": "$s15OIObservability29FirebaseWrapperInternalWorkerC010initializeB0yyF",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "createEvent",
+            "printedName": "createEvent(eventModel:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "EventModel",
+                "printedName": "OIObservability.EventModel",
+                "usr": "s:15OIObservability10EventModelV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability29FirebaseWrapperInternalWorkerC11createEvent10eventModelyAA0gI0V_tF",
+            "mangledName": "$s15OIObservability29FirebaseWrapperInternalWorkerC11createEvent10eventModelyAA0gI0V_tF",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "logEvent",
+            "printedName": "logEvent(type:parameters:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Any]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Any]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "ProtocolComposition",
+                        "printedName": "Any"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:15OIObservability29FirebaseWrapperInternalWorkerC8logEvent4type10parametersySS_SDySSypGSgtF",
+            "mangledName": "$s15OIObservability29FirebaseWrapperInternalWorkerC8logEvent4type10parametersySS_SDySSypGSgtF",
+            "moduleName": "OIObservability",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:15OIObservability29FirebaseWrapperInternalWorkerC",
+        "mangledName": "$s15OIObservability29FirebaseWrapperInternalWorkerC",
+        "moduleName": "OIObservability",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "FirebaseWrapperInternalProtocol",
+            "printedName": "FirebaseWrapperInternalProtocol",
+            "usr": "s:15OIObservability31FirebaseWrapperInternalProtocolP",
+            "mangledName": "$s15OIObservability31FirebaseWrapperInternalProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "FirebaseInitializeProtocol",
+            "printedName": "FirebaseInitializeProtocol",
+            "usr": "s:15OIObservability26FirebaseInitializeProtocolP",
+            "mangledName": "$s15OIObservability26FirebaseInitializeProtocolP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "FirebaseCreateEventProtocol",
+            "printedName": "FirebaseCreateEventProtocol",
+            "usr": "s:15OIObservability27FirebaseCreateEventProtocolP",
+            "mangledName": "$s15OIObservability27FirebaseCreateEventProtocolP"
+          }
+        ]
+      }
+    ],
+    "json_format_version": 8
+  },
+  "ConstValues": [
+    {
+      "filePath": "\/Users\/gleds\/Codes\/Oiti\/Sandbox\/ios-security\/OIObservability\/Infra\/Firebase\/FirebaseFileNames.swift",
+      "kind": "StringLiteral",
+      "offset": 186,
+      "length": 20,
+      "value": "\"GoogleService-Info\""
+    },
+    {
+      "filePath": "\/Users\/gleds\/Codes\/Oiti\/Sandbox\/ios-security\/OIObservability\/Infra\/Firebase\/FirebaseFileNames.swift",
+      "kind": "StringLiteral",
+      "offset": 186,
+      "length": 20,
+      "value": "\"GoogleService-Info\""
+    }
+  ]
+}

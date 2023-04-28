@@ -1,4 +1,7 @@
-platform :ios, '10.0'
+platform :ios, '11.0', :modular_headers
+source 'https://github.com/oititec/liveness-ios-specs.git'
+source 'https://github.com/oititec/ios-artifactory.git'
+source 'https://github.com/CocoaPods/Specs.git'
 
 
 target 'RnLiveness3d' do
@@ -6,6 +9,7 @@ target 'RnLiveness3d' do
     use_frameworks!
     
     # Pods for sampleUsageLivenessSDK
-    pod 'FaceCaptcha', '4.0.9-beta1', :source => 'https://github.com/oititec/liveness-ios-specs.git'
+    pod 'FaceCaptcha', '4.1.1'
+  #  pod 'OISecurity', '1.0.0'
   
   end

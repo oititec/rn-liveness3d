@@ -2,6 +2,9 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, '12.4'
+source 'https://github.com/oititec/liveness-ios-specs.git'
+source 'https://github.com/oititec/ios-artifactory.git'
+source 'https://github.com/CocoaPods/Specs.git'
 prepare_react_native_project!
 
 # Force pods to match minimum iOS version for React Native
@@ -39,7 +42,9 @@ end
 
 
 target 'RnLiveness3dExample' do
+  use_modular_headers!
   config = use_native_modules!
+  
 
   # Flags change depending on the env values.
   flags = get_default_flags()
@@ -65,7 +70,8 @@ target 'RnLiveness3dExample' do
     # Pods for testing
   end
 
-  pod 'FaceCaptcha', '4.0.9-beta1', :source => 'https://github.com/oititec/liveness-ios-specs.git'
+  pod 'FaceCaptcha', '4.1.1'
+ # pod 'OISecurity', '1.0.0'
 
   post_install do |installer|
     react_native_post_install(

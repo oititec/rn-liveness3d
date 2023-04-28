@@ -10,7 +10,14 @@ Os tipos de Liveness serão apresentados na demonstração do serviço e a escol
 
 Para cada tipo de Liveness, são apresentados propriedades técnicas específicas. Assim, a pessoa desenvolvedora deve executar os comandos pertencentes ao tipo de serviço contratado.
 
-Acompanhe abaixo a instalação, uso, guias de migração e outros documentos. Esses processos integram o projeto FaceCapctha.
+Acompanhe abaixo a instalação, uso, guias de migração e outros documentos. Esses processos integram o projeto FaceCaptcha.
+
+##  Requisitos mínimos
+- iOS 11+
+- Swift 5+
+
+> **Notas** <br>
+> O **XCFramework** foi gerado utilizando **Xcode 14.1** e **SDK iOS 16.1**.
 
 ##  Instalação
 
@@ -28,7 +35,7 @@ source 'https://github.com/oititec/liveness-ios-specs.git'
 2. Após isso, adicione a dependência:
 
 ```rb
-pod 'FaceCaptcha', '~> 4.0.7'
+pod 'FaceCaptcha', '~> 4.0.9'
 ```
 
 3. Rode `pod install`.
@@ -43,7 +50,7 @@ Para adicionar o SDK manualmente no seu projeto, siga estas [instruções](Docum
 
 No `Info.plist` do projeto, adicione a descrição de uso de câmera (`Privacy - Camera Usage Description`).
 
-![Instalação 4](Documentation/Images/installation_4.png)
+![Instalação 4](Documentation/Images/Common/installation_4.png)
 
 
 ###  Liveness FaceCaptcha
@@ -60,8 +67,8 @@ As instruções de uso, integração, implementação e customização do **Live
 
   - [Descrição e Resultados](Documentation/Liveness3D/Liveness3D-Description.md);
   - [Guia de uso e integração](Documentation/Liveness3D/Liveness3D-Usage.md);
-  - [Guia de implementação de view customizada](Documentation/Liveness3D/Liveness3D-CustomView.md);
-  - [Guia de customização do Liveness3DTheme](Documentation/Liveness3D/Liveness3D-Liveness3DTheme.md).
+  - [Guia de customização: Views](Documentation/Liveness3D/Liveness3D-CustomView.md);
+  - [Guia de customização: Liveness3DTheme](Documentation/Liveness3D/Liveness3D-Liveness3DTheme.md).
 
 ###  Documentoscopia
 

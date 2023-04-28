@@ -1,0 +1,95 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7.1 (swiftlang-5.7.1.135.3 clang-1400.0.29.51)
+// swift-module-flags: -target x86_64-apple-ios16.4-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name OIObservability
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import FirebaseAnalytics
+import FirebaseCore
+import FirebaseCrashlytics
+import Foundation
+@_exported import OIObservability
+import Swift
+import _Concurrency
+import _StringProcessing
+public enum EventTypes : Swift.String, Swift.CaseIterable {
+  case ACTION_L3FT_instructionContinue
+  case ACTION_L3FT_permissionVerify
+  case STATE_L3FT_instructionView
+  case STATE_L3FT_permissionView
+  case STATE_L3FT_flow
+  case LOG_L3FT_permissionCallback
+  case ERROR_L3FT_callbackError
+  case SYSTEM_L3FT_callbackError
+  case SYSTEM_L3FT_instructionView
+  case SYSTEM_L3FT_callbackSuccess
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [OIObservability.EventTypes]
+  public typealias RawValue = Swift.String
+  public static var allCases: [OIObservability.EventTypes] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol FirebaseInitializeProtocol {
+  func initializeFirebase()
+}
+public protocol FirebaseCreateEventProtocol {
+  func createEvent(eventModel: OIObservability.EventModel)
+}
+public class FirebaseWrapperWorker {
+  public init(firebaseWrapperInternal: OIObservability.FirebaseWrapperInternalProtocol)
+  @objc deinit
+}
+extension OIObservability.FirebaseWrapperWorker : OIObservability.FirebaseInitializeProtocol, OIObservability.FirebaseCreateEventProtocol {
+  public func initializeFirebase()
+  public func createEvent(eventModel: OIObservability.EventModel)
+}
+public protocol EventConfigurationProtocol {
+  var eventManager: OIObservability.EventManagerProtocol { get }
+}
+final public class EventConfiguration : OIObservability.EventConfigurationProtocol {
+  final public var eventManager: OIObservability.EventManagerProtocol {
+    get
+  }
+  public init()
+  @objc deinit
+}
+public struct EventModel {
+  public let type: OIObservability.EventTypes
+  public let parameters: [Swift.String : Any]?
+  public init(type: OIObservability.EventTypes, parameters: [Swift.String : Any]?)
+}
+public protocol EventManagerProtocol {
+  func logEvent(type: OIObservability.EventTypes, parameters: [Swift.String : Any]?)
+}
+@_hasMissingDesignatedInitializers public class EventManager {
+  @objc deinit
+}
+extension OIObservability.EventManager : OIObservability.EventManagerProtocol {
+  public func logEvent(type: OIObservability.EventTypes, parameters: [Swift.String : Any]?)
+}
+public enum FirebaseFileNames : Swift.String {
+  case DEVELOPMENT
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol FirebaseWrapperInternalProtocol : OIObservability.FirebaseCreateEventProtocol, OIObservability.FirebaseInitializeProtocol {
+  func logEvent(type: Swift.String, parameters: [Swift.String : Any]?)
+}
+public class FirebaseWrapperInternalWorker : OIObservability.FirebaseWrapperInternalProtocol {
+  public init()
+  public func initializeFirebase()
+  public func createEvent(eventModel: OIObservability.EventModel)
+  public func logEvent(type: Swift.String, parameters: [Swift.String : Any]?)
+  @objc deinit
+}
+extension OIObservability.EventTypes : Swift.Equatable {}
+extension OIObservability.EventTypes : Swift.Hashable {}
+extension OIObservability.EventTypes : Swift.RawRepresentable {}
+extension OIObservability.FirebaseFileNames : Swift.Equatable {}
+extension OIObservability.FirebaseFileNames : Swift.Hashable {}
+extension OIObservability.FirebaseFileNames : Swift.RawRepresentable {}

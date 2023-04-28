@@ -1,4 +1,4 @@
-package com.rnliveness3dexample;
+package br.com.rnliveness3dexample;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;

@@ -1,4 +1,4 @@
-package com.rnliveness3dexample;
+package br.com.rnliveness3dexample;
 
 import android.app.Application;
 import com.facebook.react.PackageList;
