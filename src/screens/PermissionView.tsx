@@ -4,7 +4,7 @@ import { Dimensions } from 'react-native';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { normalize } from '../utils/normalize';
 
-const { width: SCREEN_WIDTH, height: SCREEN_HEIGHT } = Dimensions.get('window');
+const { height: SCREEN_HEIGHT } = Dimensions.get('window');
 
 //const scaleW = SCREEN_WIDTH / 320;
 const scaleH = SCREEN_HEIGHT / 920;

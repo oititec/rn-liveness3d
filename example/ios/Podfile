@@ -42,7 +42,6 @@ end
 
 
 target 'RnLiveness3dExample' do
-  use_modular_headers!
   config = use_native_modules!
   
 
@@ -71,7 +70,6 @@ target 'RnLiveness3dExample' do
   end
 
   pod 'FaceCaptcha', '4.1.1'
- # pod 'OISecurity', '1.0.0'
 
   post_install do |installer|
     react_native_post_install(
