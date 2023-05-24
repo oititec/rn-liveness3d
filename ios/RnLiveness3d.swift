@@ -1,23 +1,7 @@
 import FaceCaptcha
 import AVFoundation
 
-class ObservabilityWorker {
-    private let configuration: OIObservability.EventConfigurationProtocol
-    private let manager: OIObservability.EventManagerProtocol
-    
-    init(configuration: OIOBservability.EventConfigurationProtocol){
-        serf.configuration = configuration
-        self.manager = configuration.eventManager
-    }
-    
-    func logEventHybrid(value: String){
-        let parameters: [String: Any] = [
-            "value": values,
-            "timestamp": Date().timeIntervalSince1970
-        ]
-        manager.logEvent(type: .ACTION_L3FT_instructionContinue, parameters: parameters)
-    }
-}
+
 
 @objc(RnLiveness3d)
 class RnLiveness3d: NSObject, Liveness3DDelegate {
