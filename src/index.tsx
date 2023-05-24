@@ -53,12 +53,29 @@ export function startLiveness3d(options: ArgsType): Promise<any> {
 }
 
 export function logEvent3D(name: string, appkey: string): Promise<any> {
-  return RnLiveness3d.logevent(name, appkey);
+  return RnLiveness3d.logevent({ event: name, appkey: appkey });
+}
+
+export function checkIosPermission(): Promise<any> {
+  return RnLiveness3d.checkiospermission({ p: 'granted' });
+}
+export function checkIosPermissionGranted(): Promise<any> {
+  return RnLiveness3d.checkpermissiongranted({ p: 'granted' });
 }
 
 const PERMISSIONS_REQUEST: any = PermissionsAndroid.PERMISSIONS.CAMERA;
 
 const requestCameraPermission = async (options: ArgsType) => {
+  if (Platform.OS === 'ios') {
+    checkIosPermission().then((result) => {
+      if (result === 'true') {
+        return RnLiveness3d.startliveness3d(options);
+      }
+      if (result === 'false') {
+        return;
+      }
+    });
+  }
   try {
     const granted = await PermissionsAndroid.request(PERMISSIONS_REQUEST, {
       title: 'Cool Photo App Camera Permission',
@@ -79,6 +96,15 @@ const requestCameraPermission = async (options: ArgsType) => {
 };
 
 async function checkPermission(): Promise<boolean> {
+  if (Platform.OS === 'ios') {
+    const grantediso = await checkIosPermissionGranted();
+    if (grantediso === 'true') {
+      return true;
+    }
+    if (grantediso === 'false') {
+      return false;
+    }
+  }
   const granted = await PermissionsAndroid.check(PERMISSIONS_REQUEST);
   if (granted) {
     return true;
@@ -136,8 +162,9 @@ export function GetIntructionView({
       }
     }
     if (screen === 2) {
-      requestCameraPermission(options);
       logEvent3D('ACTION_L3FT_permissionVerify', options.appkey);
+      await requestCameraPermission(options);
+      setScreen(1);
     }
   }
   useEffect(() => {

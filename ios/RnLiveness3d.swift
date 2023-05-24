@@ -1,6 +1,23 @@
 import FaceCaptcha
 import AVFoundation
-import OIObservability
+
+class ObservabilityWorker {
+    private let configuration: OIObservability.EventConfigurationProtocol
+    private let manager: OIObservability.EventManagerProtocol
+    
+    init(configuration: OIOBservability.EventConfigurationProtocol){
+        serf.configuration = configuration
+        self.manager = configuration.eventManager
+    }
+    
+    func logEventHybrid(value: String){
+        let parameters: [String: Any] = [
+            "value": values,
+            "timestamp": Date().timeIntervalSince1970
+        ]
+        manager.logEvent(type: .ACTION_L3FT_instructionContinue, parameters: parameters)
+    }
+}
 
 @objc(RnLiveness3d)
 class RnLiveness3d: NSObject, Liveness3DDelegate {
@@ -16,6 +33,36 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
     
     func handleLiveness3DError(error: Liveness3DError) {
         resolve(error.message)
+    }
+    
+    @objc(logevent:withResolver:withRejecter:)
+    func logevent(args: Dictionary<String,Any>?, resolve:@escaping RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        let event = args?["event"] as? String ?? ""
+        print(event)
+        
+        
+    }
+    
+    
+    @objc(checkiospermission:withResolver:withRejecter:)
+    func checkiospermission(args: Dictionary<String,Any>?, resolve:@escaping RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
+            if response {
+               resolve("true")
+                
+            } else {
+               resolve("false")
+            }
+        }
+    }
+    
+    @objc(checkpermissiongranted:withResolver:withRejecter:)
+    func checkpermissiongranted(args: Dictionary<String,Any>?, resolve:@escaping RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        if AVCaptureDevice.authorizationStatus(for: AVMediaType.video) ==  AVAuthorizationStatus.authorized {
+            resolve("true")
+        } else {
+            resolve("false")
+        }
     }
     
     
