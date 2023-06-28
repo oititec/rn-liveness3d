@@ -2,8 +2,6 @@ PODS:
   - boost (1.76.0)
   - CocoaAsyncSocket (7.6.5)
   - DoubleConversion (1.1.6)
-  - FaceCaptcha (4.1.1):
-    - OILiveness3D_FT (= 9.6.25)
   - FBLazyVector (0.71.4)
   - FBReactNativeSpec (0.71.4):
     - RCT-Folly (= 2021.07.22.00)
@@ -79,9 +77,23 @@ PODS:
     - hermes-engine/Pre-built (= 0.71.4)
   - hermes-engine/Pre-built (0.71.4)
   - libevent (2.1.12)
-  - OILiveness3D_FT (9.6.25)
-  - oiti-rn-liveness3d (1.0.1):
-    - FaceCaptcha (~> 4.1.1)
+  - OICommons (1.0.9)
+  - OIComponents (1.2.0-beta):
+    - OICommons (~> 1.0.9)
+  - OILiveness3D (1.0.0):
+    - OICommons (~> 1.0.9)
+    - OIComponents (~> 1.2.0-beta)
+    - OILiveness3D_FT (= 9.6.33)
+    - OINetwork (~> 1.1.0)
+  - OILiveness3D_FT (9.6.33)
+  - OINetwork (1.1.1):
+    - OICommons (~> 1.0.9)
+  - oiti-rn-liveness3d (1.0.3):
+    - OICommons (~> 1.0.9)
+    - OIComponents (= 1.2.0-beta)
+    - OILiveness3D (= 1.0.0)
+    - OILiveness3D_FT (= 9.6.33)
+    - OINetwork (~> 1.1.0)
     - React-Core
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
@@ -425,6 +437,8 @@ PODS:
     - React-jsi (= 0.71.4)
     - React-logger (= 0.71.4)
     - React-perflogger (= 0.71.4)
+  - RNCPicker (2.4.10):
+    - React-Core
   - RNScreens (3.20.0):
     - React-Core
     - React-RCTImage
@@ -436,7 +450,6 @@ PODS:
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
-  - FaceCaptcha (= 4.1.1)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
   - Flipper (= 0.125.0)
@@ -463,6 +476,11 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
+  - OICommons (~> 1.0.9)
+  - OIComponents (= 1.2.0-beta)
+  - OILiveness3D (from `https://github.com/oititec/ios-liveness-3d.git`, branch `feature/rn-loading-compatibility`)
+  - OILiveness3D_FT (= 9.6.33)
+  - OINetwork (~> 1.1.0)
   - oiti-rn-liveness3d (from `../..`)
   - OpenSSL-Universal (= 1.1.1100)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -495,14 +513,12 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/oititec/liveness-ios-specs.git:
-    - FaceCaptcha
-    - OILiveness3D_FT
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - CocoaAsyncSocket
     - Flipper
     - Flipper-Boost-iOSX
@@ -518,6 +534,11 @@ SPEC REPOS:
     - OpenSSL-Universal
     - SocketRocket
     - YogaKit
+  https://github.com/oititec/ios-artifactory.git:
+    - OICommons
+    - OIComponents
+    - OILiveness3D_FT
+    - OINetwork
 
 EXTERNAL SOURCES:
   boost:
@@ -532,6 +553,9 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   hermes-engine:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
+  OILiveness3D:
+    :branch: feature/rn-loading-compatibility
+    :git: https://github.com/oititec/ios-liveness-3d.git
   oiti-rn-liveness3d:
     :path: "../.."
   RCT-Folly:
@@ -590,16 +614,22 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNCPicker:
+    :path: "../node_modules/@react-native-picker/picker"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
+CHECKOUT OPTIONS:
+  OILiveness3D:
+    :commit: ea9e8faf3e304c6158e264c5b925030330366e5f
+    :git: https://github.com/oititec/ios-liveness-3d.git
+
 SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
   DoubleConversion: 5189b271737e1565bdce30deb4a08d647e3f5f54
-  FaceCaptcha: 3ff2433d23d74df3ed18a591f7be5393f39c844f
   FBLazyVector: 446e84642979fff0ba57f3c804c2228a473aeac2
   FBReactNativeSpec: 241709e132e3bf1526c1c4f00bc5384dd39dfba9
   Flipper: 26fc4b7382499f1281eb8cb921e5c3ad6de91fe0
@@ -615,8 +645,12 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: a1f157c49ea579c28b0296bda8530e980c45bdb3
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  OILiveness3D_FT: 9c794249edb23f2e9ba627392450ed385cb816e9
-  oiti-rn-liveness3d: daa8816d4d3a8b0435dde2a1dedbb39d776c9be6
+  OICommons: 86a46de9cdaf75f237ccd54b5bbacdcfee2c7ffa
+  OIComponents: ea3144e55dea981d225f781c255ce811a2506cea
+  OILiveness3D: 37c825a548be27ff187ade7f820c269c255de545
+  OILiveness3D_FT: fc78e3f4549179b74dd8c3adbdadbb237ceb3357
+  OINetwork: f266070a388b4879a06c5a503b277007b79b988c
+  oiti-rn-liveness3d: 2a9ba9fef2aa91e3d2746d14454183506af21452
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 5a024fdf458fa8c0d82fc262e76f982d4dcdecdd
@@ -646,11 +680,12 @@ SPEC CHECKSUMS:
   React-RCTVibration: ad17efcfb2fa8f6bfd8ac0cf48d96668b8b28e0b
   React-runtimeexecutor: 8fa50b38df6b992c76537993a2b0553d3b088004
   ReactCommon: b49a4b00ca6d181ff74b17c12b2d59ac4add0bde
+  RNCPicker: 0bc2f0a29abcca7b7ed44a2d036aac9ab6d25700
   RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
   SocketRocket: fccef3f9c5cedea1353a9ef6ada904fde10d6608
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 29bc654dd0b3cca5c6e66e3412dbc90bf58970a3
+PODFILE CHECKSUM: c23e9f2920810b1cf270ce7f1c11e90cb7a70c69
 
 COCOAPODS: 1.12.0

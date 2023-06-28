@@ -2,7 +2,6 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, '12.4'
-source 'https://github.com/oititec/liveness-ios-specs.git'
 source 'https://github.com/oititec/ios-artifactory.git'
 source 'https://github.com/CocoaPods/Specs.git'
 prepare_react_native_project!
@@ -69,11 +68,13 @@ target 'RnLiveness3dExample' do
     # Pods for testing
   end
  
-  pod 'FaceCaptcha', '4.1.1'
- # pod 'OISecurity', '1.0.0'
+  pod 'OICommons', '~> 1.0.9'
+  pod 'OINetwork', '~> 1.1.0'
+  pod 'OIComponents', '1.2.0-beta'
+  pod 'OILiveness3D', :git => 'https://github.com/oititec/ios-liveness-3d.git', :branch => 'feature/rn-loading-compatibility'
+  pod 'OILiveness3D_FT', '9.6.33'
 
-
-
+  
   post_install do |installer|
     react_native_post_install(
       installer,
@@ -81,7 +82,9 @@ target 'RnLiveness3dExample' do
       # necessary for Mac Catalyst builds
       :mac_catalyst_enabled => false
     )
+    
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
     __apply_Xcode_14_3_RC_post_install_workaround(installer)
   end
+  
 end

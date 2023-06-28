@@ -1,20 +1,47 @@
 PODS:
-  - FaceCaptcha (4.1.1):
-    - OILiveness3D_FT (= 9.6.25)
-  - OILiveness3D_FT (9.6.25)
+  - OICommons (1.0.9)
+  - OIComponents (1.2.0-beta):
+    - OICommons (~> 1.0.9)
+  - OILiveness3D (1.0.0):
+    - OICommons (~> 1.0.9)
+    - OIComponents (~> 1.2.0-beta)
+    - OILiveness3D_FT (= 9.6.33)
+    - OINetwork (~> 1.1.0)
+  - OILiveness3D_FT (9.6.33)
+  - OINetwork (1.1.1):
+    - OICommons (~> 1.0.9)
 
 DEPENDENCIES:
-  - FaceCaptcha (= 4.1.1)
+  - OICommons (~> 1.0.9)
+  - OIComponents (= 1.2.0-beta)
+  - OILiveness3D (from `https://github.com/oititec/ios-liveness-3d.git`, branch `feature/rn-loading-compatibility`)
+  - OILiveness3D_FT (= 9.6.33)
+  - OINetwork (~> 1.1.0)
 
 SPEC REPOS:
-  https://github.com/oititec/liveness-ios-specs.git:
-    - FaceCaptcha
+  https://github.com/oititec/ios-artifactory.git:
+    - OICommons
+    - OIComponents
     - OILiveness3D_FT
+    - OINetwork
+
+EXTERNAL SOURCES:
+  OILiveness3D:
+    :branch: feature/rn-loading-compatibility
+    :git: https://github.com/oititec/ios-liveness-3d.git
+
+CHECKOUT OPTIONS:
+  OILiveness3D:
+    :commit: ea9e8faf3e304c6158e264c5b925030330366e5f
+    :git: https://github.com/oititec/ios-liveness-3d.git
 
 SPEC CHECKSUMS:
-  FaceCaptcha: 3ff2433d23d74df3ed18a591f7be5393f39c844f
-  OILiveness3D_FT: 9c794249edb23f2e9ba627392450ed385cb816e9
+  OICommons: 86a46de9cdaf75f237ccd54b5bbacdcfee2c7ffa
+  OIComponents: ea3144e55dea981d225f781c255ce811a2506cea
+  OILiveness3D: 37c825a548be27ff187ade7f820c269c255de545
+  OILiveness3D_FT: fc78e3f4549179b74dd8c3adbdadbb237ceb3357
+  OINetwork: f266070a388b4879a06c5a503b277007b79b988c
 
-PODFILE CHECKSUM: 04a7f36f3e2491eca7ad5a1ef0bc3639b2827cde
+PODFILE CHECKSUM: 23d37c514f0c232715f0296e0fb4043bd18f4fdf
 
 COCOAPODS: 1.12.0

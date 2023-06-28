@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from 'react';
 import { NativeModules, Platform, PermissionsAndroid } from 'react-native';
-import type { ArgsType } from './@types/ArgsType';
+import type { ArgsType, LoadingType } from './@types/ArgsType';
 import InstructionsView from './screens/Liveness3D/InstructionsView';
 import PermissionView from './screens/PermissionView';
 
@@ -26,7 +26,10 @@ const RnLiveness3d = NativeModules.RnLiveness3d
       }
     );
 
-export function startLiveness3d(options: ArgsType): Promise<any> {
+export function startLiveness3d(
+  options: ArgsType,
+  loading?: any
+): Promise<any> {
   let args: ArgsType = {
     appkey: options?.appkey === undefined ? '' : options?.appkey,
     environment:
@@ -43,17 +46,29 @@ export function startLiveness3d(options: ArgsType): Promise<any> {
           : options?.apparence?.loadingColor,
     },
     liveness3Dtext: options.liveness3Dtext || [],
+    loading: loading,
   };
 
   if (Platform.OS === 'android') {
-    return RnLiveness3d.startliveness3d(args.appkey);
+    return RnLiveness3d.startliveness3d(
+      args.appkey,
+      loading?.type,
+      loading?.size * 200,
+      loading?.backgroundColor,
+      loading?.loadingColor
+    );
   }
 
   return RnLiveness3d.startliveness3d(args);
 }
 
 export function logEvent3D(name: string, appkey: string): Promise<any> {
-  return RnLiveness3d.logevent({ event: name, appkey: appkey });
+  if (Platform.OS === 'ios') {
+    return RnLiveness3d.logevent({ event: name, appkey: appkey });
+  } else {
+    console.log(name, appkey);
+    return RnLiveness3d.logevent(name, appkey);
+  }
 }
 
 export function checkIosPermission(): Promise<any> {
@@ -65,7 +80,10 @@ export function checkIosPermissionGranted(): Promise<any> {
 
 const PERMISSIONS_REQUEST: any = PermissionsAndroid.PERMISSIONS.CAMERA;
 
-const requestCameraPermission = async (options: ArgsType) => {
+const requestCameraPermission = async (
+  options: ArgsType,
+  loading?: LoadingType
+) => {
   if (Platform.OS === 'ios') {
     checkIosPermission().then((result) => {
       if (result === 'true') {
@@ -78,7 +96,7 @@ const requestCameraPermission = async (options: ArgsType) => {
   }
   try {
     const granted = await PermissionsAndroid.request(PERMISSIONS_REQUEST, {
-      title: 'Cool Photo App Camera Permission',
+      title: '',
       message: 'Precisamos acessar sua cãmera ',
       buttonNeutral: 'Ver Depois',
       buttonNegative: 'Cancelar',
@@ -86,7 +104,7 @@ const requestCameraPermission = async (options: ArgsType) => {
     });
 
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-      startLiveness3d(options).then((result) => console.log(result));
+      startLiveness3d(options, loading).then((result) => console.log(result));
     } else {
       console.log('Camera permission denied');
     }
@@ -117,16 +135,19 @@ export function Liveness3dView({
   CustomInstructionView,
   CustomPermissionView,
   options,
+  loading,
 }: {
   CustomInstructionView: FC;
   CustomPermissionView: FC;
   options: ArgsType;
+  loading: LoadingType;
 }) {
   return (
     <GetIntructionView
       CustomInstructionView={CustomInstructionView}
       CustomPermissionView={CustomPermissionView}
       options={options}
+      loading={loading}
     />
   );
 }
@@ -135,10 +156,12 @@ export function GetIntructionView({
   CustomInstructionView,
   CustomPermissionView,
   options,
+  loading,
 }: {
   CustomInstructionView: FC;
   CustomPermissionView: FC;
   options: ArgsType;
+  loading: LoadingType;
 }) {
   const [screen, setScreen] = useState(1);
 
@@ -156,7 +179,7 @@ export function GetIntructionView({
     if (screen === 1) {
       logEvent3D('ACTION_L3FT_instructionContinue', options.appkey);
       if ((await checkPermission()) === true) {
-        startLiveness3d(options).then((result) => console.log(result));
+        startLiveness3d(options, loading).then((result) => console.log(result));
       } else {
         setScreen(2);
       }
