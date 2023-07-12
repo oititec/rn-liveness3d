@@ -1,5 +1,6 @@
 import OILiveness3D
 import OIComponents
+import OICommons
 import AVFoundation
 
 
@@ -55,10 +56,10 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         self.resolve = resolve
         
         let appKey = args?["appkey"] as? String ?? ""
+        print(appKey)
         let baseURL = args?["baseUrl"] as? String ?? certifaceURL
-        let environment = args?["environment"] as? String ?? "HML"
+        let env = args?["environment"] as? String ?? "HML"
         let apparence = args?["apparence"] as? Dictionary<String,Any> ?? nil
-        let liveness3Dtext = args?["liveness3Dtext"] as? Dictionary<String,Any> ?? nil
         
         
         let loading = args?["loading"] as? Dictionary<String,Any> ?? nil
@@ -67,6 +68,9 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         let sizeLoading = loading?["size"] as? Int ?? 180
         let backgroundColor = loading?["backgroundColor"] as? String ?? "#FFFFFF"
         let loadingColor = loading?["loadingColor"] as? String ?? "#000000"
+        
+        //Map Texts
+        let liveness3Dtext = args?["liveness3Dtext"] as? Dictionary<String,Any> ?? nil
         
         let READY_HEADER_1 = liveness3Dtext?["READY_HEADER_1"] as? String ?? ""
         let READY_HEADER_2 = liveness3Dtext?["READY_HEADER_2"] as? String ?? ""
@@ -89,33 +93,47 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         let FEEDBACK_HOLD_STEADY_3 = liveness3Dtext?["FEEDBACK_HOLD_STEADY_3"] as? String ?? ""
         
         let FEEDBACK_CENTER_FACE = liveness3Dtext?["FEEDBACK_CENTER_FACE"] as? String ?? ""
+        let FEEDBACK_FACE_NOT_FOUND = liveness3Dtext?["FEEDBACK_FACE_NOT_FOUND"] as? String ?? ""
+        let FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD = liveness3Dtext?["FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD"] as? String ?? ""
+        let FEEDBACK_FACE_NOT_UPRIGHT = liveness3Dtext?["FEEDBACK_FACE_NOT_UPRIGHT"] as? String ?? ""
+        let FEEDBACK_HOLD_STEADY = liveness3Dtext?["FEEDBACK_HOLD_STEADY"] as? String ?? ""
+        let FEEDBACK_MOVE_PHONE_AWAY = liveness3Dtext?["FEEDBACK_MOVE_PHONE_AWAY"] as? String ?? ""
+        let FEEDBACK_MOVE_PHONE_CLOSER = liveness3Dtext?["FEEDBACK_MOVE_PHONE_CLOSER"] as? String ?? ""
+        let FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL = liveness3Dtext?["FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL"] as? String ?? ""
+        let FEEDBACK_USE_EVEN_LIGHTING = liveness3Dtext?["FEEDBACK_USE_EVEN_LIGHTING"] as? String ?? ""
+        let FEEDBACK_REMOVE_DARK_GLASSES = liveness3Dtext?["FEEDBACK_REMOVE_DARK_GLASSES"] as? String ?? ""
+        let FEEDBACK_NEUTRAL_EXPRESSION = liveness3Dtext?["FEEDBACK_NEUTRAL_EXPRESSION"] as? String ?? ""
+        let FEEDBACK_CONDITIONS_TOO_BRIGHT = liveness3Dtext?["FEEDBACK_CONDITIONS_TOO_BRIGHT"] as? String ?? ""
+        let FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT = liveness3Dtext?["FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT"] as? String ?? ""
+        let RESULT_UPLOAD_MESSAGE = liveness3Dtext?["RESULT_UPLOAD_MESSAGE"] as? String ?? ""
+        let RESULT_SUCCESS_MESSAGE = liveness3Dtext?["RESULT_SUCCESS_MESSAGE"] as? String ?? ""
         
         //FaceTec Texts
         let liveness3DTexts: [Liveness3DTextKey: String] = [
             .feedbackCenterFace: FEEDBACK_CENTER_FACE,
-            .feedbackFaceNotFound: "Enquadre o Seu Rosto",
-            .feedbackFaceNotLookingStraightAhead: "Olhe Para Frente",
-            .feedbackFaceNotUpright: "Mantenha a Cabeça Reta",
-            .feedbackHoldSteady: "Segure Firme",
-            .feedbackMovePhoneAway: "Afaste-se",
-            .feedbackMovePhoneCloser:"Aproxime-se",
-            .feedbackMovePhoneToEyeLevel:"Mantenha o telefone ao nível dos olhos",
-            .feedbackUseEvenLighting:"Ilumine Seu Rosto Uniformemente",
+            .feedbackFaceNotFound: FEEDBACK_FACE_NOT_FOUND,
+            .feedbackFaceNotLookingStraightAhead: FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD,
+            .feedbackFaceNotUpright: FEEDBACK_FACE_NOT_UPRIGHT,
+            .feedbackHoldSteady: FEEDBACK_HOLD_STEADY,
+            .feedbackMovePhoneAway: FEEDBACK_MOVE_PHONE_AWAY,
+            .feedbackMovePhoneCloser: FEEDBACK_MOVE_PHONE_CLOSER,
+            .feedbackMovePhoneToEyeLevel: FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL,
+            .feedbackUseEvenLighting: FEEDBACK_USE_EVEN_LIGHTING,
             .readyHeader1: READY_HEADER_1,
             .readyHeader2: READY_HEADER_2,
             .readyMessage1: READY_MESSAGE_1,
             .readyMessage2: READY_MESSAGE_2,
-            .readyButton: "Começar",
-            .feedbackPositionFaceStraightInOval:"Olhe Para Frente",
+            .readyButton: READY_BUTTON,
+            .feedbackPositionFaceStraightInOval: FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD,
             .feedbackHoldSteady3: FEEDBACK_HOLD_STEADY_3,
             .feedbackHoldSteady2: FEEDBACK_HOLD_STEADY_2,
             .feedbackHoldSteady1: FEEDBACK_HOLD_STEADY_1,
-            .feedbackRemoveDarkGlasses:"Tire Seus Óculos de Sol",
-            .feedbackNeutralExpression:"Fique Neutro, Não Sorria",
-            .feedbackConditionsTooBright:"Ambiente Muito Iluminado",
-            .feedbackBrightenYourEnvironment:"Ambiente Muito Escuro",
-            .resultUploadMessage:"Enviando",
-            .resultSuccessMessage:"Tudo certo!",
+            .feedbackRemoveDarkGlasses: FEEDBACK_REMOVE_DARK_GLASSES,
+            .feedbackNeutralExpression: FEEDBACK_NEUTRAL_EXPRESSION,
+            .feedbackConditionsTooBright: FEEDBACK_CONDITIONS_TOO_BRIGHT,
+            .feedbackBrightenYourEnvironment: FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT,
+            .resultUploadMessage: RESULT_UPLOAD_MESSAGE,
+            .resultSuccessMessage: RESULT_SUCCESS_MESSAGE,
             .retryHeader: RETRY_HEADER,
             .retrySubheader: RETRY_SUBHEADER,
             .retryMessageSmile: RETRY_MESSAGE_SMILE,
@@ -126,21 +144,13 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         ]
         
         
-        var liveness3DUser = Liveness3DUser(
+        let liveness3DUser = Liveness3DUser(
             appKey: appKey,
-            environment: .HML,
+            environment: env == "PRD" ? Environment.PRD : Environment.HML,
             texts: liveness3DTexts
         )
         
-        if(environment == "PRD"){
-            liveness3DUser = Liveness3DUser(
-                appKey: appKey,
-                environment: .PRD,
-                texts: liveness3DTexts
-            )
-            
-        }
-        
+      
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
                 //access granted
@@ -164,9 +174,9 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
                         RCTPresentedViewController()?.present(liveness3DViewController, animated: true)
                     }else {
                         let LoadingConfig = ActivityIndicatorConfiguration(
-                                loadingColor: .init(hex: loadingColor),
-                                backgroundColor: .init(hex: backgroundColor),
-                                scaleFactor: sizeLoading
+                            loadingColor: .init(hex: loadingColor),
+                            backgroundColor: .init(hex: backgroundColor),
+                            scaleFactor: sizeLoading
                         )
                         
                         let liveness3DViewController = HybridLiveness3DViewController(

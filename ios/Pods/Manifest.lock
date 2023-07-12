@@ -1,47 +1,34 @@
 PODS:
-  - OICommons (1.0.9)
-  - OIComponents (1.2.0-beta):
-    - OICommons (~> 1.0.9)
+  - OICommons (1.1.0)
+  - OIComponents (1.2.1):
+    - OICommons (~> 1.1.0)
   - OILiveness3D (1.0.0):
-    - OICommons (~> 1.0.9)
-    - OIComponents (~> 1.2.0-beta)
-    - OILiveness3D_FT (= 9.6.33)
-    - OINetwork (~> 1.1.0)
-  - OILiveness3D_FT (9.6.33)
-  - OINetwork (1.1.1):
-    - OICommons (~> 1.0.9)
+    - OICommons (~> 1.1.0)
+    - OIComponents (~> 1.2.0)
+    - OILiveness3D_FT (= 9.6.40)
+    - OINetwork (~> 1.2.0)
+  - OILiveness3D_FT (9.6.40)
+  - OINetwork (1.2.0):
+    - OICommons (~> 1.1.0)
 
 DEPENDENCIES:
-  - OICommons (~> 1.0.9)
-  - OIComponents (= 1.2.0-beta)
-  - OILiveness3D (from `https://github.com/oititec/ios-liveness-3d.git`, branch `feature/rn-loading-compatibility`)
-  - OILiveness3D_FT (= 9.6.33)
-  - OINetwork (~> 1.1.0)
+  - OILiveness3D (= 1.0.0)
 
 SPEC REPOS:
   https://github.com/oititec/ios-artifactory.git:
     - OICommons
     - OIComponents
+    - OILiveness3D
     - OILiveness3D_FT
     - OINetwork
 
-EXTERNAL SOURCES:
-  OILiveness3D:
-    :branch: feature/rn-loading-compatibility
-    :git: https://github.com/oititec/ios-liveness-3d.git
-
-CHECKOUT OPTIONS:
-  OILiveness3D:
-    :commit: ea9e8faf3e304c6158e264c5b925030330366e5f
-    :git: https://github.com/oititec/ios-liveness-3d.git
-
 SPEC CHECKSUMS:
-  OICommons: 86a46de9cdaf75f237ccd54b5bbacdcfee2c7ffa
-  OIComponents: ea3144e55dea981d225f781c255ce811a2506cea
-  OILiveness3D: 37c825a548be27ff187ade7f820c269c255de545
-  OILiveness3D_FT: fc78e3f4549179b74dd8c3adbdadbb237ceb3357
-  OINetwork: f266070a388b4879a06c5a503b277007b79b988c
+  OICommons: c304a4f3aa3f0fe9282eae013a45fde717ad42bf
+  OIComponents: 8cf47c0dc9b3477e8e4d5513c99b0c83283da3ce
+  OILiveness3D: 0c563045356e9af3c182788e4cfd56b4b5d6c7a3
+  OILiveness3D_FT: a58ceb6ea1b1229015434125d25b78b46f7667a9
+  OINetwork: 3cf1ea4bd61a98bd68db7d1caa3f175b4868f5b4
 
-PODFILE CHECKSUM: 23d37c514f0c232715f0296e0fb4043bd18f4fdf
+PODFILE CHECKSUM: a3090c37daedeabb4d72153ace1c3354a15c0f2a
 
 COCOAPODS: 1.12.0

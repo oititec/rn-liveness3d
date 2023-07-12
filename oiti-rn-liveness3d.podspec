@@ -17,13 +17,8 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
-  s.ios.dependency 'OICommons', '~> 1.0.9'
-  s.ios.dependency 'OINetwork', '~> 1.1.0'
-  s.ios.dependency 'OIComponents', '1.2.0-beta'
-  s.ios.dependency 'OILiveness3D', '1.0.0'
-  s.ios.dependency 'OILiveness3D_FT', '9.6.33'
-
-  #s.ios.dependency 'OISecurity', '~> 1.0.0'
+ 
+  s.ios.dependency 'OILiveness3D', '1.0.0' 
 
   # Don't install the dependencies when we run `pod install` in the old architecture.
   if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then

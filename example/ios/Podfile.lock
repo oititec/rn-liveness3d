@@ -77,23 +77,19 @@ PODS:
     - hermes-engine/Pre-built (= 0.71.4)
   - hermes-engine/Pre-built (0.71.4)
   - libevent (2.1.12)
-  - OICommons (1.0.9)
-  - OIComponents (1.2.0-beta):
-    - OICommons (~> 1.0.9)
+  - OICommons (1.1.0)
+  - OIComponents (1.2.1):
+    - OICommons (~> 1.1.0)
   - OILiveness3D (1.0.0):
-    - OICommons (~> 1.0.9)
-    - OIComponents (~> 1.2.0-beta)
-    - OILiveness3D_FT (= 9.6.33)
-    - OINetwork (~> 1.1.0)
-  - OILiveness3D_FT (9.6.33)
-  - OINetwork (1.1.1):
-    - OICommons (~> 1.0.9)
+    - OICommons (~> 1.1.0)
+    - OIComponents (~> 1.2.0)
+    - OILiveness3D_FT (= 9.6.40)
+    - OINetwork (~> 1.2.0)
+  - OILiveness3D_FT (9.6.40)
+  - OINetwork (1.2.0):
+    - OICommons (~> 1.1.0)
   - oiti-rn-liveness3d (1.0.3):
-    - OICommons (~> 1.0.9)
-    - OIComponents (= 1.2.0-beta)
     - OILiveness3D (= 1.0.0)
-    - OILiveness3D_FT (= 9.6.33)
-    - OINetwork (~> 1.1.0)
     - React-Core
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
@@ -476,11 +472,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
-  - OICommons (~> 1.0.9)
-  - OIComponents (= 1.2.0-beta)
-  - OILiveness3D (from `https://github.com/oititec/ios-liveness-3d.git`, branch `feature/rn-loading-compatibility`)
-  - OILiveness3D_FT (= 9.6.33)
-  - OINetwork (~> 1.1.0)
+  - OILiveness3D (= 1.0.0)
   - oiti-rn-liveness3d (from `../..`)
   - OpenSSL-Universal (= 1.1.1100)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -537,6 +529,7 @@ SPEC REPOS:
   https://github.com/oititec/ios-artifactory.git:
     - OICommons
     - OIComponents
+    - OILiveness3D
     - OILiveness3D_FT
     - OINetwork
 
@@ -553,9 +546,6 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
   hermes-engine:
     :podspec: "../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec"
-  OILiveness3D:
-    :branch: feature/rn-loading-compatibility
-    :git: https://github.com/oititec/ios-liveness-3d.git
   oiti-rn-liveness3d:
     :path: "../.."
   RCT-Folly:
@@ -621,11 +611,6 @@ EXTERNAL SOURCES:
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
-CHECKOUT OPTIONS:
-  OILiveness3D:
-    :commit: ea9e8faf3e304c6158e264c5b925030330366e5f
-    :git: https://github.com/oititec/ios-liveness-3d.git
-
 SPEC CHECKSUMS:
   boost: 57d2868c099736d80fcd648bf211b4431e51a558
   CocoaAsyncSocket: 065fd1e645c7abab64f7a6a2007a48038fdc6a99
@@ -645,12 +630,12 @@ SPEC CHECKSUMS:
   glog: 04b94705f318337d7ead9e6d17c019bd9b1f6b1b
   hermes-engine: a1f157c49ea579c28b0296bda8530e980c45bdb3
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  OICommons: 86a46de9cdaf75f237ccd54b5bbacdcfee2c7ffa
-  OIComponents: ea3144e55dea981d225f781c255ce811a2506cea
-  OILiveness3D: 37c825a548be27ff187ade7f820c269c255de545
-  OILiveness3D_FT: fc78e3f4549179b74dd8c3adbdadbb237ceb3357
-  OINetwork: f266070a388b4879a06c5a503b277007b79b988c
-  oiti-rn-liveness3d: 2a9ba9fef2aa91e3d2746d14454183506af21452
+  OICommons: c304a4f3aa3f0fe9282eae013a45fde717ad42bf
+  OIComponents: 8cf47c0dc9b3477e8e4d5513c99b0c83283da3ce
+  OILiveness3D: 0c563045356e9af3c182788e4cfd56b4b5d6c7a3
+  OILiveness3D_FT: a58ceb6ea1b1229015434125d25b78b46f7667a9
+  OINetwork: 3cf1ea4bd61a98bd68db7d1caa3f175b4868f5b4
+  oiti-rn-liveness3d: 0a5dccd321bc104ec7d53afdd0e5d7e864c3e84e
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 5a024fdf458fa8c0d82fc262e76f982d4dcdecdd
@@ -686,6 +671,6 @@ SPEC CHECKSUMS:
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: c23e9f2920810b1cf270ce7f1c11e90cb7a70c69
+PODFILE CHECKSUM: 3bd60e21128685f3af527f047680e4c42aecfa30
 
 COCOAPODS: 1.12.0

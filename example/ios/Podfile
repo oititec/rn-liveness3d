@@ -67,12 +67,7 @@ target 'RnLiveness3dExample' do
     inherit! :complete
     # Pods for testing
   end
- 
-  pod 'OICommons', '~> 1.0.9'
-  pod 'OINetwork', '~> 1.1.0'
-  pod 'OIComponents', '1.2.0-beta'
-  pod 'OILiveness3D', :git => 'https://github.com/oititec/ios-liveness-3d.git', :branch => 'feature/rn-loading-compatibility'
-  pod 'OILiveness3D_FT', '9.6.33'
+  pod 'OILiveness3D', '1.0.0'
 
   
   post_install do |installer|
