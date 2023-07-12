@@ -11,8 +11,6 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
     var resolve:RCTPromiseResolveBlock!
     var reject:RCTPromiseRejectBlock!
     
-    private let certifaceURL = "https://comercial.certiface.com.br:8443/"
-    
     func handleLiveness3DValidation(validateModel: Liveness3DSuccess) {
         resolve("RESULT_OK")
     }
@@ -56,7 +54,6 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         self.resolve = resolve
         
         let appKey = args?["appkey"] as? String ?? ""
-        let baseURL = args?["baseUrl"] as? String ?? certifaceURL
         let env = args?["environment"] as? String ?? "HML"
         let apparence = args?["apparence"] as? Dictionary<String,Any> ?? nil
         
@@ -152,44 +149,34 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
-                //access granted
+                
+                let spinnerLoading = SpinnerConfiguration(
+                    backgroundColor: .init(hex: backgroundColor),
+                    loadingColor: .init(hex: loadingColor),
+                    strokeWidth: 10,
+                    scaleFactor: sizeLoading
+                )
+                
+                let defaultLoading = ActivityIndicatorConfiguration(
+                    loadingColor: .init(hex: loadingColor),
+                    backgroundColor: .init(hex: backgroundColor),
+                    scaleFactor: sizeLoading
+                )
+                
+                
                 DispatchQueue.main.async {
                     
-                    if(typeLoading == "spinner"){
-                        
-                        let LoadingConfig = SpinnerConfiguration(
-                            backgroundColor: .init(hex: backgroundColor),
-                            loadingColor: .init(hex: loadingColor),
-                            strokeWidth: 10,
-                            scaleFactor: sizeLoading
-                        )
-                        let liveness3DViewController = HybridLiveness3DViewController(
-                            liveness3DUser: liveness3DUser,
-                            delegate: self,
-                            customAppearance: .init(configuration: LoadingConfig)
-                        )
-                        
-                        liveness3DViewController.modalPresentationStyle = .fullScreen
-                        RCTPresentedViewController()?.present(liveness3DViewController, animated: true)
-                    }else {
-                        let LoadingConfig = ActivityIndicatorConfiguration(
-                            loadingColor: .init(hex: loadingColor),
-                            backgroundColor: .init(hex: backgroundColor),
-                            scaleFactor: sizeLoading
-                        )
-                        
-                        let liveness3DViewController = HybridLiveness3DViewController(
-                            liveness3DUser: liveness3DUser,
-                            delegate: self,
-                            customAppearance: .init(configuration: LoadingConfig)
-                        )
-                        
-                        liveness3DViewController.modalPresentationStyle = .fullScreen
-                        RCTPresentedViewController()?.present(liveness3DViewController, animated: true)
-                    }
+                    let liveness3DViewController = HybridLiveness3DViewController(
+                        liveness3DUser: liveness3DUser,
+                        delegate: self,
+                        customAppearance:  typeLoading == "spinner" ? .init(configuration: spinnerLoading) : .init(configuration: defaultLoading)
+                    )
                     
-                    
+                    liveness3DViewController.modalPresentationStyle = .fullScreen
+                    RCTPresentedViewController()?.present(liveness3DViewController, animated: true)
                 }
+                
+                
             } else {
                 resolve("RESULT_CANCELED")
             }
