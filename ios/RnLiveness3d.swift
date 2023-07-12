@@ -56,7 +56,6 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         self.resolve = resolve
         
         let appKey = args?["appkey"] as? String ?? ""
-        print(appKey)
         let baseURL = args?["baseUrl"] as? String ?? certifaceURL
         let env = args?["environment"] as? String ?? "HML"
         let apparence = args?["apparence"] as? Dictionary<String,Any> ?? nil
@@ -108,7 +107,7 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         let RESULT_UPLOAD_MESSAGE = liveness3Dtext?["RESULT_UPLOAD_MESSAGE"] as? String ?? ""
         let RESULT_SUCCESS_MESSAGE = liveness3Dtext?["RESULT_SUCCESS_MESSAGE"] as? String ?? ""
         
-        //FaceTec Texts
+        //Liveness3D Texts
         let liveness3DTexts: [Liveness3DTextKey: String] = [
             .feedbackCenterFace: FEEDBACK_CENTER_FACE,
             .feedbackFaceNotFound: FEEDBACK_FACE_NOT_FOUND,
@@ -150,7 +149,7 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
             texts: liveness3DTexts
         )
         
-      
+        
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
                 //access granted
