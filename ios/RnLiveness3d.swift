@@ -1,4 +1,6 @@
-import FaceCaptcha
+import OILiveness3D
+import OIComponents
+import OICommons
 import AVFoundation
 
 
@@ -32,10 +34,10 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
     func checkiospermission(args: Dictionary<String,Any>?, resolve:@escaping RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
-               resolve("true")
+                resolve("true")
                 
             } else {
-               resolve("false")
+                resolve("false")
             }
         }
     }
@@ -49,18 +51,24 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         }
     }
     
-    
-    
     @objc(startliveness3d:withResolver:withRejecter:)
     func startliveness3D(args: Dictionary<String,Any>?, resolve:@escaping RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         self.resolve = resolve
         
-   
-        
         let appKey = args?["appkey"] as? String ?? ""
         let baseURL = args?["baseUrl"] as? String ?? certifaceURL
-        let environment = args?["environment"] as? String ?? "HML"
+        let env = args?["environment"] as? String ?? "HML"
         let apparence = args?["apparence"] as? Dictionary<String,Any> ?? nil
+        
+        
+        let loading = args?["loading"] as? Dictionary<String,Any> ?? nil
+        
+        let typeLoading = loading?["type"] as? String ?? "default"
+        let sizeLoading = loading?["size"] as? Int ?? 180
+        let backgroundColor = loading?["backgroundColor"] as? String ?? "#FFFFFF"
+        let loadingColor = loading?["loadingColor"] as? String ?? "#000000"
+        
+        //Map Texts
         let liveness3Dtext = args?["liveness3Dtext"] as? Dictionary<String,Any> ?? nil
         
         let READY_HEADER_1 = liveness3Dtext?["READY_HEADER_1"] as? String ?? ""
@@ -84,99 +92,103 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         let FEEDBACK_HOLD_STEADY_3 = liveness3Dtext?["FEEDBACK_HOLD_STEADY_3"] as? String ?? ""
         
         let FEEDBACK_CENTER_FACE = liveness3Dtext?["FEEDBACK_CENTER_FACE"] as? String ?? ""
+        let FEEDBACK_FACE_NOT_FOUND = liveness3Dtext?["FEEDBACK_FACE_NOT_FOUND"] as? String ?? ""
+        let FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD = liveness3Dtext?["FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD"] as? String ?? ""
+        let FEEDBACK_FACE_NOT_UPRIGHT = liveness3Dtext?["FEEDBACK_FACE_NOT_UPRIGHT"] as? String ?? ""
+        let FEEDBACK_HOLD_STEADY = liveness3Dtext?["FEEDBACK_HOLD_STEADY"] as? String ?? ""
+        let FEEDBACK_MOVE_PHONE_AWAY = liveness3Dtext?["FEEDBACK_MOVE_PHONE_AWAY"] as? String ?? ""
+        let FEEDBACK_MOVE_PHONE_CLOSER = liveness3Dtext?["FEEDBACK_MOVE_PHONE_CLOSER"] as? String ?? ""
+        let FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL = liveness3Dtext?["FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL"] as? String ?? ""
+        let FEEDBACK_USE_EVEN_LIGHTING = liveness3Dtext?["FEEDBACK_USE_EVEN_LIGHTING"] as? String ?? ""
+        let FEEDBACK_REMOVE_DARK_GLASSES = liveness3Dtext?["FEEDBACK_REMOVE_DARK_GLASSES"] as? String ?? ""
+        let FEEDBACK_NEUTRAL_EXPRESSION = liveness3Dtext?["FEEDBACK_NEUTRAL_EXPRESSION"] as? String ?? ""
+        let FEEDBACK_CONDITIONS_TOO_BRIGHT = liveness3Dtext?["FEEDBACK_CONDITIONS_TOO_BRIGHT"] as? String ?? ""
+        let FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT = liveness3Dtext?["FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT"] as? String ?? ""
+        let RESULT_UPLOAD_MESSAGE = liveness3Dtext?["RESULT_UPLOAD_MESSAGE"] as? String ?? ""
+        let RESULT_SUCCESS_MESSAGE = liveness3Dtext?["RESULT_SUCCESS_MESSAGE"] as? String ?? ""
         
+        //Liveness3D Texts
+        let liveness3DTexts: [Liveness3DTextKey: String] = [
+            .feedbackCenterFace: FEEDBACK_CENTER_FACE,
+            .feedbackFaceNotFound: FEEDBACK_FACE_NOT_FOUND,
+            .feedbackFaceNotLookingStraightAhead: FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD,
+            .feedbackFaceNotUpright: FEEDBACK_FACE_NOT_UPRIGHT,
+            .feedbackHoldSteady: FEEDBACK_HOLD_STEADY,
+            .feedbackMovePhoneAway: FEEDBACK_MOVE_PHONE_AWAY,
+            .feedbackMovePhoneCloser: FEEDBACK_MOVE_PHONE_CLOSER,
+            .feedbackMovePhoneToEyeLevel: FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL,
+            .feedbackUseEvenLighting: FEEDBACK_USE_EVEN_LIGHTING,
+            .readyHeader1: READY_HEADER_1,
+            .readyHeader2: READY_HEADER_2,
+            .readyMessage1: READY_MESSAGE_1,
+            .readyMessage2: READY_MESSAGE_2,
+            .readyButton: READY_BUTTON,
+            .feedbackPositionFaceStraightInOval: FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD,
+            .feedbackHoldSteady3: FEEDBACK_HOLD_STEADY_3,
+            .feedbackHoldSteady2: FEEDBACK_HOLD_STEADY_2,
+            .feedbackHoldSteady1: FEEDBACK_HOLD_STEADY_1,
+            .feedbackRemoveDarkGlasses: FEEDBACK_REMOVE_DARK_GLASSES,
+            .feedbackNeutralExpression: FEEDBACK_NEUTRAL_EXPRESSION,
+            .feedbackConditionsTooBright: FEEDBACK_CONDITIONS_TOO_BRIGHT,
+            .feedbackBrightenYourEnvironment: FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT,
+            .resultUploadMessage: RESULT_UPLOAD_MESSAGE,
+            .resultSuccessMessage: RESULT_SUCCESS_MESSAGE,
+            .retryHeader: RETRY_HEADER,
+            .retrySubheader: RETRY_SUBHEADER,
+            .retryMessageSmile: RETRY_MESSAGE_SMILE,
+            .retryMessageLightning: RETRY_MESSAGE_LIGHTING,
+            .retryMessageContrast: RETRY_MESSAGE_CONTRAST,
+            .retryYourPicture: RETRY_YOUR_PICTURE,
+            .retryIdealPicture: RETRY_IDEAL_PICTURE
+        ]
         
-        
-        let backgroundColor = apparence?["backgroundColor"] as? String ?? ""
-        let loadingColor = apparence?["loadingColor"] as? String ?? ""
-        
-        
-        //FaceTec Texts
-        var textsFT = ["FaceTec_accessibility_cancel_button": "Cancelar",
-                       "FaceTec_accessibility_torch_button": "Ligar flash",
-                       "FaceTec_action_ok": "OK",
-                       "FaceTec_action_im_ready": READY_BUTTON,
-                       "FaceTec_action_try_again": RETRY_BUTTON,
-                       "FaceTec_action_continue": "Continuar2",
-                       "FaceTec_action_take_photo": "Tirar Foto",
-                       "FaceTec_action_accept_photo": "Aceitar",
-                       "FaceTec_action_confirm": "Confirmação das informações",
-                       "FaceTec_camera_permission_header": "Habilite a Camera",
-                       "FaceTec_feedback_center_face": FEEDBACK_CENTER_FACE,
-                       "FaceTec_feedback_face_not_found": "Enquadre o Seu Rosto",
-                       "FaceTec_feedback_face_not_looking_straight_ahead": "Olhe Para Frente",
-                       "FaceTec_feedback_face_not_upright": "Mantenha a Cabeça Reta",
-                       "FaceTec_feedback_hold_steady": "Segure Firme",
-                       "FaceTec_feedback_move_phone_away": "2Afaste-se2",
-                       "FaceTec_feedback_move_phone_closer":"2Aproxime-se2",
-                       "FaceTec_feedback_move_phone_to_eye_level":"Telefone ao Nível dos Olhos",
-                       "FaceTec_feedback_use_even_lighting":"Ilumine Seu Rosto Uniformemente",
-                       "FaceTec_idscan_type_selection_header":"Prepare to Scan\nYour ID Document",
-                       "FaceTec_instructions_header_ready_1": READY_HEADER_1,
-                       "FaceTec_instructions_header_ready_2": READY_HEADER_2,
-                       "FaceTec_instructions_message_ready_1": READY_MESSAGE_1,
-                       "FaceTec_instructions_message_ready_2": READY_MESSAGE_2,
-                       "FaceTec_presession_frame_your_face": FEEDBACK_FRAME_YOUR_FACE,
-                       "FaceTec_presession_position_face_straight_in_oval":"Olhe Para Frente",
-                       "FaceTec_presession_hold_steady_3": FEEDBACK_HOLD_STEADY_3,
-                       "FaceTec_presession_hold_steady_2": FEEDBACK_HOLD_STEADY_2,
-                       "FaceTec_presession_hold_steady_1": FEEDBACK_HOLD_STEADY_1,
-                       "FaceTec_presession_eyes_straight_ahead":"Olhe Para Frente",
-                       "FaceTec_presession_remove_dark_glasses":"Tire Seus Óculos de Sol",
-                       "FaceTec_presession_neutral_expression":"Fique Neutro, Não Sorria",
-                       "FaceTec_presession_conditions_too_bright":"Ambiente Muito Iluminado",
-                       "FaceTec_presession_brighten_your_environment":"Ambiente Muito Escuro",
-                       "FaceTec_result_facescan_upload_message":"",
-                       "FaceTec_result_success_message":"Tudo certo!",
-                       "FaceTec_result_idscan_unsuccess_message":"Não foi possível concluir sua verificação.",
-                       "FaceTec_retry_header": RETRY_HEADER,
-                       "FaceTec_retry_subheader_message": RETRY_SUBHEADER,
-                       "FaceTec_retry_instruction_message_1": RETRY_MESSAGE_SMILE,
-                       "FaceTec_retry_instruction_message_2": RETRY_MESSAGE_LIGHTING,
-                       "FaceTec_retry_instruction_message_3": RETRY_MESSAGE_CONTRAST,
-                       "FaceTec_retry_your_image_label": RETRY_YOUR_PICTURE,
-                       "FaceTec_retry_ideal_image_label": RETRY_IDEAL_PICTURE];
-        
-        var theme = Liveness3DTheme(Liveness3DThemeType.light)
-        theme.ovarCustomizationStrokeColor = UIColor(red: 0.9137, green: 0.3216, blue: 0.149, alpha: 1.0)
-        theme.ovarCustomizationProgressColor1 = UIColor(red: 0.9137, green: 0.3216, blue: 0.149, alpha: 1.0)
-        theme.ovarCustomizationProgressColor2 = UIColor(red: 0.9137, green: 0.3216, blue: 0.149, alpha: 1.0)
-        theme.guidanceCustomizationButtonBackgroundNormalColor = UIColor(red: 0.9137, green: 0.3216, blue: 0.149, alpha: 1.0)
-        theme.guidanceCustomizationButtonBackgroundHighlightColor = UIColor(red: 0.9137, green: 0.3216, blue: 0.149, alpha: 1.0)
-        theme.guidanceCustomizationButtonBackgroundDisabledColor = UIColor(red: 0.9137, green: 0.3216, blue: 0.149, alpha: 0.5)
         
         let liveness3DUser = Liveness3DUser(
             appKey: appKey,
-            environment: .HML
+            environment: env == "PRD" ? Environment.PRD : Environment.HML,
+            texts: liveness3DTexts
         )
         
-      /*  if(environment == "PRD"){
-            let liveness3DUser = Liveness3DUser(
-                appKey: appKey,
-                environment: .PRD,
-                defaultTheme: theme,
-                lowLightTheme: theme,
-                texts: textsFT
-            )
-
-        }
-        */
+        
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
                 //access granted
                 DispatchQueue.main.async {
-                    let initTheme = HybridViewAppearance(
-                        backgroundColor: .init(hex: backgroundColor),
-                        loadingColor:.init(hex: loadingColor)
-                    )
                     
-                    let liveness3DViewController = HybridLiveness3DViewController(
-                        liveness3DUser: liveness3DUser,
-                        delegate: self,
-                        customAppearance: initTheme
-                    )
-                    liveness3DViewController.modalPresentationStyle = .fullScreen
-                    RCTPresentedViewController()?.present(liveness3DViewController, animated: true)
+                    if(typeLoading == "spinner"){
+                        
+                        let LoadingConfig = SpinnerConfiguration(
+                            backgroundColor: .init(hex: backgroundColor),
+                            loadingColor: .init(hex: loadingColor),
+                            strokeWidth: 10,
+                            scaleFactor: sizeLoading
+                        )
+                        let liveness3DViewController = HybridLiveness3DViewController(
+                            liveness3DUser: liveness3DUser,
+                            delegate: self,
+                            customAppearance: .init(configuration: LoadingConfig)
+                        )
+                        
+                        liveness3DViewController.modalPresentationStyle = .fullScreen
+                        RCTPresentedViewController()?.present(liveness3DViewController, animated: true)
+                    }else {
+                        let LoadingConfig = ActivityIndicatorConfiguration(
+                            loadingColor: .init(hex: loadingColor),
+                            backgroundColor: .init(hex: backgroundColor),
+                            scaleFactor: sizeLoading
+                        )
+                        
+                        let liveness3DViewController = HybridLiveness3DViewController(
+                            liveness3DUser: liveness3DUser,
+                            delegate: self,
+                            customAppearance: .init(configuration: LoadingConfig)
+                        )
+                        
+                        liveness3DViewController.modalPresentationStyle = .fullScreen
+                        RCTPresentedViewController()?.present(liveness3DViewController, animated: true)
+                    }
+                    
+                    
                 }
             } else {
                 resolve("RESULT_CANCELED")

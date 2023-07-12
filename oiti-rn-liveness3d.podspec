@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
-  s.ios.dependency 'FaceCaptcha', '~> 4.1.1'
-  #s.ios.dependency 'OISecurity', '~> 1.0.0'
+ 
+  s.ios.dependency 'OILiveness3D', '1.0.0' 
 
   # Don't install the dependencies when we run `pod install` in the old architecture.
   if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then

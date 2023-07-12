@@ -130,14 +130,10 @@ const options = {
   appkey: appKey,
   environment: '.HML',
   baseUrl: 'https://comercial.certiface.com.br:8443/',
-  apparence: {
-    backgroundColor: '#025951',
-    loadingColor: '#0CF25D',
-  },
 };
 ```
 
-### 4.2.2. JSON `texts`
+### 4.2.3. JSON `texts`
 
 ```jsx
 const texts = {
@@ -181,21 +177,27 @@ const texts = {
 };
 ```
 
-### 4.2.3. Chaves do `options`
+### 4.2.3. JSON `Loading`
+
+```jsx
+const loading = {
+  type: 'default' | 'spinner',
+  size: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,
+  backgroundColor: string | undefined,
+  loadingColor: string | undefined,
+};
+```
+
+### 4.2.4. Chaves do `options`
 
 | View        | Valores                                  | Descrição                                                                                                             |
 | ----------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | appkey      | appKey                                   | App Key gerada no backend da aplicação e retornada para uso da biblioteca.                                            |
 | environment | '.HML', '.PRD'                           | Ambiente que deseja estar rodando a aplicação                                                                         |
 | baseUrl     | https://comercial.certiface.com.br:8443/ | Endereço de endpoint da certiface, você pode usar uma string vazia caso deseje que a biblioteca defina um automático. |
-| apparence   |
+| loading     | Objeto de customização                   | Aplica as propriedades de customização do loading antes de começar o Liveness3d.                                      |
 
-      backgroundColor: '#025951',
-      loadingColor: '#0CF25D',
-
-| Aplica as propriedades de customização do carregamento antes de começar o Liveness3d. |
-
-### 4.2.4. Exemplo de uso (View Customizada)
+### 4.2.5. Exemplo de uso (View Customizada)
 
 Para utilizar uma view customizada você pode aplicar o seguinte código em sua biblioteca React Native.
 
@@ -210,10 +212,13 @@ export default function Documentscopy({ navigation }: { navigation: any }) {
     appkey: appKey,
     environment: '.HML',
     baseUrl: 'https://comercial.certiface.com.br:8443/',
-    apparence: {
-      backgroundColor: '#025951',
-      loadingColor: '#0CF25D',
-    },
+  };
+
+  const loading = {
+    type: 'spinner',
+    size: 5,
+    backgroundColor: '#000000',
+    loadingColor: '#0CF25D',
   };
 
   const texts = {
@@ -229,6 +234,7 @@ export default function Documentscopy({ navigation }: { navigation: any }) {
       options={options}
       navigation={navigation}
       texts={texts}
+      loading={loading}
       callbackView="Home"
       CustomInstructionView={CustomInstructionView}
       CustomPermissionView={CustomPermissionView}

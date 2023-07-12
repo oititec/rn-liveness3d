@@ -1,20 +1,43 @@
 import * as React from 'react';
 
 import { startLiveness3d, Liveness3dView } from '@oiti/rn-liveness3d';
-import { StyleSheet, View, Text, Button } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  StatusBar,
+  Button,
+  TextInput,
+} from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+
+type LoadingType = {
+  appkey: string;
+  type: string;
+  size: number;
+  backgroundColor: string;
+  loadingColor: string;
+};
 
 export default function App() {
-  const appKey =
-    'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiODY4ODMxMzczN0RBRDA0MTk2NzgyQzJGNkQyMjkxQkJEN0MxfHNhZnJhLmVwZi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNTc2IiwiZmlsQ29kIjoiMDAwMDAwMjY2MiIsImNwZiI6IjA4NjcwODMzOTU2Iiwibm9tZSI6IjBENjc3OTZBREMyMUFENzdERDAzNzYwRTY0OTE4QjlERDRDQ0M3NDI2QjYyNDUxOUM0ODAwMjQwNDcxNzE0NjZDRDc2RTdDNDI4REZCQkI0QUQ1RDYwQjYwM0NFMDlCNkJCNTdDOTMxNEYwMTEzQUE5REQ0RkYzOEI2OTE5M3xHQUJSSUVMIENBVEVMTEkgR09VTEFSVCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTk2IiwiZWFzeS1pbmRleCI6IkFBQUFFaTNTZVptUHI5dEd5dDFBUmlRTXM2SFdRYkJpc3BUTHFvdlFvVi94NVNGeXVmbnRhU3dLL2Q2VzZnPT0iLCJrZXkiOiJRV0pzWlNCaGJpQm9iM0JsSUc5bUlHSnZaSGt1SUVGdWVTQnVZWGtnYzJoNWJtVT0iLCJleHAiOjE2ODI2Nzg2OTAsImlhdCI6MTY4MjY3Njg5MH0.VlwCLfP2WzYImdklnoiJVAwVT5uX1Ug2nptPM1X2NXo';
+  const [modal, setModal] = React.useState(false);
 
-  const options = {
-    appkey: appKey,
-    environment: '.HML',
+  const [configLoading, setLoading] = React.useState<LoadingType>({
+    appkey:
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiNDJEM0ExRTMxQzUzNkI1MDM0OUFBQkE5MTZGQzlCQjJGfG1vYmlsZS5hcGlnbG9iYWwiLCJlbXBDb2QiOiIwMDAwMDAwNjc5IiwiZmlsQ29kIjoiMDAwMDAwMjc3NCIsImNwZiI6IjU0MjczOTY2MDg1Iiwibm9tZSI6IjQ2RDFCODEwNDJCQ0UxMDU5OEI3RkJDNUQwNkVCRjVFNTcyOEFENTRCNkM4MUU5MDUyOTAxREE4MjA5QzUzREY4NkI5NjAyNjFFQkFCQzI4RkVBRDJEMDM1RkEyRTA4NkVFODY1QTAwRDg1MDIwNkRGOUM0N0ExOEI0NzM0NjFDfEFTSEFVQVMgQVNVSEFTSFUgQVNVSCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTkxIiwiZWFzeS1pbmRleCI6IkFBQUFFbjRJL3l4TWJUT05yVnpQdlZhcWJxQ3JZK29KMlZGOUwyUVNON2dWbng1Rjg1T1NrK0pDUjMxT2pnPT0iLCJrZXkiOiJRV3hzYjNkaGJtTmxJSEpsY0hWc2MybDJaU0J6WlhnZ2JXRjVJR052Ym5SaGFXND0iLCJleHAiOjE2ODkxNjg1ODIsImlhdCI6MTY4OTE2ODI4Mn0.QFD-neGsxdmQZRVYzsZ7wsxX0_6F8DqbRZTUCmf7Vwg',
+    type: 'default',
+    size: 2,
+    backgroundColor: '#000000',
+    loadingColor: '#0CF25D',
+  });
+
+  const [options, setOptions] = React.useState({
+    appkey: configLoading.appkey,
+    environment: 'HML',
     baseUrl: 'https://comercial.certiface.com.br:8443/',
-    apparence: {
-      backgroundColor: '#025951',
-      loadingColor: '#0CF25D',
-    },
+
     liveness3Dtext: {
       READY_HEADER_1: 'Prepare-se para seu',
       READY_HEADER_2: 'reconhecimento facial.',
@@ -54,9 +77,140 @@ export default function App() {
       FEEDBACK_CONDITIONS_TOO_BRIGHT: 'Ambiente Muito Iluminado',
       FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT: 'Ambiente Muito Escuro',
     },
+  });
+
+  const loading: LoadingType = {
+    appkey: configLoading.appkey,
+    type: configLoading.type,
+    size: configLoading.size,
+    backgroundColor: configLoading.backgroundColor,
+    loadingColor: configLoading.loadingColor,
   };
 
-  return <Liveness3dView options={options} />;
+  function handleValues(value: any) {
+    setOptions({ ...options, appkey: value });
+  }
+
+  return (
+    <>
+      {modal && (
+        <SafeAreaView style={styles.containerModal}>
+          <ScrollView style={styles.modal}>
+            <View style={styles.contentModal}>
+              <View style={styles.titleModal}>
+                <Text>Configurar Loading</Text>
+              </View>
+              <View style={styles.rowModal}>
+                <Text>APPKEY</Text>
+                <TextInput
+                  style={{
+                    height: 50,
+                    width: '100%',
+                    backgroundColor: '#f2f2f2',
+                    borderWidth: 2,
+                  }}
+                  onChangeText={(itemValue) => handleValues(itemValue)}
+                  value={options.appkey}
+                  placeholder="Appkey Aqui"
+                />
+              </View>
+              <View style={styles.rowModal}>
+                <Text>Tipo</Text>
+                <Picker
+                  selectedValue={configLoading.type}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#f2f2f2',
+                  }}
+                  onValueChange={(itemValue) =>
+                    setLoading({
+                      ...configLoading,
+                      type: itemValue,
+                    })
+                  }
+                >
+                  <Picker.Item label="Default" value="default" />
+                  <Picker.Item label="Spinner" value="spinner" />
+                </Picker>
+              </View>
+              <View style={styles.rowModal}>
+                <Text>Tamanho</Text>
+                <TextInput
+                  style={{
+                    height: 50,
+                    width: '100%',
+                    backgroundColor: '#f2f2f2',
+                    textAlign: 'center',
+                  }}
+                  onChangeText={(itemValue) =>
+                    setLoading({
+                      ...configLoading,
+                      size: parseInt(itemValue),
+                    })
+                  }
+                  value={configLoading.size}
+                  keyboardType="numeric"
+                />
+              </View>
+              <View style={styles.rowModal}>
+                <Text>Cor de Fundo</Text>
+                <TextInput
+                  style={{
+                    height: 50,
+                    width: '100%',
+                    backgroundColor: '#f2f2f2',
+                    borderColor: configLoading.backgroundColor,
+                    borderWidth: 2,
+                    textAlign: 'center',
+                  }}
+                  maxLength={7}
+                  onChangeText={(itemValue) =>
+                    setLoading({
+                      ...configLoading,
+                      backgroundColor: itemValue.toUpperCase(),
+                    })
+                  }
+                  value={configLoading.backgroundColor}
+                  placeholder="Cor Fundo"
+                />
+              </View>
+
+              <View style={styles.rowModal}>
+                <Text>Cor do Loading</Text>
+                <TextInput
+                  style={{
+                    height: 50,
+                    width: '100%',
+                    backgroundColor: '#f2f2f2',
+                    textAlign: 'center',
+                    borderColor: configLoading.loadingColor,
+                    borderWidth: 2,
+                  }}
+                  maxLength={7}
+                  onChangeText={(itemValue) =>
+                    setLoading({
+                      ...configLoading,
+                      loadingColor: itemValue.toUpperCase(),
+                    })
+                  }
+                  value={configLoading.loadingColor}
+                  placeholder="#FFFFFF"
+                />
+              </View>
+
+              <View style={styles.rowModal}>
+                <Button title="Fechar" onPress={() => setModal(false)} />
+              </View>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      )}
+      <Liveness3dView options={options} loading={loading} />
+      <View>
+        <Button title="Configurações ⚙️" onPress={() => setModal(true)} />
+      </View>
+    </>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -64,6 +218,39 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  containerModal: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    zIndex: 100,
+  },
+  modal: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: '#00000075',
+  },
+  contentModal: {
+    justifyContent: 'center',
+    backgroundColor: '#FFFF',
+    padding: 20,
+    width: '100%',
+  },
+  titleModal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontWeight: 600,
+    backgroundColor: '#FFFF',
+    padding: 20,
+    width: '100%',
+  },
+  rowModal: {
+    justifyContent: 'center',
+    backgroundColor: '#FFFF',
+    paddingBottom: 20,
+    width: '100%',
   },
   box: {
     marginVertical: 20,
