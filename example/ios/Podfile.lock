@@ -80,16 +80,16 @@ PODS:
   - OICommons (1.1.0)
   - OIComponents (1.2.1):
     - OICommons (~> 1.1.0)
-  - OILiveness3D (1.0.0):
+  - OILiveness3D (1.0.1):
     - OICommons (~> 1.1.0)
-    - OIComponents (~> 1.2.0)
+    - OIComponents (~> 1.2.1)
     - OILiveness3D_FT (= 9.6.40)
     - OINetwork (~> 1.2.0)
   - OILiveness3D_FT (9.6.40)
   - OINetwork (1.2.0):
     - OICommons (~> 1.1.0)
   - oiti-rn-liveness3d (1.0.3):
-    - OILiveness3D (= 1.0.0)
+    - OILiveness3D (= 1.0.1)
     - React-Core
   - OpenSSL-Universal (1.1.1100)
   - RCT-Folly (2021.07.22.00):
@@ -472,7 +472,7 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - hermes-engine (from `../node_modules/react-native/sdks/hermes-engine/hermes-engine.podspec`)
   - libevent (~> 2.1.12)
-  - OILiveness3D (= 1.0.0)
+  - OILiveness3D (= 1.0.1)
   - oiti-rn-liveness3d (from `../..`)
   - OpenSSL-Universal (= 1.1.1100)
   - RCT-Folly (from `../node_modules/react-native/third-party-podspecs/RCT-Folly.podspec`)
@@ -526,7 +526,7 @@ SPEC REPOS:
     - OpenSSL-Universal
     - SocketRocket
     - YogaKit
-  https://github.com/oititec/ios-artifactory.git:
+  https://github.com/oititec/ios-artifactory-beta.git:
     - OICommons
     - OIComponents
     - OILiveness3D
@@ -632,10 +632,10 @@ SPEC CHECKSUMS:
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
   OICommons: c304a4f3aa3f0fe9282eae013a45fde717ad42bf
   OIComponents: 8cf47c0dc9b3477e8e4d5513c99b0c83283da3ce
-  OILiveness3D: 0c563045356e9af3c182788e4cfd56b4b5d6c7a3
+  OILiveness3D: bc88532d22ccf41d90062545ea41d32a45e42137
   OILiveness3D_FT: a58ceb6ea1b1229015434125d25b78b46f7667a9
   OINetwork: 3cf1ea4bd61a98bd68db7d1caa3f175b4868f5b4
-  oiti-rn-liveness3d: 0a5dccd321bc104ec7d53afdd0e5d7e864c3e84e
+  oiti-rn-liveness3d: a6cb961d5440518f7569f70881759d05aa2db5d3
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: 5a024fdf458fa8c0d82fc262e76f982d4dcdecdd
@@ -671,6 +671,6 @@ SPEC CHECKSUMS:
   Yoga: 79dd7410de6f8ad73a77c868d3d368843f0c93e0
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: 3bd60e21128685f3af527f047680e4c42aecfa30
+PODFILE CHECKSUM: f9d6a59844af1873e506cc45c4c7afe8b5acc936
 
 COCOAPODS: 1.12.0

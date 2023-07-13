@@ -57,7 +57,6 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         let env = args?["environment"] as? String ?? "HML"
         let apparence = args?["apparence"] as? Dictionary<String,Any> ?? nil
         
-        
         let loading = args?["loading"] as? Dictionary<String,Any> ?? nil
         
         let typeLoading = loading?["type"] as? String ?? "default"
@@ -68,26 +67,14 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         //Map Texts
         let liveness3Dtext = args?["liveness3Dtext"] as? Dictionary<String,Any> ?? nil
         
+        // Ready Screen
         let READY_HEADER_1 = liveness3Dtext?["READY_HEADER_1"] as? String ?? ""
         let READY_HEADER_2 = liveness3Dtext?["READY_HEADER_2"] as? String ?? ""
         let READY_MESSAGE_1 = liveness3Dtext?["READY_MESSAGE_1"] as? String ?? ""
         let READY_MESSAGE_2 = liveness3Dtext?["READY_MESSAGE_2"] as? String ?? ""
-        let RETRY_HEADER = liveness3Dtext?["RETRY_HEADER"] as? String ?? "Vamos tentar novamente?"
         let READY_BUTTON = liveness3Dtext?["READY_BUTTON"] as? String ?? ""
-        let RETRY_BUTTON = liveness3Dtext?["READY_BUTTON"] as? String ?? "Tentar novamente"
-        let RETRY_YOUR_PICTURE = liveness3Dtext?["RETRY_YOUR_PICTURE"] as? String ?? "Sua foto"
         
-        let RETRY_MESSAGE_SMILE = liveness3Dtext?["RETRY_MESSAGE_SMILE"] as? String ?? "Expressão Neutra, Sem Sorrir"
-        let RETRY_MESSAGE_LIGHTING = liveness3Dtext?["RETRY_MESSAGE_LIGHTING"] as? String ?? "Evite reflexos e iluminação extrema."
-        let RETRY_MESSAGE_CONTRAST = liveness3Dtext?["RETRY_MESSAGE_CONTRAST"] as? String ?? "Limpe Sua Câmera"
-        let RETRY_IDEAL_PICTURE = liveness3Dtext?["RETRY_IDEAL_PICTURE"] as? String ?? ""
-        let RETRY_SUBHEADER = liveness3Dtext?["RETRY_SUBHEADER"] as? String ?? "Siga o exemplo de foto ideal abaixo:"
-        
-        let FEEDBACK_FRAME_YOUR_FACE = liveness3Dtext?["FEEDBACK_FRAME_YOUR_FACE"] as? String ?? ""
-        let FEEDBACK_HOLD_STEADY_1 = liveness3Dtext?["FEEDBACK_HOLD_STEADY_1"] as? String ?? ""
-        let FEEDBACK_HOLD_STEADY_2 = liveness3Dtext?["FEEDBACK_HOLD_STEADY_2"] as? String ?? ""
-        let FEEDBACK_HOLD_STEADY_3 = liveness3Dtext?["FEEDBACK_HOLD_STEADY_3"] as? String ?? ""
-        
+        // Feedback Screen
         let FEEDBACK_CENTER_FACE = liveness3Dtext?["FEEDBACK_CENTER_FACE"] as? String ?? ""
         let FEEDBACK_FACE_NOT_FOUND = liveness3Dtext?["FEEDBACK_FACE_NOT_FOUND"] as? String ?? ""
         let FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD = liveness3Dtext?["FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD"] as? String ?? ""
@@ -97,15 +84,40 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         let FEEDBACK_MOVE_PHONE_CLOSER = liveness3Dtext?["FEEDBACK_MOVE_PHONE_CLOSER"] as? String ?? ""
         let FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL = liveness3Dtext?["FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL"] as? String ?? ""
         let FEEDBACK_USE_EVEN_LIGHTING = liveness3Dtext?["FEEDBACK_USE_EVEN_LIGHTING"] as? String ?? ""
+        let FEEDBACK_FRAME_YOUR_FACE = liveness3Dtext?["FEEDBACK_FRAME_YOUR_FACE"] as? String ?? ""
+        let FEEDBACK_POSITION_FACE_STRAIGHT_IN_OVAL = liveness3Dtext?["FEEDBACK_POSITION_FACE_STRAIGHT_IN_OVAL"] as? String ?? ""
+        let FEEDBACK_HOLD_STEADY_1 = liveness3Dtext?["FEEDBACK_HOLD_STEADY_1"] as? String ?? ""
+        let FEEDBACK_HOLD_STEADY_2 = liveness3Dtext?["FEEDBACK_HOLD_STEADY_2"] as? String ?? ""
+        let FEEDBACK_HOLD_STEADY_3 = liveness3Dtext?["FEEDBACK_HOLD_STEADY_3"] as? String ?? ""
         let FEEDBACK_REMOVE_DARK_GLASSES = liveness3Dtext?["FEEDBACK_REMOVE_DARK_GLASSES"] as? String ?? ""
         let FEEDBACK_NEUTRAL_EXPRESSION = liveness3Dtext?["FEEDBACK_NEUTRAL_EXPRESSION"] as? String ?? ""
         let FEEDBACK_CONDITIONS_TOO_BRIGHT = liveness3Dtext?["FEEDBACK_CONDITIONS_TOO_BRIGHT"] as? String ?? ""
         let FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT = liveness3Dtext?["FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT"] as? String ?? ""
+        
+        // Result Screen
         let RESULT_UPLOAD_MESSAGE = liveness3Dtext?["RESULT_UPLOAD_MESSAGE"] as? String ?? ""
         let RESULT_SUCCESS_MESSAGE = liveness3Dtext?["RESULT_SUCCESS_MESSAGE"] as? String ?? ""
         
+        // Retry Screen
+        let RETRY_HEADER = liveness3Dtext?["RETRY_HEADER"] as? String ?? "Vamos tentar novamente?"
+        let RETRY_SUBHEADER = liveness3Dtext?["RETRY_SUBHEADER"] as? String ?? "Siga o exemplo de foto ideal abaixo:"
+        let RETRY_YOUR_PICTURE = liveness3Dtext?["RETRY_YOUR_PICTURE"] as? String ?? "Sua foto"
+        let RETRY_IDEAL_PICTURE = liveness3Dtext?["RETRY_IDEAL_PICTURE"] as? String ?? "Não sorria"
+        let RETRY_MESSAGE_SMILE = liveness3Dtext?["RETRY_MESSAGE_SMILE"] as? String ?? "Expressão Neutra, Sem Sorrir"
+        let RETRY_MESSAGE_LIGHTING = liveness3Dtext?["RETRY_MESSAGE_LIGHTING"] as? String ?? "Evite reflexos e iluminação extrema."
+        let RETRY_MESSAGE_CONTRAST = liveness3Dtext?["RETRY_MESSAGE_CONTRAST"] as? String ?? "Limpe Sua Câmera"
+        let RETRY_BUTTON = liveness3Dtext?["READY_BUTTON"] as? String ?? "Tentar novamente"
+        
         //Liveness3D Texts
         let liveness3DTexts: [Liveness3DTextKey: String] = [
+            // Ready Screen
+            .readyHeader1: READY_HEADER_1,
+            .readyHeader2: READY_HEADER_2,
+            .readyMessage1: READY_MESSAGE_1,
+            .readyMessage2: READY_MESSAGE_2,
+            .readyButton: READY_BUTTON,
+            
+            // Feedback Screen
             .feedbackCenterFace: FEEDBACK_CENTER_FACE,
             .feedbackFaceNotFound: FEEDBACK_FACE_NOT_FOUND,
             .feedbackFaceNotLookingStraightAhead: FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD,
@@ -115,28 +127,28 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
             .feedbackMovePhoneCloser: FEEDBACK_MOVE_PHONE_CLOSER,
             .feedbackMovePhoneToEyeLevel: FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL,
             .feedbackUseEvenLighting: FEEDBACK_USE_EVEN_LIGHTING,
-            .readyHeader1: READY_HEADER_1,
-            .readyHeader2: READY_HEADER_2,
-            .readyMessage1: READY_MESSAGE_1,
-            .readyMessage2: READY_MESSAGE_2,
-            .readyButton: READY_BUTTON,
-            .feedbackPositionFaceStraightInOval: FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD,
-            .feedbackHoldSteady3: FEEDBACK_HOLD_STEADY_3,
-            .feedbackHoldSteady2: FEEDBACK_HOLD_STEADY_2,
+            .feedbackFrameYourFace: FEEDBACK_FRAME_YOUR_FACE,
+            .feedbackPositionFaceStraightInOval: FEEDBACK_POSITION_FACE_STRAIGHT_IN_OVAL,
             .feedbackHoldSteady1: FEEDBACK_HOLD_STEADY_1,
+            .feedbackHoldSteady2: FEEDBACK_HOLD_STEADY_2,
+            .feedbackHoldSteady3: FEEDBACK_HOLD_STEADY_3,
             .feedbackRemoveDarkGlasses: FEEDBACK_REMOVE_DARK_GLASSES,
             .feedbackNeutralExpression: FEEDBACK_NEUTRAL_EXPRESSION,
             .feedbackConditionsTooBright: FEEDBACK_CONDITIONS_TOO_BRIGHT,
             .feedbackBrightenYourEnvironment: FEEDBACK_BRIGHTEN_YOUR_ENVIRONMENT,
+            
+            // Result Screen
             .resultUploadMessage: RESULT_UPLOAD_MESSAGE,
             .resultSuccessMessage: RESULT_SUCCESS_MESSAGE,
+            
+            // Retry Screen
             .retryHeader: RETRY_HEADER,
             .retrySubheader: RETRY_SUBHEADER,
+            .retryYourPicture: RETRY_YOUR_PICTURE,
+            .retryIdealPicture: RETRY_IDEAL_PICTURE,
             .retryMessageSmile: RETRY_MESSAGE_SMILE,
             .retryMessageLightning: RETRY_MESSAGE_LIGHTING,
-            .retryMessageContrast: RETRY_MESSAGE_CONTRAST,
-            .retryYourPicture: RETRY_YOUR_PICTURE,
-            .retryIdealPicture: RETRY_IDEAL_PICTURE
+            .retryMessageContrast: RETRY_MESSAGE_CONTRAST
         ]
         
         

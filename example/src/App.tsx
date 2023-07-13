@@ -39,6 +39,7 @@ export default function App() {
     baseUrl: 'https://comercial.certiface.com.br:8443/',
 
     liveness3Dtext: {
+      // Ready Screen
       READY_HEADER_1: 'Prepare-se para seu',
       READY_HEADER_2: 'reconhecimento facial.',
       READY_MESSAGE_1: 'Posicione o seu rosto na moldura, aproxime-se',
@@ -71,7 +72,6 @@ export default function App() {
       FEEDBACK_HOLD_STEADY_1: 'Aguente Firme: 1',
       FEEDBACK_HOLD_STEADY_2: 'Aguente Firme: 2',
       FEEDBACK_HOLD_STEADY_3: 'Aguente Firme: 3',
-      FEEDBACK_EYES_STRAIGHT_AHEAD: 'Olhe Para Frente',
       FEEDBACK_REMOVE_DARK_GLASSES: 'Tire Seus Óculos de Sol',
       FEEDBACK_NEUTRAL_EXPRESSION: 'Fique Neutro, Não Sorria',
       FEEDBACK_CONDITIONS_TOO_BRIGHT: 'Ambiente Muito Iluminado',
