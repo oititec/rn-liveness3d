@@ -108,7 +108,6 @@ class RnLiveness3dModule(reactContext: ReactApplicationContext) :
       Liveness3DTextKey.FEEDBACK_HOLD_STEADY_1 to "Aguente Firme: 1",
       Liveness3DTextKey.FEEDBACK_HOLD_STEADY_2 to "Aguente Firme: 2",
       Liveness3DTextKey.FEEDBACK_HOLD_STEADY_3 to "Aguente Firme: 3",
-      Liveness3DTextKey.FEEDBACK_EYES_STRAIGHT_AHEAD to "Olhe Para Frente",
       Liveness3DTextKey.FEEDBACK_REMOVE_DARK_GLASSES to "Tire Seus Óculos de Sol",
       Liveness3DTextKey.FEEDBACK_NEUTRAL_EXPRESSION to "Fique Neutro, Não Sorria",
       Liveness3DTextKey.FEEDBACK_CONDITIONS_TOO_BRIGHT to "Ambiente Muito Iluminado",

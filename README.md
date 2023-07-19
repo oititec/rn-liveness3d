@@ -169,7 +169,6 @@ const texts = {
   FEEDBACK_HOLD_STEADY_1: 'Aguente Firme: 1',
   FEEDBACK_HOLD_STEADY_2: 'Aguente Firme: 2',
   FEEDBACK_HOLD_STEADY_3: 'Aguente Firme: 3',
-  FEEDBACK_EYES_STRAIGHT_AHEAD: 'Olhe Para Frente',
   FEEDBACK_REMOVE_DARK_GLASSES: 'Tire Seus Óculos de Sol',
   FEEDBACK_NEUTRAL_EXPRESSION: 'Fique Neutro, Não Sorria',
   FEEDBACK_CONDITIONS_TOO_BRIGHT: 'Ambiente Muito Iluminado',
