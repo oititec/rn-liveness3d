@@ -3,8 +3,6 @@ import OIComponents
 import OICommons
 import AVFoundation
 
-
-
 @objc(RnLiveness3d)
 class RnLiveness3d: NSObject, Liveness3DDelegate {
     
@@ -23,10 +21,7 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
     func logevent(args: Dictionary<String,Any>?, resolve:@escaping RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         let event = args?["event"] as? String ?? ""
         print(event)
-        
-        
     }
-    
     
     @objc(checkiospermission:withResolver:withRejecter:)
     func checkiospermission(args: Dictionary<String,Any>?, resolve:@escaping RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
@@ -148,9 +143,9 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
             .retryIdealPicture: RETRY_IDEAL_PICTURE,
             .retryMessageSmile: RETRY_MESSAGE_SMILE,
             .retryMessageLightning: RETRY_MESSAGE_LIGHTING,
-            .retryMessageContrast: RETRY_MESSAGE_CONTRAST
+            .retryMessageContrast: RETRY_MESSAGE_CONTRAST,
+            .retryButton: RETRY_BUTTON
         ]
-        
         
         let liveness3DUser = Liveness3DUser(
             appKey: appKey,
@@ -174,7 +169,6 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
                     backgroundColor: .init(hex: backgroundColor),
                     scaleFactor: sizeLoading
                 )
-                
                 
                 DispatchQueue.main.async {
                     
