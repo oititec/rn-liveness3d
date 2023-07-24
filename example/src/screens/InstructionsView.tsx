@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import {
   StyleSheet,
   View,
@@ -9,12 +8,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {
-  startLiveness3d,
-  StartLiveness3dCustomView,
-} from '@oiti/rn-liveness3d';
+import { startLiveness3d } from '@oiti/rn-liveness3d';
 
-export default function InstructionsView({ navigation }: { navigation: any }) {
+export default function InstructionsView({}: { navigation: any }) {
   return (
     <View style={styles.container}>
       <ImageBackground
