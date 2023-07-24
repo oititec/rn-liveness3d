@@ -45,7 +45,7 @@ export default function App() {
       READY_MESSAGE_1: 'Posicione o seu rosto na moldura, aproxime-se',
       READY_MESSAGE_2: 'e toque em começar.',
       READY_BUTTON: 'Começar',
-
+      // Retry Screen
       RETRY_HEADER: 'Vamos tentar novamente?',
       RETRY_SUBHEADER: 'Siga o exemplo de foto ideal abaixo:',
       RETRY_MESSAGE_SMILE: 'Expressão Neutra, Sem Sorrir',
@@ -54,10 +54,10 @@ export default function App() {
       RETRY_YOUR_PICTURE: 'Sua foto',
       RETRY_IDEAL_PICTURE: 'Foto ideal',
       RETRY_BUTTON: 'Tentar novamente',
-
+      // Result Screen
       RESULT_UPLOAD_MESSAGE: 'Enviando...',
       RESULT_SUCCESS_MESSAGE: 'Sucesso',
-
+      // Feedback Screen
       FEEDBACK_CENTER_FACE: 'Centralize Seu Rosto',
       FEEDBACK_FACE_NOT_FOUND: 'Enquadre o Seu Rosto',
       FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD: 'Olhe Para Frente',
@@ -67,7 +67,6 @@ export default function App() {
       FEEDBACK_MOVE_PHONE_CLOSER: 'Aproxime-se',
       FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL: 'Telefone ao Nível dos Olhos',
       FEEDBACK_USE_EVEN_LIGHTING: 'Ilumine Seu Rosto Uniformemente',
-
       FEEDBACK_FRAME_YOUR_FACE: 'Encaixe Seu Rosto no Espaço Oval',
       FEEDBACK_HOLD_STEADY_1: 'Aguente Firme: 1',
       FEEDBACK_HOLD_STEADY_2: 'Aguente Firme: 2',
