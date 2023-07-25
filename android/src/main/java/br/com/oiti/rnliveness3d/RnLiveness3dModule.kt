@@ -6,13 +6,16 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.annotation.NonNull
 import androidx.core.app.ActivityCompat
 import androidx.core.content.*
+
 import br.com.oiti.liveness3d.app.ui.HybridLiveness3DActivity
 import br.com.oiti.liveness3d.data.model.ENVIRONMENT3D
 import br.com.oiti.liveness3d.data.model.Liveness3DTextKey
 import br.com.oiti.liveness3d.data.model.Liveness3DUser
+import br.com.oiti.liveness3d.data.model.LoadingType3D
 import br.com.oiti.security.observability.firebase.FirebaseEvents
 import com.facebook.react.bridge.*
 import com.facebook.react.bridge.Promise
@@ -61,10 +64,16 @@ class RnLiveness3dModule(reactContext: ReactApplicationContext) :
     FirebaseEvents(name.toString(), appKey).apply()
   }
 
+
+
   @NonNull
   @ReactMethod
-  fun startliveness3d(appKey: String, promise: Promise) {
+  fun startliveness3d(appKey: String, type: String, size: Int, backgroundColor: String, loadingColor: String, promise: Promise) {
     val currentActivity = currentActivity
+    Log.d("LOADING RN TYPE", type)
+    Log.d("LOADING RN SIZE", size.toString())
+    Log.d("LOADING RN BG", backgroundColor)
+    Log.d("LOADING RN LC", loadingColor)
 
     val texts = hashMapOf<Liveness3DTextKey, String>(
       Liveness3DTextKey.READY_HEADER_1 to "Prepare-se para seu",
@@ -99,7 +108,6 @@ class RnLiveness3dModule(reactContext: ReactApplicationContext) :
       Liveness3DTextKey.FEEDBACK_HOLD_STEADY_1 to "Aguente Firme: 1",
       Liveness3DTextKey.FEEDBACK_HOLD_STEADY_2 to "Aguente Firme: 2",
       Liveness3DTextKey.FEEDBACK_HOLD_STEADY_3 to "Aguente Firme: 3",
-      Liveness3DTextKey.FEEDBACK_EYES_STRAIGHT_AHEAD to "Olhe Para Frente",
       Liveness3DTextKey.FEEDBACK_REMOVE_DARK_GLASSES to "Tire Seus Óculos de Sol",
       Liveness3DTextKey.FEEDBACK_NEUTRAL_EXPRESSION to "Fique Neutro, Não Sorria",
       Liveness3DTextKey.FEEDBACK_CONDITIONS_TOO_BRIGHT to "Ambiente Muito Iluminado",
@@ -118,6 +126,14 @@ class RnLiveness3dModule(reactContext: ReactApplicationContext) :
         val intent = Intent(getCurrentActivity(), HybridLiveness3DActivity::class.java).apply {
           putExtra(HybridLiveness3DActivity.PARAM_LIVENESS3D_USER, liveness3DUser)
           putExtra(HybridLiveness3DActivity.PARAM_TEXTS, texts)
+          putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_BACKGROUND, backgroundColor)
+          putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_SPINNER_COLOR, loadingColor)
+          putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_SIZE, size)
+          if(type == "default"){
+            putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_TYPE, LoadingType3D.ACTIVITY_INDICATOR)
+          }else{
+            putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_TYPE, LoadingType3D.SPINNER)
+          }
         }
         getCurrentActivity()?.startActivityForResult(intent, LIVENESS3D_REQUEST)
       } catch (e: Exception) {
