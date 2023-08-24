@@ -5,17 +5,16 @@ import AVFoundation
 
 @objc(RnLiveness3d)
 class RnLiveness3d: NSObject, Liveness3DDelegate {
-    
-    var resolve:RCTPromiseResolveBlock!
-    var reject:RCTPromiseRejectBlock!
-    
     func handleLiveness3DValidation(validateModel: Liveness3DSuccess) {
         resolve("RESULT_OK")
     }
     
-    func handleLiveness3DError(error: Liveness3DError) {
+    func handleLiveness3DError(error: OILiveness3D.Liveness3DError) {
         resolve(error.message)
     }
+    
+    var resolve:RCTPromiseResolveBlock!
+    var reject:RCTPromiseRejectBlock!
     
     @objc(logevent:withResolver:withRejecter:)
     func logevent(args: Dictionary<String,Any>?, resolve:@escaping RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
@@ -153,7 +152,6 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
             texts: liveness3DTexts
         )
         
-        
         AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
             if response {
                 
@@ -182,12 +180,10 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
                     RCTPresentedViewController()?.present(liveness3DViewController, animated: true)
                 }
                 
-                
             } else {
                 resolve("RESULT_CANCELED")
             }
         }
-        
         
     }
 }
