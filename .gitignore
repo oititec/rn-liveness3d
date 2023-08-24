@@ -43,7 +43,9 @@ android.iml
 # Cocoapods
 #
 ios/Pods
+ios/Podlock.lock
 example/ios/Pods
+example/ios/Podlock.lock
 
 # Ruby
 example/vendor/
