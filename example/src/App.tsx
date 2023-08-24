@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { startLiveness3d, Liveness3dView } from '@oiti/rn-liveness3d';
+import { Liveness3dView } from '@oiti/rn-liveness3d';
 import {
   StyleSheet,
   View,
@@ -26,7 +26,7 @@ export default function App() {
 
   const [configLoading, setLoading] = React.useState<LoadingType>({
     appkey:
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiNDJEM0ExRTMxQzUzNkI1MDM0OUFBQkE5MTZGQzlCQjJGfG1vYmlsZS5hcGlnbG9iYWwiLCJlbXBDb2QiOiIwMDAwMDAwNjc5IiwiZmlsQ29kIjoiMDAwMDAwMjc3NCIsImNwZiI6IjU0MjczOTY2MDg1Iiwibm9tZSI6IjQ2RDFCODEwNDJCQ0UxMDU5OEI3RkJDNUQwNkVCRjVFNTcyOEFENTRCNkM4MUU5MDUyOTAxREE4MjA5QzUzREY4NkI5NjAyNjFFQkFCQzI4RkVBRDJEMDM1RkEyRTA4NkVFODY1QTAwRDg1MDIwNkRGOUM0N0ExOEI0NzM0NjFDfEFTSEFVQVMgQVNVSEFTSFUgQVNVSCIsIm5hc2NpbWVudG8iOiIwOC8xMC8xOTkxIiwiZWFzeS1pbmRleCI6IkFBQUFFbjRJL3l4TWJUT05yVnpQdlZhcWJxQ3JZK29KMlZGOUwyUVNON2dWbng1Rjg1T1NrK0pDUjMxT2pnPT0iLCJrZXkiOiJRV3hzYjNkaGJtTmxJSEpsY0hWc2MybDJaU0J6WlhnZ2JXRjVJR052Ym5SaGFXND0iLCJleHAiOjE2ODkxNjg1ODIsImlhdCI6MTY4OTE2ODI4Mn0.QFD-neGsxdmQZRVYzsZ7wsxX0_6F8DqbRZTUCmf7Vwg',
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiMzg3NTA4ODVGODVCQjQ4N0M2NUYxRURBMTgwNTBGRTlFfG1vYmlsZS5hcGlnbG9iYWwiLCJlbXBDb2QiOiIwMDAwMDAwNjc5IiwiZmlsQ29kIjoiMDAwMDAwMjc3NCIsImNwZiI6Ijc4NjUyMTg2NzIzIiwibm9tZSI6IkEyOTVCRjI3M0Q0NDQ2QjdBODFFQjUyMTFENkMxRTY0RkY0NTY4NUNCN0Q4NDRGRDcwRDQ5MzAwNTJCRUE1MkU2NjNBNjFDQThEMjEwQTFDQ0UxRURCRTUyQkNFRTIyMDc4MDRBRUNGOTk3OERDRTA0OTdEOTc3MDIxMjcxODI1NUZGNER8QUxFU1NBTkRSTyBGQVJJQSIsIm5hc2NpbWVudG8iOiIyNy8wNS8xOTcyIiwiZWFzeS1pbmRleCI6IkFBQUFFcXlZdzNQSkpNTTZ4UzhYQjVBaitXQlJZdXZsUjlvYnZtdUNVcmdXVmtCWnpqZGxFNzRzMFphclp3PT0iLCJrZXkiOiJRV3hzYjNkaGJtTmxJSEpsY0hWc2MybDJaU0J6WlhnZ2JXRjVJR052Ym5SaGFXND0iLCJleHAiOjE2ODk4MDE5NjYsImlhdCI6MTY4OTgwMTY2Nn0.XGAy01GqLkaLqZi74L07wVLYertuuf2SWTPGVU36K7Q',
     type: 'default',
     size: 2,
     backgroundColor: '#000000',
@@ -39,12 +39,13 @@ export default function App() {
     baseUrl: 'https://comercial.certiface.com.br:8443/',
 
     liveness3Dtext: {
+      // Ready Screen
       READY_HEADER_1: 'Prepare-se para seu',
       READY_HEADER_2: 'reconhecimento facial.',
       READY_MESSAGE_1: 'Posicione o seu rosto na moldura, aproxime-se',
       READY_MESSAGE_2: 'e toque em começar.',
       READY_BUTTON: 'Começar',
-
+      // Retry Screen
       RETRY_HEADER: 'Vamos tentar novamente?',
       RETRY_SUBHEADER: 'Siga o exemplo de foto ideal abaixo:',
       RETRY_MESSAGE_SMILE: 'Expressão Neutra, Sem Sorrir',
@@ -53,10 +54,10 @@ export default function App() {
       RETRY_YOUR_PICTURE: 'Sua foto',
       RETRY_IDEAL_PICTURE: 'Foto ideal',
       RETRY_BUTTON: 'Tentar novamente',
-
+      // Result Screen
       RESULT_UPLOAD_MESSAGE: 'Enviando...',
       RESULT_SUCCESS_MESSAGE: 'Sucesso',
-
+      // Feedback Screen
       FEEDBACK_CENTER_FACE: 'Centralize Seu Rosto',
       FEEDBACK_FACE_NOT_FOUND: 'Enquadre o Seu Rosto',
       FEEDBACK_FACE_NOT_LOOKING_STRAIGHT_AHEAD: 'Olhe Para Frente',
@@ -66,12 +67,10 @@ export default function App() {
       FEEDBACK_MOVE_PHONE_CLOSER: 'Aproxime-se',
       FEEDBACK_MOVE_PHONE_TO_EYE_LEVEL: 'Telefone ao Nível dos Olhos',
       FEEDBACK_USE_EVEN_LIGHTING: 'Ilumine Seu Rosto Uniformemente',
-
       FEEDBACK_FRAME_YOUR_FACE: 'Encaixe Seu Rosto no Espaço Oval',
       FEEDBACK_HOLD_STEADY_1: 'Aguente Firme: 1',
       FEEDBACK_HOLD_STEADY_2: 'Aguente Firme: 2',
       FEEDBACK_HOLD_STEADY_3: 'Aguente Firme: 3',
-      FEEDBACK_EYES_STRAIGHT_AHEAD: 'Olhe Para Frente',
       FEEDBACK_REMOVE_DARK_GLASSES: 'Tire Seus Óculos de Sol',
       FEEDBACK_NEUTRAL_EXPRESSION: 'Fique Neutro, Não Sorria',
       FEEDBACK_CONDITIONS_TOO_BRIGHT: 'Ambiente Muito Iluminado',

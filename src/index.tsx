@@ -97,7 +97,7 @@ const requestCameraPermission = async (
   try {
     const granted = await PermissionsAndroid.request(PERMISSIONS_REQUEST, {
       title: '',
-      message: 'Precisamos acessar sua cãmera ',
+      message: 'Precisamos acessar sua câmera',
       buttonNeutral: 'Ver Depois',
       buttonNegative: 'Cancelar',
       buttonPositive: 'OK',
