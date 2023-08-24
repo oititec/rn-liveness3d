@@ -1,6 +1,6 @@
 platform :ios, '12.4' 
 
-source 'https://github.com/oititec/ios-artifactory-beta.git'
+source 'https://github.com/oititec/ios-artifactory.git'
 source 'https://github.com/CocoaPods/Specs.git'
  
 
@@ -9,6 +9,6 @@ target 'RnLiveness3d' do
     use_frameworks!
     
     # Pods for sampleUsageLivenessSDK
-    pod 'OILiveness3D', '1.0.1'
+    pod 'OILiveness3D', '1.0.2'
   
   end

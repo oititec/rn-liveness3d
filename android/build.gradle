@@ -5,9 +5,8 @@ buildscript {
   repositories {
       google()
       mavenCentral()
-    maven { url "https://raw.githubusercontent.com/oititec/android-oiti-versions-beta/master" }
       maven {
-        url 'https://raw.githubusercontent.com/oititec/android-oiti-versions-beta/master'
+        url 'https://raw.githubusercontent.com/oititec/android-oiti-versions/master'
       }
   }
 
@@ -155,7 +154,9 @@ dependencies {
   implementation 'androidx.databinding:databinding-runtime:4.2.2'
 
 
-  implementation 'br.com.oiti:liveness3d-sdk:7.0.7'
+
+  implementation 'br.com.oiti:liveness3d-sdk:8.0.1'
+
   implementation 'br.com.oiti:security:1.2'
 
 // From node_modules
