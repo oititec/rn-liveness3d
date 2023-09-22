@@ -9,6 +9,6 @@ target 'RnLiveness3d' do
     use_frameworks!
     
     # Pods for sampleUsageLivenessSDK
-    pod 'OILiveness3D', '1.0.2'
+    pod 'OILiveness3D', '1.0.4'
   
   end
