@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { NativeModules, Platform, PermissionsAndroid } from 'react-native';
-import type { ArgsType, LoadingType } from './@types/ArgsType';
+import type { LoadingType } from './@types/ArgsType';
+import type { ArgsType } from './@types/Args';
 import InstructionsView from './screens/Liveness3D/InstructionsView';
 import PermissionView from './screens/PermissionView';
 
@@ -46,6 +47,7 @@ export function startLiveness3d(
           : options?.apparence?.loadingColor,
     },
     liveness3Dtext: options.liveness3Dtext || [],
+    liveness3Dtheme: options.liveness3Dtheme || [],
     loading: loading,
   };
 
@@ -62,7 +64,7 @@ export function startLiveness3d(
   return RnLiveness3d.startliveness3d(args);
 }
 
-export function logEvent3D(name: string, appkey: string): Promise<any> {
+function logEvent3D(name: string, appkey: string): Promise<any> {
   if (Platform.OS === 'ios') {
     return RnLiveness3d.logevent({ event: name, appkey: appkey });
   } else {
@@ -71,10 +73,10 @@ export function logEvent3D(name: string, appkey: string): Promise<any> {
   }
 }
 
-export function checkIosPermission(): Promise<any> {
+function checkIosPermission(): Promise<any> {
   return RnLiveness3d.checkiospermission({ p: 'granted' });
 }
-export function checkIosPermissionGranted(): Promise<any> {
+function checkIosPermissionGranted(): Promise<any> {
   return RnLiveness3d.checkpermissiongranted({ p: 'granted' });
 }
 
@@ -94,6 +96,7 @@ const requestCameraPermission = async (
       }
     });
   }
+
   try {
     const granted = await PermissionsAndroid.request(PERMISSIONS_REQUEST, {
       title: '',
