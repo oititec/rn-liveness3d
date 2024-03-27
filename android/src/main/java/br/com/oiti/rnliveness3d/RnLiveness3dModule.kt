@@ -21,12 +21,12 @@
   import com.facebook.react.bridge.ReactContextBaseJavaModule
   import com.facebook.react.bridge.ReactMethod
   import com.facebook.react.modules.core.PermissionAwareActivity
+  import org.json.JSONObject
 
   class RnLiveness3dModule(reactContext: ReactApplicationContext) :
     ReactContextBaseJavaModule(reactContext) {
 
     private var mLiveness3dPromisse: Promise? = null
-
 
     init {
       reactContext.addActivityEventListener(object : BaseActivityEventListener() {
@@ -42,14 +42,16 @@
       })
     }
 
-    fun onLiveness3DResultSuccess(data: Intent?): Map<String, Any?> {
-      return mapOf<String, Any?>(
-        "valid" to data?.getBooleanExtra(HybridLiveness3DActivity.PARAM_RESULT_VALID, false),
-        "cause" to data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_CAUSE),
-        "codId" to data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_COD_ID),
-        "protocol" to data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_PROTOCOL),
-        "blob" to data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_SCAN),
-      )
+    fun onLiveness3DResultSuccess(data: Intent?): String {
+      val resultMap = mutableMapOf<String, Any?>()
+
+      resultMap["valid"] = data?.getBooleanExtra(HybridLiveness3DActivity.PARAM_RESULT_VALID, false)
+      resultMap["cause"] = data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_CAUSE)
+      resultMap["codId"] = data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_COD_ID)
+      resultMap["protocol"] = data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_PROTOCOL)
+      resultMap["blob"] = data?.getStringExtra(HybridLiveness3DActivity.PARAM_RESULT_SCAN)
+
+      return JSONObject(resultMap).toString()
     }
 
     fun onLiveness3DResultCancelled(data: Intent?): String {

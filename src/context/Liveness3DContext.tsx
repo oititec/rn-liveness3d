@@ -4,6 +4,7 @@ import { ArgsType } from '../@types/ArgsType';
 import { onErrorType, onSuccessType } from '../@types/ResultType';
 import { ResultType } from '../@types/ResultTypes';
 import { askPermission } from '../utils/permissions';
+import { Platform } from 'react-native';
 
 export const SCREEN = Object.freeze({
   INSTRUCTION_VIEW: 1,
@@ -63,7 +64,14 @@ export const Liveness3DProvider: FC<ResultType> = ({
     if (options) {
       startLiveness3d(options)
         .then((result) => {
-          onSuccess(result as onSuccessType);
+          {
+            if (Platform.OS == 'android') {
+              //@ts-ignore
+              onSuccess(JSON.parse(result) as onSuccessType);
+            } else {
+              onSuccess(result as onSuccessType);
+            }
+          }
         })
         .catch((error) => {
           onError(error as onErrorType);

@@ -83,7 +83,14 @@ export const requestCameraPermission = async (
     checkIosPermission().then(async (result) => {
       if (result === true) {
         await startLiveness3d(options, loading)
-          .then((result) => onSuccess(result as onSuccessType))
+          .then((result) => {
+            if (Platform.OS == 'android') {
+              //@ts-ignore
+              onSuccess(JSON.parse(result) as onSuccessType);
+            } else {
+              onSuccess(result as onSuccessType);
+            }
+          })
           .catch((error) => onError(error as onErrorType));
       }
       if (result === false) {
@@ -97,7 +104,14 @@ export const requestCameraPermission = async (
       await askcamerapermissionAndroid().then(async (res) => {
         if (res === true) {
           await startLiveness3d(options, loading)
-            .then((result) => onSuccess(result as onSuccessType))
+            .then((result) => {
+              if (Platform.OS == 'android') {
+                //@ts-ignore
+                onSuccess(JSON.parse(result) as onSuccessType);
+              } else {
+                onSuccess(result as onSuccessType);
+              }
+            })
             .catch((error) => onError(error as onErrorType));
         } else {
           console.log('Camera permission denied');
@@ -195,7 +209,14 @@ export function GetIntructionView({
     if (screen === 1) {
       if ((await checkPermission()) === true) {
         startLiveness3d(options, loading)
-          .then((result) => onSuccess(result as onSuccessType))
+          .then((result) => {
+            if (Platform.OS == 'android') {
+              //@ts-ignore
+              onSuccess(JSON.parse(result) as onSuccessType);
+            } else {
+              onSuccess(result as onSuccessType);
+            }
+          })
           .catch((error) => onError(error as onErrorType));
       } else {
         setScreen(2);
