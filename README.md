@@ -6,7 +6,7 @@ Neste repositório, encontramos a **biblioteca NPM do Liveness 3D da Oiti**.
 
 O NPM (Node Package Manager) é uma ferramenta para gerenciar pacotes no Node.js, a plataforma de execução para JavaScript. Com o NPM, você tem controle total sobre as dependências do seu projeto, permitindo acesso a um repositório de bibliotecas e frameworks JavaScript.
 
-Aqui, você pode instalar e utilizar funções como `startLiveness3d()` e `startDocumentscopy()`, além de incorporar a View como `<Liveness3dView />` em seus aplicativos híbridos desenvolvidos em React Native.
+Aqui, você pode instalar e utilizar funções como `startLiveness3d()`, além de incorporar a View como `<Liveness3dView />` em seus aplicativos híbridos desenvolvidos em React Native.
 
 **Requisitos mínimos**
 | Android | iOS|
