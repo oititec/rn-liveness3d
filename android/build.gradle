@@ -6,7 +6,7 @@ buildscript {
       google()
       mavenCentral()
       maven {
-        url 'https://raw.githubusercontent.com/oititec/android-oiti-versions/master'
+        url 'https://raw.githubusercontent.com/oititec/android-oiti-versions-beta/master'
       }
   }
 
@@ -14,7 +14,6 @@ buildscript {
     classpath 'com.android.tools.build:gradle:3.5.3'
     // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
   }
 }
 
@@ -24,7 +23,6 @@ def isNewArchitectureEnabled() {
 
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlinx-serialization'
 
 if (isNewArchitectureEnabled()) {
   apply plugin: 'com.facebook.react'
@@ -64,8 +62,9 @@ android {
 }
 
 repositories {
-  mavenCentral()
   google()
+  mavenCentral()
+  maven { url "https://raw.githubusercontent.com/oititec/android-oiti-versions-beta/master" }
 
   def found = false
   def defaultDir = null
@@ -140,21 +139,8 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  implementation 'androidx.core:core-ktx:1.7.0'
-  implementation 'androidx.appcompat:appcompat:1.4.1'
-  implementation 'com.google.android.material:material:1.6.1'
-  implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-  implementation "org.bouncycastle:bcprov-jdk16:1.46"
-  implementation "com.squareup.okhttp3:logging-interceptor:4.9.3"
-  implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-  implementation 'androidx.fragment:fragment-ktx:1.3.6'
-  implementation group: 'com.google.code.gson', name: 'gson', version: '2.9.0'
-  implementation group: 'com.squareup.retrofit2', name: 'converter-gson', version: '2.9.0'
-  implementation "com.squareup.retrofit2:retrofit:2.9.0"
-  implementation 'androidx.databinding:databinding-runtime:4.2.2'
+  implementation 'br.com.oiti:liveness3d-sdk:9.2.5-snapshot-facetec'
 
-  implementation 'br.com.oiti:liveness3d-sdk:8.1.4'
-  implementation 'br.com.oiti:security:1.2'
 
 // From node_modules
 }

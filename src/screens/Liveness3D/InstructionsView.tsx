@@ -25,13 +25,13 @@ export default function InstructionsView({
 }) {
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={() => onBack()} style={styles.navigationBar}>
+        <Image
+          source={require('../../assets/images/left-arrow.png')}
+          style={styles.leftArrow}
+        />
+      </TouchableOpacity>
       <View style={styles.boxImg}>
-        <TouchableOpacity onPress={() => onBack()} style={styles.navigationBar}>
-          <Image
-            source={require('../../assets/images/left-arrow.png')}
-            style={styles.leftArrow}
-          />
-        </TouchableOpacity>
         <View style={styles.imgContainer}>
           <Image
             source={require('../../assets/images/img_face.png')}
@@ -193,8 +193,8 @@ const styles = StyleSheet.create({
   leftArrow: {
     marginTop: normalize(70, scaleH),
     marginLeft: 20,
-    width: 25,
-    height: 25,
+    width: normalize(25, scaleW),
+    height: normalize(35, scaleH),
   },
   imgFace: {
     height: '100%',
