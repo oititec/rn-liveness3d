@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
 
   s.platforms    = { :ios => "10.0" }
   s.source       = { :git => "https://github.com/oititec/rn-liveness3d.git", :tag => "#{s.version}" }
-  s.source       = { :git => "https://github.com/oititec/ios-artifactory-beta.git" }
+  s.source       = { :git => "https://github.com/oititec/ios-artifactory.git" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 

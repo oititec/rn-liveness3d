@@ -6,7 +6,7 @@ buildscript {
       google()
       mavenCentral()
       maven {
-        url 'https://raw.githubusercontent.com/oititec/android-oiti-versions-beta/master'
+        url 'https://raw.githubusercontent.com/oititec/android-oiti-versions/master'
       }
   }
 
@@ -64,7 +64,7 @@ android {
 repositories {
   google()
   mavenCentral()
-  maven { url "https://raw.githubusercontent.com/oititec/android-oiti-versions-beta/master" }
+  maven { url "https://raw.githubusercontent.com/oititec/android-oiti-versions/master" }
 
   def found = false
   def defaultDir = null
@@ -139,7 +139,7 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  implementation 'br.com.oiti:liveness3d-sdk:9.2.5-snapshot-facetec'
+  implementation 'br.com.oiti:liveness3d-sdk:9.2.6'
 
 
 // From node_modules
