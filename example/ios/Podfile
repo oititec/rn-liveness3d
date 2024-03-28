@@ -67,7 +67,7 @@ target 'RnLiveness3dExample' do
     inherit! :complete
     # Pods for testing
   end
-  pod 'OILiveness3D', '1.0.4'
+  pod 'OILiveness3D', '2.0.2'
 
   
   post_install do |installer|

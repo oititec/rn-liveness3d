@@ -1,15 +1,15 @@
+import { FontsType } from './FontsType';
+import { TextsType } from './TextsType';
+import { ThemeType } from './ThemeType';
+
 export type ArgsType = {
   appkey: string;
-  environment: '.HML' | '.PRD';
-  baseUrl: string;
-  apparence: ApparenceType;
-  liveness3Dtext: object;
-  loading: LoadingType;
-};
-
-export type ApparenceType = {
-  backgroundColor: string | undefined;
-  loadingColor: string | undefined;
+  ticket?: string | null;
+  environment: 'HML' | 'PRD';
+  liveness3Dtext?: TextsType;
+  theme?: ThemeType;
+  fonts?: FontsType;
+  loading?: LoadingType;
 };
 
 export type LoadingType = {
