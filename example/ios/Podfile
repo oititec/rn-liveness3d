@@ -67,8 +67,8 @@ target 'RnLiveness3dExample' do
     inherit! :complete
     # Pods for testing
   end
-  pod 'OILiveness3D', '2.1.1'
-
+  
+  pod 'OILiveness3D', '~> 2.1'
   
   post_install do |installer|
     react_native_post_install(
