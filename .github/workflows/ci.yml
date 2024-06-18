@@ -14,14 +14,23 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
           scope: '@oiti'
+
       - run: |
           if [ -e yarn.lock ]; then
-          yarn install
-          elif [ -e package-lock.json ]; then
-          npm ci
+            yarn install
+          elif [ -e package-lock.json]; then
+            npm ci
           else
-          npm i
+            npm i
           fi
+
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Create GitHub Tag
+        id: tag
+        run: |
+          version=$(jq -r .version package.json)
+          git tag -a "$version" -m "Release version $version"
+          git push origin "$version"
