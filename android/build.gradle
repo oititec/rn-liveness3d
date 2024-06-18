@@ -58,6 +58,7 @@ android {
     sourceCompatibility JavaVersion.VERSION_1_8
     targetCompatibility JavaVersion.VERSION_1_8
   }
+  buildToolsVersion '34.0.0'
 
 }
 
@@ -139,7 +140,7 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  implementation 'br.com.oiti:liveness3d-sdk:9.2.8'
+  implementation 'br.com.oiti:liveness3d-sdk:9.2.9'
 
 // From node_modules
 }
