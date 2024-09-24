@@ -68,7 +68,7 @@ target 'RnLiveness3dExample' do
     # Pods for testing
   end
   
-  pod 'OILiveness3D', '~> 2.1'
+  pod 'OILiveness3D', '~> 2.2'
   
   post_install do |installer|
     react_native_post_install(
