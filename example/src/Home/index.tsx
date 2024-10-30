@@ -1,6 +1,5 @@
 import { Picker } from '@react-native-picker/picker';
 import * as React from 'react';
-import { Liveness3dView } from '@oiti/rn-liveness3d';
 import {
   Button,
   KeyboardAvoidingView,
@@ -16,8 +15,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { ArgsType, LoadingType } from 'src/@types/ArgsType';
-import { ThemeType } from 'src/@types/ThemeType';
 import { FontsType } from 'src/@types/FontsType';
+import { ThemeType } from 'src/@types/ThemeType';
 
 export default function Home({ navigation }: { navigation: any; route?: any }) {
   const [modal, setModal] = React.useState(false);
@@ -86,10 +85,9 @@ export default function Home({ navigation }: { navigation: any; route?: any }) {
   };
 
   const [options, setOptions] = React.useState<ArgsType>({
-    appkey:
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiN0YwNTI1NTVCREE3RTEzREY5MDU1MjBCRTg4RUZFOTc4RDY2fHNhZnJhLmVwZi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNTc2IiwiZmlsQ29kIjoiMDAwMDAwMjY2MiIsImNwZiI6Ijc4NjUyMTg2NzIzIiwibm9tZSI6IkYzQUNEOTIwNkRDRUJENzczMDAyNDk5N0RERDNFRDM1OTgzQ0Y4MzMxMDA5N0JBOTU3OTU0MUNEMEIzOUY0MTU2MUI3QkY2QUE2RDUzQTA2NzI2OTQ4NURGMzNERTQyQTU4RkI0MjYxQ0ZENDdBRjM0NTlEMjU2NzJBNjQwNDM0OUI0QTUwOTF8U0FGUkEgSE9NT0xPRyIsIm5hc2NpbWVudG8iOiIwMS8wMS8yMDAwIiwiZWFzeS1pbmRleCI6IkFBQUFFbkNrRGFlWFVqMXF5UHJSd3Z3Q3E4R1dOc21KcEJ2bk4vK0o1UDBaYXJrdFVsRTFzNkdFK0JDYXJ3PT0iLCJrZXkiOiJRMjl1YzJsa1pYSWdjM0JsWVd0cGJtY2diV1VnY0hKdmMzQmxZM1FnZDJoaGRHVT0iLCJleHAiOjE3MTE5OTQ2NzQsImlhdCI6MTcxMTk5MTA3NH0.DgT6NnVd9iTCS_Dmp4sIHCaXIgaYCQngSrGdJj_Bohc',
+    appkey: '',
     ticket: '',
-    environment: 'HML',
+    environment: 'PRD',
   });
 
   const toggleEnvironment = (value: boolean) =>
