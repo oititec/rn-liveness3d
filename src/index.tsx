@@ -53,7 +53,8 @@ export function startLiveness3d(
       loading?.loadingColor ? loading?.loadingColor : '#05D758',
       args?.theme,
       args?.fonts,
-      args?.liveness3Dtext
+      args?.liveness3Dtext,
+      args?.environment
     );
   }
   return RnLiveness3d.startliveness3d(args);

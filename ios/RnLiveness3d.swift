@@ -72,7 +72,15 @@ class RnLiveness3d: NSObject, Liveness3DDelegate {
         //Customization
         let texts = liveness3DTexts(from: args?["liveness3Dtext"])
         let theme = liveness3DTheme(theme: args?["theme"],fonts: args?["fonts"])
-        
+      
+        print("Env STRING")
+        print(env)
+        print("-----")
+      
+        print("Env")
+        print(env == "PRD" ? Environment.PRD : Environment.HML)
+        print("-----")
+      
         let liveness3DUser = Liveness3DUser(
             appKey: appKey,
             ticket: ticket,
