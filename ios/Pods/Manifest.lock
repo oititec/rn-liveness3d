@@ -1,23 +1,23 @@
 PODS:
   - OICommons (2.0.1)
   - OIComponents (1.8.0)
-  - OILiveness3D (2.4.0-rn):
+  - OILiveness3D (2.5.0-rn):
     - OICommons (~> 2.0.1)
     - OIComponents (~> 1.8)
-    - OILiveness3D_FT (= 9.7.36)
+    - OILiveness3D_FT (= 9.7.43)
     - OINetwork (~> 2.1.1)
     - OISecurity (~> 3.1.2)
-  - OILiveness3D_FT (9.7.36)
+  - OILiveness3D_FT (9.7.43)
   - OINetwork (2.1.1):
     - OICommons (~> 2.0.1)
   - OISecurity (3.1.2):
     - OINetwork (~> 2.1.1)
 
 DEPENDENCIES:
-  - OILiveness3D (= 2.4.0-rn)
+  - OILiveness3D (= 2.5.0-rn)
 
 SPEC REPOS:
-  https://github.com/oititec/ios-artifactory:
+  https://github.com/oititec/ios-artifactory.git:
     - OICommons
     - OIComponents
     - OILiveness3D
@@ -28,11 +28,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   OICommons: efb4251c578f2517dc222b56cb101f83d5e7ece2
   OIComponents: 06145be8e23f9d3e89a4ee9293139849e21b22da
-  OILiveness3D: e19cc168bcf910e7e49303a4c99c6cab0dc2c56c
-  OILiveness3D_FT: 8401f8262adbf799a2f4eb3518cf7c6ef1ea1f26
+  OILiveness3D: 767fcf922c435b1090ffec477e180e41485238c2
+  OILiveness3D_FT: d8c07b9e95117deaa215b6b12f00bf3bcbaadd1c
   OINetwork: f551750f82cb46fb8e3f3668a84d1a46fa1872d6
   OISecurity: 08391ea8e77bb7d793781bdb395988d372a98efc
 
-PODFILE CHECKSUM: d52c3bd62bb0a9eacc6398a74aad5fba9b05cb72
+PODFILE CHECKSUM: 7fd239a949713467bf3bd8310b296d23215c2221
 
 COCOAPODS: 1.15.2

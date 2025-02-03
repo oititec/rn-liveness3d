@@ -12,7 +12,6 @@ buildscript {
 
   dependencies {
     classpath 'com.android.tools.build:gradle:3.5.3'
-    // noinspection DifferentKotlinGradleVersion
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
   }
 }
@@ -140,7 +139,7 @@ dependencies {
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  implementation 'br.com.oiti:liveness3d-sdk:9.4.0'
+  implementation 'br.com.oiti:liveness3d-sdk:9.4.2'
 
 // From node_modules
 }
