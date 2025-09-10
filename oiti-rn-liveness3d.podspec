@@ -11,15 +11,15 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => "10.0" }
+  s.platforms    = { :ios => "12.4" }
   s.source       = { :git => "https://github.com/oititec/rn-liveness3d.git", :tag => "#{s.version}" }
-  s.source       = { :git => "https://github.com/oititec/ios-artifactory.git" }
+  s.source       = { :git => "https://github.com/oititec/ios-artifactory-beta.git" }
 
   s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
  
-  s.ios.dependency 'OILiveness3D', '~> 2.1'
+  s.ios.dependency 'OILiveness3D', '3.7.0'
 
   # Don't install the dependencies when we run `pod install` in the old architecture.
   if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then

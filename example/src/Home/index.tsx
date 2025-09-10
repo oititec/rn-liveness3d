@@ -1,6 +1,5 @@
 import { Picker } from '@react-native-picker/picker';
 import * as React from 'react';
-import { Liveness3dView } from '@oiti/rn-liveness3d';
 import {
   Button,
   KeyboardAvoidingView,
@@ -16,8 +15,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import type { ArgsType, LoadingType } from 'src/@types/ArgsType';
-import { ThemeType } from 'src/@types/ThemeType';
 import { FontsType } from 'src/@types/FontsType';
+import { ThemeType } from 'src/@types/ThemeType';
 
 export default function Home({ navigation }: { navigation: any; route?: any }) {
   const [modal, setModal] = React.useState(false);
@@ -87,9 +86,9 @@ export default function Home({ navigation }: { navigation: any; route?: any }) {
 
   const [options, setOptions] = React.useState<ArgsType>({
     appkey:
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiN0YwNTI1NTVCREE3RTEzREY5MDU1MjBCRTg4RUZFOTc4RDY2fHNhZnJhLmVwZi5obWwiLCJlbXBDb2QiOiIwMDAwMDAwNTc2IiwiZmlsQ29kIjoiMDAwMDAwMjY2MiIsImNwZiI6Ijc4NjUyMTg2NzIzIiwibm9tZSI6IkYzQUNEOTIwNkRDRUJENzczMDAyNDk5N0RERDNFRDM1OTgzQ0Y4MzMxMDA5N0JBOTU3OTU0MUNEMEIzOUY0MTU2MUI3QkY2QUE2RDUzQTA2NzI2OTQ4NURGMzNERTQyQTU4RkI0MjYxQ0ZENDdBRjM0NTlEMjU2NzJBNjQwNDM0OUI0QTUwOTF8U0FGUkEgSE9NT0xPRyIsIm5hc2NpbWVudG8iOiIwMS8wMS8yMDAwIiwiZWFzeS1pbmRleCI6IkFBQUFFbkNrRGFlWFVqMXF5UHJSd3Z3Q3E4R1dOc21KcEJ2bk4vK0o1UDBaYXJrdFVsRTFzNkdFK0JDYXJ3PT0iLCJrZXkiOiJRMjl1YzJsa1pYSWdjM0JsWVd0cGJtY2diV1VnY0hKdmMzQmxZM1FnZDJoaGRHVT0iLCJleHAiOjE3MTE5OTQ2NzQsImlhdCI6MTcxMTk5MTA3NH0.DgT6NnVd9iTCS_Dmp4sIHCaXIgaYCQngSrGdJj_Bohc',
+      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiOEVDMDdERTlDNEQ3NkVGRDB8bXVyaWxvLnNhZnJhLnRyYXNhY2lvbmFsLm1iai5wcmQiLCJlbXBDb2QiOiIwMDAwMDAwNTM5IiwiZmlsQ29kIjoiMDAwMDAwNjgwMSIsImNwZiI6IjQyNDI2NTM1ODE0Iiwibm9tZSI6IjJEOEYyRDM3MzAyMERCNTI5RDIwREIwQzA1N0M2QkQzNjNGQ0U1MkM4OTNFNjhDRDA2M0U2QkIxODE0QkU0NDEwRjAyODkzM0YyMDE2Q0M2RkQxM0ZDRjU1RkYyOTRENzI1MTlERjdBM0E0NEQxOUY2OENBQ0Q3QTM0QjAyMzQwODFENUNFOTR8TVVSSUxPIERFTFZBWiIsIm5hc2NpbWVudG8iOiIxNC8wMy8xOTk1IiwiZWFzeS1pbmRleCI6IkFBQUFFdTBzRExyaFdPMHc5Z0JDS0dsZStUVVJHMGdkZjd4b1dDODRRbTVCMVJRVHRtbmU5bFB0cHZDYURRPT0iLCJrZXkiOiJQUkFrZVdJcWM2TXFZRkVsWVJBdVhXUXdlUkF3SEZJOGRvSXdIQ2RrTHpBTVE4UD0iLCJleHAiOjE3NTMwNjA4NTUsImlhdCI6MTc1MzA1OTA1NX0.v1oL9iaymVk4YU1UnXLz-ccD5ILThyYvglcgCzvtUPA',
     ticket: '',
-    environment: 'HML',
+    environment: 'PRD',
   });
 
   const toggleEnvironment = (value: boolean) =>

@@ -72,7 +72,8 @@
       themeJson: ReadableMap?,
       fontsJson: ReadableMap?,
       textsJson: ReadableMap?,
-      promise: Promise
+      environment: String,
+      promise: Promise,
     ) {
       mLiveness3dPromisse = promise
       val currentActivity = currentActivity
@@ -81,13 +82,15 @@
       val fonts = fontsJson?.let { getFonts(readableMapToMap(fontsJson)) }
       val texts = textsJson?.let { Liveness3DText().getTexts(readableMapToMap(textsJson)) }
 
+      Log.d("ENV", environment)
 
       if (currentActivity == null) {
         promise.reject(E_ACTIVITY_DOES_NOT_EXIST, "Activity doesn't exist")
         return;
       }
         try {
-          val liveness3DUser = Liveness3DUser(appKey = appKey, ENVIRONMENT3D.HML, themeBuilder)
+          val env: ENVIRONMENT3D = if (environment.equals("PRD")) ENVIRONMENT3D.PRD else ENVIRONMENT3D.HML
+          val liveness3DUser = Liveness3DUser(appKey = appKey, env, themeBuilder)
 
           val intent = Intent(currentActivity, HybridLiveness3DActivity::class.java).apply {
             putExtra(HybridLiveness3DActivity.PARAM_LIVENESS3D_USER, liveness3DUser)

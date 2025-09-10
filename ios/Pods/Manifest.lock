@@ -1,36 +1,23 @@
 PODS:
   - OICommons (2.0.1)
-  - OIComponents (1.6.1)
-  - OILiveness3D (2.1.4):
+  - OIComponents (1.8.0)
+  - OILiveness3D (2.5.0-rn):
     - OICommons (~> 2.0.1)
-    - OIComponents (~> 1.6.1)
-    - OILiveness3D/Release (= 2.1.4)
-    - OILiveness3D_FT (= 9.6.94)
+    - OIComponents (~> 1.8)
+    - OILiveness3D_FT (= 9.7.43)
     - OINetwork (~> 2.1.1)
-    - OISecurity (~> 3.1.1)
-  - OILiveness3D/Release (2.1.4):
-    - OICommons (~> 2.0.1)
-    - OIComponents (~> 1.6.1)
-    - OILiveness3D_FT (= 9.6.94)
-    - OINetwork (~> 2.1.1)
-    - OISecurity (~> 3.1.1)
-  - OILiveness3D_FT (9.6.94)
+    - OISecurity (~> 3.1.2)
+  - OILiveness3D_FT (9.7.43)
   - OINetwork (2.1.1):
     - OICommons (~> 2.0.1)
-    - OINetwork/Release (= 2.1.1)
-  - OINetwork/Release (2.1.1):
-    - OICommons (~> 2.0.1)
-  - OISecurity (3.1.1):
-    - OINetwork (~> 2.1.1)
-    - OISecurity/Release (= 3.1.1)
-  - OISecurity/Release (3.1.1):
+  - OISecurity (3.1.2):
     - OINetwork (~> 2.1.1)
 
 DEPENDENCIES:
-  - OILiveness3D (~> 2.1)
+  - OILiveness3D (= 2.5.0-rn)
 
 SPEC REPOS:
-  https://github.com/oititec/ios-artifactory-beta:
+  https://github.com/oititec/ios-artifactory.git:
     - OICommons
     - OIComponents
     - OILiveness3D
@@ -39,13 +26,13 @@ SPEC REPOS:
     - OISecurity
 
 SPEC CHECKSUMS:
-  OICommons: bd338f1d3be2d058df4dc5ba0a1bde00edbad75f
-  OIComponents: cc953da8e68357520d84d56ee1fd8c1e08b61ba5
-  OILiveness3D: f21ec0797cf899edcabbe63f7f3d38c4cfc71ba2
-  OILiveness3D_FT: 2268d9638321fc6c19741a1c887000a1e3b128f9
-  OINetwork: 4180cb7b2847bc70993c029829b8370217b3255c
-  OISecurity: 4dd9e581d98ad1f6e4b83ef62b4e14d975676fda
+  OICommons: efb4251c578f2517dc222b56cb101f83d5e7ece2
+  OIComponents: 06145be8e23f9d3e89a4ee9293139849e21b22da
+  OILiveness3D: 767fcf922c435b1090ffec477e180e41485238c2
+  OILiveness3D_FT: d8c07b9e95117deaa215b6b12f00bf3bcbaadd1c
+  OINetwork: f551750f82cb46fb8e3f3668a84d1a46fa1872d6
+  OISecurity: 08391ea8e77bb7d793781bdb395988d372a98efc
 
-PODFILE CHECKSUM: 7918d76a1550b69c1a5b3fc197b2bcd3267d2631
+PODFILE CHECKSUM: 7fd239a949713467bf3bd8310b296d23215c2221
 
 COCOAPODS: 1.15.2
