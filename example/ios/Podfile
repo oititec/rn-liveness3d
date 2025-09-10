@@ -2,7 +2,7 @@ require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
 platform :ios, '12.4'
-source 'https://github.com/oititec/ios-artifactory.git'
+source 'https://github.com/oititec/ios-artifactory-beta.git'
 source 'https://github.com/CocoaPods/Specs.git'
 prepare_react_native_project!
 
@@ -68,8 +68,8 @@ target 'RnLiveness3dExample' do
     # Pods for testing
   end
   
-  pod 'OILiveness3D', '2.5.0-rn'
-  
+  pod 'OILiveness3D', '3.7.0'
+
   post_install do |installer|
     react_native_post_install(
       installer,
@@ -77,7 +77,8 @@ target 'RnLiveness3dExample' do
       # necessary for Mac Catalyst builds
       :mac_catalyst_enabled => false
     )
-    
+   
+
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
     __apply_Xcode_14_3_RC_post_install_workaround(installer)
   end
