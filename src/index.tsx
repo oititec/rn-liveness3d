@@ -235,14 +235,14 @@ export function GetIntructionView({
         (!CustomInstructionView ? (
           <InstructionsView onVerify={verifyPermission} onBack={onBackScreen} />
         ) : (
-          CustomInstructionView
+          <CustomInstructionView />
         ))}
 
       {screen === 2 &&
         (!CustomPermissionView ? (
           <PermissionView onVerify={verifyPermission} onBack={onBackScreen} />
         ) : (
-          CustomPermissionView
+          <CustomPermissionView />
         ))}
     </>
   );

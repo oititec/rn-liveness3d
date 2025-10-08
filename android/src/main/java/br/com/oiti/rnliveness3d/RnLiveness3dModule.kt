@@ -76,7 +76,7 @@
       promise: Promise,
     ) {
       mLiveness3dPromisse = promise
-      val currentActivity = currentActivity
+      val currentActivity = reactApplicationContext.currentActivity
 
       val themeBuilder = themeJson?.let { Liveness3DTheme(readableMapToMap(themeJson)).apply() }
       val fonts = fontsJson?.let { getFonts(readableMapToMap(fontsJson)) }
@@ -92,21 +92,20 @@
           val env: ENVIRONMENT3D = if (environment.equals("PRD")) ENVIRONMENT3D.PRD else ENVIRONMENT3D.HML
           val liveness3DUser = Liveness3DUser(appKey = appKey, env, themeBuilder)
 
-          val intent = Intent(currentActivity, HybridLiveness3DActivity::class.java).apply {
-            putExtra(HybridLiveness3DActivity.PARAM_LIVENESS3D_USER, liveness3DUser)
-            if (ticket.isNotEmpty()) {
-              putExtra(HybridLiveness3DActivity.PARAM_TICKET, ticket)
-            }
-            putExtra(HybridLiveness3DActivity.PARAM_TEXTS, texts)
-            putExtra(HybridLiveness3DActivity.PARAM_FONTS, fonts)
-            putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_BACKGROUND, backgroundColor)
-            putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_SPINNER_COLOR, loadingColor)
-            putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_SIZE, size)
-            if(type == "default"){
-              putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_TYPE, LoadingType3D.ACTIVITY_INDICATOR)
-            }else{
-              putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_TYPE, LoadingType3D.SPINNER)
-            }
+          val intent = Intent(currentActivity, HybridLiveness3DActivity::class.java)
+          intent.putExtra(HybridLiveness3DActivity.PARAM_LIVENESS3D_USER, liveness3DUser)
+          if (ticket.isNotEmpty()) {
+            intent.putExtra(HybridLiveness3DActivity.PARAM_TICKET, ticket)
+          }
+          intent.putExtra(HybridLiveness3DActivity.PARAM_TEXTS, texts)
+          intent.putExtra(HybridLiveness3DActivity.PARAM_FONTS, fonts)
+          intent.putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_BACKGROUND, backgroundColor)
+          intent.putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_SPINNER_COLOR, loadingColor)
+          intent.putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_SIZE, size)
+          if(type == "default"){
+            intent.putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_TYPE, LoadingType3D.ACTIVITY_INDICATOR)
+          }else{
+            intent.putExtra(HybridLiveness3DActivity.PARAM_CUSTOM_LOADING_TYPE, LoadingType3D.SPINNER)
           }
 
           currentActivity.startActivityForResult(intent, LIVENESS3D_REQUEST)
@@ -172,7 +171,7 @@
 
     @ReactMethod
     fun checkcamerapermission(promise: Promise) {
-      val currentActivity = currentActivity
+      val currentActivity = reactApplicationContext.currentActivity
       if (currentActivity != null) {
         if (ContextCompat.checkSelfPermission(currentActivity, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
           promise.resolve(true)
@@ -186,7 +185,7 @@
 
     @ReactMethod
     fun askcamerapermission(promise: Promise) {
-      val currentActivity = currentActivity
+      val currentActivity = reactApplicationContext.currentActivity
 
       if (currentActivity != null) {
         if (ContextCompat.checkSelfPermission(currentActivity, Manifest.permission.CAMERA)
