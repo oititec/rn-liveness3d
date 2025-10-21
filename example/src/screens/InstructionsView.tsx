@@ -1,5 +1,4 @@
 import { BackButton, ContinueButton } from '@oiti/rn-liveness3d';
-import * as React from 'react';
 
 import {
   Dimensions,

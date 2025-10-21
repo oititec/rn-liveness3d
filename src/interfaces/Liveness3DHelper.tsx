@@ -1,6 +1,6 @@
-import { ReactNode } from 'react';
-import { onErrorType } from '../@types/ResultType';
-import { ArgsType } from '../@types/ArgsType';
+import type { ReactNode } from 'react';
+import type { onErrorType } from '../@types/ResultType';
+import type { ArgsType } from '../@types/ArgsType';
 
 export interface Liveness3DHelperInterface {
   options: ArgsType;

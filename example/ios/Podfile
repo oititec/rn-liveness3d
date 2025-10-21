@@ -1,24 +1,16 @@
-require_relative '../node_modules/react-native/scripts/react_native_pods'
+ENV['RCT_NEW_ARCH_ENABLED'] = '1'
 
-platform :ios, '15.1'
-source 'https://github.com/oititec/ios-artifactory-beta.git'
-source 'https://github.com/CocoaPods/Specs.git'
+# Resolve react_native_pods.rb with node to allow for hoisting
+require Pod::Executable.execute_command('node', ['-p',
+  'require.resolve(
+    "react-native/scripts/react_native_pods.rb",
+    {paths: [process.argv[1]]},
+  )', __dir__]).strip
+
+platform :ios, min_ios_version_supported
 prepare_react_native_project!
-
-# Force pods to match minimum iOS version for React Native
-# Fixes build issue on Xcode Cloud where some pods
-# Use iOS 12 calls despite being set as iOS 11
-def __apply_Xcode_14_3_RC_post_install_workaround(installer)
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      current_target = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
-      minimum_target = '15.1'
-      if current_target.to_f < minimum_target.to_f
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum_target
-      end
-    end
-  end
-end
+source 'https://github.com/oititec/ios-artifactory-beta.git'
+source 'https://cdn.cocoapods.org'
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -26,39 +18,23 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-
-
 target 'RnLiveness3dExample' do
-  # Flags change depending on the env values.
-  flags = get_default_flags()
+  config = use_native_modules!
 
   use_react_native!(
-    :path => "../node_modules/react-native",
-    # Hermes is now enabled by default. Disable by setting this flag to false.
-    # Upcoming versions of React Native may rely on get_default_flags(), but
-    # we make it explicit here to aid in the React Native upgrade process.
-    :hermes_enabled => flags[:hermes_enabled],
-    :fabric_enabled => flags[:fabric_enabled],
+    :path => config[:reactNativePath],
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'RnLiveness3dExampleTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-  
-  pod 'OILiveness3D', '3.8.0'
-
   post_install do |installer|
+    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
-      # Set `mac_catalyst_enabled` to `true` in order to apply patches
-      # necessary for Mac Catalyst builds
-      :mac_catalyst_enabled => false
+      config[:reactNativePath],
+      :mac_catalyst_enabled => false,
+      # :ccache_enabled => true
     )
-   
-    __apply_Xcode_14_3_RC_post_install_workaround(installer)
   end
-  
 end
+

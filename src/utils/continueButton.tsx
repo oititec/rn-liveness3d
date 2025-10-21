@@ -1,12 +1,5 @@
-import { verifyPermission } from './permissions';
+import { checkCameraPermissionGranted } from './permissions';
 
-export const continueButton = async (): Promise<boolean> => {
-  return verifyPermission()
-    .then((result) => {
-      return result;
-    })
-    .catch((error) => {
-      console.error(error);
-      return false;
-    });
+export const continueButton = (): boolean => {
+  return checkCameraPermissionGranted();
 };

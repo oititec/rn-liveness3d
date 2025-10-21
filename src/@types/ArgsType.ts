@@ -1,10 +1,9 @@
-import { FontsType } from './FontsType';
-import { TextsType } from './TextsType';
-import { ThemeType } from './ThemeType';
+import type { FontsType } from './FontsType';
+import type { TextsType } from './TextsType';
+import type { ThemeType } from './ThemeType';
 
 export type ArgsType = {
   appkey: string;
-  ticket?: string | null;
   environment: 'HML' | 'PRD';
   liveness3Dtext?: TextsType;
   theme?: ThemeType;

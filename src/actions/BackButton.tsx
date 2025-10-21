@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { useLiveness3DContext } from '../context/Liveness3DContext';
-import { OitiBackButtonInterface } from '../interfaces/OitiBackButtonInterface';
+import type { OitiBackButtonInterface } from '../interfaces/OitiBackButtonInterface';
 
 export const BackButton: React.FC<OitiBackButtonInterface> = ({
   children,

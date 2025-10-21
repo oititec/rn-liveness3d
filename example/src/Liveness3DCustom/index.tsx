@@ -1,7 +1,6 @@
 import { Liveness3dView } from '@oiti/rn-liveness3d';
-import * as React from 'react';
 import { Alert } from 'react-native';
-import { onErrorType, onSuccessType } from 'src/@types/ResultType';
+import type { onErrorType, onSuccessType } from '@oiti/rn-liveness3d';
 import PermissionView from '../screens/PermissionView';
 import InstructionsView from '../screens/InstructionsView';
 
@@ -56,8 +55,8 @@ export default function Liveness3DCustom({
     <Liveness3dView
       options={newOptions}
       loading={loading ? loading : {}}
-      CustomInstructionView={<InstructionsView />}
-      CustomPermissionView={<PermissionView />}
+      CustomInstructionView={InstructionsView}
+      CustomPermissionView={PermissionView}
       onSuccess={onResultSuccess}
       onError={onResultError}
       onBack={onBack}
