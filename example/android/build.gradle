@@ -6,6 +6,7 @@ buildscript {
         targetSdkVersion = 36
         ndkVersion = "27.1.12297006"
         kotlinVersion = "2.1.20"
+        agp_version = '8.1.1'
     }
     repositories {
         google()
@@ -14,22 +15,18 @@ buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:8.1.1")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
     }
 }
-
-apply plugin: "com.facebook.react.rootproject"
 
 allprojects {
     repositories {
         google()
         mavenCentral()
         maven {
-            // React Native Maven repository
-            url("$rootDir/../node_modules/react-native/android")
-        }
-        maven {
             url 'https://raw.githubusercontent.com/oititec/android-oiti-versions-beta/master'
         }
     }
 }
+
+apply plugin: "com.facebook.react.rootproject"

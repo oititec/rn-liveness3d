@@ -86,7 +86,7 @@ public class RnLiveness3dSwiftModule: NSObject {
     private func getCustomAppearance(from args: NSDictionary) -> HybridViewAppearance {
         let loading = args["loading"] as? Dictionary<String, Any> ?? nil
         let typeLoading = loading?["type"] as? String ?? "default"
-        let sizeLoading = loading?["size"] as? Int ?? 180
+        let sizeLoading = loading?["size"] as? Int ?? 10
         let backgroundColor = loading?["backgroundColor"] as? String ?? "#FFFFFF"
         let loadingColor = loading?["loadingColor"] as? String ?? "#000000"
 
