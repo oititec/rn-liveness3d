@@ -273,7 +273,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.oiti.example.rnliveness3d;
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.oiti.example.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = RnLiveness3dExample;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -301,7 +301,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = br.com.oiti.example.rnliveness3d;
+				PRODUCT_BUNDLE_IDENTIFIER = "br.com.oiti.example.--PRODUCT-NAME-rfc1034identifier-";
 				PRODUCT_NAME = RnLiveness3dExample;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;

@@ -1,6 +1,6 @@
 {
   "name": "@oiti/rn-liveness3d",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "test",
   "main": "./lib/module/index.js",
   "types": "./lib/typescript/src/index.d.ts",

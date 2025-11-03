@@ -1,6 +1,6 @@
 #import "RnLiveness3d.h"
+#import "oiti_rn_liveness3d-Swift.h"
 #import <React/RCTUtils.h>
-#import <RnLiveness3dSwift/RnLiveness3dSwift-Swift.h>
 
 @implementation RnLiveness3d {
    RnLiveness3dSwiftModule *_module;
