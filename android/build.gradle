@@ -75,7 +75,7 @@ dependencies {
   implementation "com.facebook.react:react-android"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-  implementation 'br.com.oiti:liveness3d-sdk:9.5.1'
+  implementation 'br.com.oiti:liveness3d-sdk:9.5.2'
 }
 
 react {
