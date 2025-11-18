@@ -1,30 +1,13 @@
-import { NativeModules, Platform } from 'react-native';
+import RnLiveness3d from '../NativeRnLiveness3d';
 
-export const RnLiveness3d = NativeModules.RnLiveness3d
-  ? NativeModules.RnLiveness3d
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
-
-const LINKING_ERROR =
-  `The package '@oiti/rn-liveness3d' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-export function verifyPermission(): Promise<boolean> {
-  return Platform.OS === 'android'
-    ? RnLiveness3d.checkcamerapermission()
-    : RnLiveness3d.checkiospermission({ p: 'granted' });
+export function checkCameraPermissionGranted(): boolean {
+  return RnLiveness3d.checkCameraPermissionGranted();
 }
 
-export function askPermission(): Promise<boolean> {
-  return Platform.OS === 'android'
-    ? RnLiveness3d.askcamerapermission()
-    : RnLiveness3d.checkpermissiongranted({ p: 'granted' });
+export function requestCameraPermission(): Promise<boolean> {
+  return new Promise((resolve, _reject) => {
+    RnLiveness3d.requestCameraPermission((result) => {
+      resolve(result);
+    });
+  });
 }

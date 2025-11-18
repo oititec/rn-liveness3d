@@ -1,5 +1,4 @@
 import { BackButton, PermissionButton } from '@oiti/rn-liveness3d';
-import * as React from 'react';
 
 import { Image, StyleSheet, Text, View } from 'react-native';
 

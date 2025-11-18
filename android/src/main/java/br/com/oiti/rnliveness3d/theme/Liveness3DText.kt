@@ -1,11 +1,10 @@
 package br.com.oiti.rnliveness3d.theme
 
-import android.util.Log
 import br.com.oiti.liveness3d.data.model.Liveness3DTextKey
 
 class Liveness3DText {
   fun getTextKey(identifier: String): Liveness3DTextKey? {
-    return when(identifier) {
+    return when (identifier) {
       /* Ready */
       "READY_HEADER_1" -> Liveness3DTextKey.READY_HEADER_1
       "READY_HEADER_2" -> Liveness3DTextKey.READY_HEADER_2
@@ -49,6 +48,7 @@ class Liveness3DText {
       else -> null
     }
   }
+
   fun getTexts(textsBuilder: Map<String, String?>?): HashMap<Liveness3DTextKey, String> {
     val hashMap = HashMap<Liveness3DTextKey, String>()
     if (textsBuilder != null) {
@@ -58,7 +58,9 @@ class Liveness3DText {
           val value = it.value
           if (key != null && value != null) {
             Pair(key, value)
-          } else { null }
+          } else {
+            null
+          }
         }
         .toMap()
       hashMap.putAll(textsMap)

@@ -1,7 +1,6 @@
 import { Liveness3dView } from '@oiti/rn-liveness3d';
-import * as React from 'react';
 import { Alert } from 'react-native';
-import { onErrorType, onSuccessType } from 'src/@types/ResultType';
+import type { onErrorType, onSuccessType } from '@oiti/rn-liveness3d';
 
 export default function Liveness3D({
   route,

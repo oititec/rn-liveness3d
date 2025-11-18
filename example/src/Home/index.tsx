@@ -14,9 +14,12 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import type { ArgsType, LoadingType } from 'src/@types/ArgsType';
-import { FontsType } from 'src/@types/FontsType';
-import { ThemeType } from 'src/@types/ThemeType';
+import type {
+  ArgsType,
+  LoadingType,
+  FontsType,
+  ThemeType,
+} from '@oiti/rn-liveness3d';
 
 export default function Home({ navigation }: { navigation: any; route?: any }) {
   const [modal, setModal] = React.useState(false);
@@ -85,10 +88,8 @@ export default function Home({ navigation }: { navigation: any; route?: any }) {
   };
 
   const [options, setOptions] = React.useState<ArgsType>({
-    appkey:
-      'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJjZXJ0aWZhY2UiLCJ1c2VyIjoiOEVDMDdERTlDNEQ3NkVGRDB8bXVyaWxvLnNhZnJhLnRyYXNhY2lvbmFsLm1iai5wcmQiLCJlbXBDb2QiOiIwMDAwMDAwNTM5IiwiZmlsQ29kIjoiMDAwMDAwNjgwMSIsImNwZiI6IjQyNDI2NTM1ODE0Iiwibm9tZSI6IjJEOEYyRDM3MzAyMERCNTI5RDIwREIwQzA1N0M2QkQzNjNGQ0U1MkM4OTNFNjhDRDA2M0U2QkIxODE0QkU0NDEwRjAyODkzM0YyMDE2Q0M2RkQxM0ZDRjU1RkYyOTRENzI1MTlERjdBM0E0NEQxOUY2OENBQ0Q3QTM0QjAyMzQwODFENUNFOTR8TVVSSUxPIERFTFZBWiIsIm5hc2NpbWVudG8iOiIxNC8wMy8xOTk1IiwiZWFzeS1pbmRleCI6IkFBQUFFdTBzRExyaFdPMHc5Z0JDS0dsZStUVVJHMGdkZjd4b1dDODRRbTVCMVJRVHRtbmU5bFB0cHZDYURRPT0iLCJrZXkiOiJQUkFrZVdJcWM2TXFZRkVsWVJBdVhXUXdlUkF3SEZJOGRvSXdIQ2RrTHpBTVE4UD0iLCJleHAiOjE3NTMwNjA4NTUsImlhdCI6MTc1MzA1OTA1NX0.v1oL9iaymVk4YU1UnXLz-ccD5ILThyYvglcgCzvtUPA',
-    ticket: '',
-    environment: 'PRD',
+    appkey: 'APP_KEY',
+    environment: 'HML',
   });
 
   const toggleEnvironment = (value: boolean) =>
@@ -120,22 +121,6 @@ export default function Home({ navigation }: { navigation: any; route?: any }) {
                   }
                   value={options.appkey}
                   placeholder="AppKey Aqui"
-                />
-              </View>
-              <View style={styles.rowModal}>
-                <Text>Ticket</Text>
-                <TextInput
-                  style={{
-                    height: 50,
-                    width: '100%',
-                    backgroundColor: '#f2f2f2',
-                    borderWidth: 2,
-                  }}
-                  onChangeText={(itemValue) =>
-                    setOptions({ ...options, ticket: itemValue })
-                  }
-                  value={options.ticket ? options.ticket : ''}
-                  placeholder="Ticket Aqui"
                 />
               </View>
               <View style={styles.rowModal}>

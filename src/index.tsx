@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { NativeModules, Platform } from 'react-native';
+import type { FC } from 'react';
+import { Platform } from 'react-native';
 import type { ArgsType, LoadingType } from './@types/ArgsType';
 import InstructionsView from './screens/Liveness3D/InstructionsView';
 import PermissionView from './screens/PermissionView';
@@ -10,31 +10,20 @@ import {
   useLiveness3DContext,
 } from './context/Liveness3DContext';
 import { Liveness3DHelper } from './helpers/Liveness3DHelper';
-
-const LINKING_ERROR =
-  `The package '@oiti/rn-liveness3d' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo Go\n';
-
-export const RnLiveness3d = NativeModules.RnLiveness3d
-  ? NativeModules.RnLiveness3d
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+import {
+  checkCameraPermissionGranted,
+  requestCameraPermission,
+} from './utils/permissions';
+import RnLiveness3d from './NativeRnLiveness3d';
 
 export function startLiveness3d(
   options: ArgsType,
+  onSuccess: (result: onSuccessType) => void,
+  onError: (error: onErrorType) => void,
   loading?: LoadingType
-): Promise<onErrorType | onSuccessType> {
+) {
   let args: ArgsType = {
     appkey: options?.appkey === undefined ? '' : options?.appkey,
-    ticket: options?.ticket,
     environment:
       options?.environment === undefined ? 'HML' : options?.environment,
     liveness3Dtext: options?.liveness3Dtext || {},
@@ -43,103 +32,15 @@ export function startLiveness3d(
     loading: loading,
   };
 
-  if (Platform.OS === 'android') {
-    return RnLiveness3d.startliveness3d(
-      args.appkey,
-      args.ticket,
-      loading?.type ? loading?.type : 'default',
-      loading?.size ? loading?.size * 200 : 1 * 200,
-      loading?.backgroundColor ? loading?.backgroundColor : '#333333',
-      loading?.loadingColor ? loading?.loadingColor : '#05D758',
-      args?.theme,
-      args?.fonts,
-      args?.liveness3Dtext,
-      args?.environment
-    );
-  }
-  return RnLiveness3d.startliveness3d(args);
-}
-
-export function checkIosPermission(): Promise<any> {
-  return RnLiveness3d.checkiospermission({ p: 'granted' });
-}
-export function checkIosPermissionGranted(): Promise<any> {
-  return RnLiveness3d.checkpermissiongranted({ p: 'granted' });
-}
-
-export function checkcamerapermissionAndroid(): Promise<any> {
-  return RnLiveness3d.checkcamerapermission();
-}
-export function askcamerapermissionAndroid(): Promise<any> {
-  return RnLiveness3d.askcamerapermission();
-}
-
-export const requestCameraPermission = async (
-  options: ArgsType,
-  onSuccess: (result: onSuccessType) => void,
-  onError: (error: onErrorType) => void,
-  loading?: LoadingType
-) => {
-  if (Platform.OS === 'ios') {
-    checkIosPermission().then(async (result) => {
-      if (result === true) {
-        await startLiveness3d(options, loading)
-          .then((result) => {
-            if (Platform.OS == 'android') {
-              //@ts-ignore
-              onSuccess(JSON.parse(result) as onSuccessType);
-            } else {
-              onSuccess(result as onSuccessType);
-            }
-          })
-          .catch((error) => onError(error as onErrorType));
+  RnLiveness3d.startLiveness3d(args)
+    .then((result) => {
+      if (Platform.OS === 'android') {
+        onSuccess(JSON.parse(result) as onSuccessType);
+      } else {
+        onSuccess(result as onSuccessType);
       }
-      if (result === false) {
-        return;
-      }
-    });
-  }
-
-  if (Platform.OS === 'android') {
-    try {
-      await askcamerapermissionAndroid().then(async (res) => {
-        if (res === true) {
-          await startLiveness3d(options, loading)
-            .then((result) => {
-              if (Platform.OS == 'android') {
-                //@ts-ignore
-                onSuccess(JSON.parse(result) as onSuccessType);
-              } else {
-                onSuccess(result as onSuccessType);
-              }
-            })
-            .catch((error) => onError(error as onErrorType));
-        } else {
-          console.log('Camera permission denied');
-        }
-      });
-    } catch (err) {
-      console.warn(err);
-    }
-  }
-};
-
-async function checkPermission(): Promise<boolean> {
-  if (Platform.OS === 'ios') {
-    const grantediso = await checkIosPermissionGranted();
-    if (grantediso === true) {
-      return true;
-    }
-    if (grantediso === false) {
-      return false;
-    }
-  }
-  const granted = await checkcamerapermissionAndroid();
-  if (granted) {
-    return true;
-  } else {
-    return false;
-  }
+    })
+    .catch((error) => onError(error as onErrorType));
 }
 
 export function Liveness3dView({
@@ -208,23 +109,14 @@ export function GetIntructionView({
   }
   async function verifyPermission() {
     if (screen === 1) {
-      if ((await checkPermission()) === true) {
-        startLiveness3d(options, loading)
-          .then((result) => {
-            if (Platform.OS == 'android') {
-              //@ts-ignore
-              onSuccess(JSON.parse(result) as onSuccessType);
-            } else {
-              onSuccess(result as onSuccessType);
-            }
-          })
-          .catch((error) => onError(error as onErrorType));
+      if (checkCameraPermissionGranted() === true) {
+        startLiveness3d(options, onSuccess, onError, loading);
       } else {
         setScreen(2);
       }
     }
     if (screen === 2) {
-      await requestCameraPermission(options, onSuccess, onError);
+      await requestCameraPermission();
       setScreen(1);
     }
   }
@@ -235,14 +127,14 @@ export function GetIntructionView({
         (!CustomInstructionView ? (
           <InstructionsView onVerify={verifyPermission} onBack={onBackScreen} />
         ) : (
-          CustomInstructionView
+          <CustomInstructionView />
         ))}
 
       {screen === 2 &&
         (!CustomPermissionView ? (
           <PermissionView onVerify={verifyPermission} onBack={onBackScreen} />
         ) : (
-          CustomPermissionView
+          <CustomPermissionView />
         ))}
     </>
   );
@@ -251,3 +143,7 @@ export function GetIntructionView({
 export { ContinueButton } from './actions/ContinueButton';
 export { PermissionButton } from './actions/PermissionButton';
 export { BackButton } from './actions/BackButton';
+export type { onErrorType, onSuccessType } from './@types/ResultType';
+export type { ArgsType, LoadingType } from './@types/ArgsType';
+export type { FontsType } from './@types/FontsType';
+export type { ThemeType } from './@types/ThemeType';

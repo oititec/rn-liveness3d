@@ -1,10 +1,9 @@
 import { startLiveness3d } from '../index';
-import React, { createContext, FC, useContext, useState } from 'react';
-import { ArgsType } from '../@types/ArgsType';
-import { onErrorType, onSuccessType } from '../@types/ResultType';
-import { ResultType } from '../@types/ResultTypes';
-import { askPermission } from '../utils/permissions';
-import { Platform } from 'react-native';
+import React, { createContext, type FC, useContext, useState } from 'react';
+import type { ArgsType } from '../@types/ArgsType';
+import type { onErrorType, onSuccessType } from '../@types/ResultType';
+import type { ResultType } from '../@types/ResultTypes';
+import { requestCameraPermission } from '../utils/permissions';
 
 export const SCREEN = Object.freeze({
   INSTRUCTION_VIEW: 1,
@@ -21,7 +20,7 @@ interface Liveness3DContextType {
   onLiveness3DError: (error: onErrorType) => void;
   onLiveness3DSuccess: (result: onSuccessType) => void;
   onBack: () => any;
-  onAskPermission: () => any;
+  onRequestCameraPermission: () => any;
   startLiveness: () => any;
   callbackView: string;
   setCallbackView: React.Dispatch<React.SetStateAction<string>>;
@@ -62,24 +61,12 @@ export const Liveness3DProvider: FC<ResultType> = ({
 
   function startLiveness() {
     if (options) {
-      startLiveness3d(options)
-        .then((result) => {
-          {
-            if (Platform.OS == 'android') {
-              //@ts-ignore
-              onSuccess(JSON.parse(result) as onSuccessType);
-            } else {
-              onSuccess(result as onSuccessType);
-            }
-          }
-        })
-        .catch((error) => {
-          onError(error as onErrorType);
-        });
+      startLiveness3d(options, onSuccess, onError);
     }
   }
-  function onAskPermission() {
-    askPermission().then((result) => {
+
+  function onRequestCameraPermission() {
+    requestCameraPermission().then((result) => {
       result === true && startLiveness();
       result === false && setScreen(1);
     });
@@ -96,7 +83,7 @@ export const Liveness3DProvider: FC<ResultType> = ({
     options,
     setOptions,
     startLiveness,
-    onAskPermission,
+    onRequestCameraPermission,
     callbackView,
     setCallbackView,
   };
