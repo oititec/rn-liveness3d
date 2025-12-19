@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "860321540122",
+    "project_id": "rn---liveness-3d",
+    "storage_bucket": "rn---liveness-3d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860321540122:android:0c70d3afd3d6e520b4c9a3",
+        "android_client_info": {
+          "package_name": "br.com.rnliveness3dexample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlDBU1aW_HFpWLCdt7nz3Wgto-kzU_H6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

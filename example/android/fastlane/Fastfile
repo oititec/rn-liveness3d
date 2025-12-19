@@ -1,0 +1,204 @@
+# Fastfile para build e distribuição do app Android via Firebase App Distribution
+# Documentação: https://docs.fastlane.tools
+
+default_platform(:android)
+
+platform :android do
+
+  # ============================================
+  # CONFIGURAÇÕES
+  # ============================================
+  
+  # ID do app no Firebase (configurado via google-services.json)
+  # Project: rn---liveness-3d
+  FIREBASE_APP_ID = ENV["FIREBASE_APP_ID"] || "1:860321540122:android:0c70d3afd3d6e520b4c9a3"
+  
+  # Grupos de testers no Firebase App Distribution
+  FIREBASE_TESTERS_GROUP = ENV["FIREBASE_TESTERS_GROUP"] || "testers"
+
+  # ============================================
+  # LANES PRIVADAS (helpers)
+  # ============================================
+
+  desc "Incrementa o version code automaticamente"
+  private_lane :increment_version do
+    # Lê o arquivo build.gradle e incrementa versionCode
+    path = "../app/build.gradle"
+    re = /versionCode\s+(\d+)/
+    
+    s = File.read(path)
+    versionCode = s[re, 1].to_i
+    s[re, 1] = (versionCode + 1).to_s
+    
+    File.write(path, s)
+    
+    UI.success("Version Code incrementado para: #{versionCode + 1}")
+    versionCode + 1
+  end
+
+  # ============================================
+  # LANES DE BUILD
+  # ============================================
+
+  desc "Build APK de Debug"
+  lane :build_debug do
+    gradle(
+      task: "clean assembleDebug",
+      project_dir: "./"
+    )
+    
+    UI.success("✅ APK Debug gerado com sucesso!")
+    lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+  end
+
+  desc "Build APK de Release"
+  lane :build_release do
+    gradle(
+      task: "clean assembleRelease",
+      project_dir: "./"
+    )
+    
+    UI.success("✅ APK Release gerado com sucesso!")
+    lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+  end
+
+  desc "Build AAB (Android App Bundle) de Release"
+  lane :build_bundle do
+    gradle(
+      task: "clean bundleRelease",
+      project_dir: "./"
+    )
+    
+    UI.success("✅ AAB Release gerado com sucesso!")
+    lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+  end
+
+  # ============================================
+  # LANES DE DISTRIBUIÇÃO
+  # ============================================
+
+  desc "Distribui APK Debug para Firebase App Distribution"
+  lane :distribute_debug do |options|
+    build_debug
+    
+    release_notes = options[:notes] || changelog_from_git_commits(
+      commits_count: 10,
+      pretty: "- %s",
+      merge_commit_filtering: "exclude_merges"
+    )
+    
+    # Configuração flexível: groups, testers ou nenhum (apenas upload)
+    distribution_config = {
+      app: FIREBASE_APP_ID,
+      apk_path: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      release_notes: release_notes,
+      firebase_cli_token: ENV["FIREBASE_TOKEN"]
+    }
+    
+    # Adiciona grupos se especificado
+    if options[:groups]
+      distribution_config[:groups] = options[:groups]
+    elsif ENV["FIREBASE_TESTERS_GROUP"] && !ENV["FIREBASE_TESTERS_GROUP"].empty?
+      distribution_config[:groups] = ENV["FIREBASE_TESTERS_GROUP"]
+    end
+    
+    # Adiciona testers individuais se especificado
+    if options[:testers]
+      distribution_config[:testers] = options[:testers]
+    elsif ENV["FIREBASE_TESTERS"] && !ENV["FIREBASE_TESTERS"].empty?
+      distribution_config[:testers] = ENV["FIREBASE_TESTERS"]
+    end
+    
+    firebase_app_distribution(distribution_config)
+    
+    UI.success("🚀 APK Debug enviado com sucesso para Firebase App Distribution!")
+  end
+
+  desc "Distribui APK Release para Firebase App Distribution"
+  lane :distribute_release do |options|
+    build_release
+    
+    release_notes = options[:notes] || changelog_from_git_commits(
+      commits_count: 10,
+      pretty: "- %s",
+      merge_commit_filtering: "exclude_merges"
+    )
+    
+    # Configuração flexível: groups, testers ou nenhum (apenas upload)
+    distribution_config = {
+      app: FIREBASE_APP_ID,
+      apk_path: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      release_notes: release_notes,
+      firebase_cli_token: ENV["FIREBASE_TOKEN"]
+    }
+    
+    # Adiciona grupos se especificado
+    if options[:groups]
+      distribution_config[:groups] = options[:groups]
+    elsif ENV["FIREBASE_TESTERS_GROUP"] && !ENV["FIREBASE_TESTERS_GROUP"].empty?
+      distribution_config[:groups] = ENV["FIREBASE_TESTERS_GROUP"]
+    end
+    
+    # Adiciona testers individuais se especificado
+    if options[:testers]
+      distribution_config[:testers] = options[:testers]
+    elsif ENV["FIREBASE_TESTERS"] && !ENV["FIREBASE_TESTERS"].empty?
+      distribution_config[:testers] = ENV["FIREBASE_TESTERS"]
+    end
+    
+    firebase_app_distribution(distribution_config)
+    
+    UI.success("🚀 APK Release enviado com sucesso para Firebase App Distribution!")
+  end
+
+  desc "Build e distribui com versão incrementada"
+  lane :distribute_new_version do |options|
+    increment_version
+    
+    if options[:debug]
+      distribute_debug(options)
+    else
+      distribute_release(options)
+    end
+  end
+
+  # ============================================
+  # LANE PRINCIPAL
+  # ============================================
+
+  desc "Lane padrão - Build e distribui Release para Firebase"
+  lane :deploy do |options|
+    distribute_release(options)
+  end
+
+  # ============================================
+  # LANES DE TESTES
+  # ============================================
+
+  desc "Executa testes unitários"
+  lane :test do
+    gradle(
+      task: "test",
+      project_dir: "./"
+    )
+  end
+
+  desc "Executa lint check"
+  lane :lint do
+    gradle(
+      task: "lint",
+      project_dir: "./"
+    )
+  end
+
+  # ============================================
+  # CALLBACKS
+  # ============================================
+
+  error do |lane, exception|
+    UI.error("❌ Erro na lane '#{lane}': #{exception.message}")
+  end
+
+end
+
+

@@ -1,0 +1,6 @@
+# Plugins do Fastlane - gerenciados automaticamente
+# Não edite manualmente, use `fastlane add_plugin [plugin_name]`
+
+gem 'fastlane-plugin-firebase_app_distribution'
+
+

@@ -1,23 +1,35 @@
 PODS:
-  - OICommons (2.0.1)
+  - OICommons (2.1.2)
   - OIComponents (1.8.0)
-  - OILiveness3D (2.5.0-rn):
-    - OICommons (~> 2.0.1)
-    - OIComponents (~> 1.8)
-    - OILiveness3D_FT (= 9.7.43)
-    - OINetwork (~> 2.1.1)
-    - OISecurity (~> 3.1.2)
-  - OILiveness3D_FT (9.7.43)
-  - OINetwork (2.1.1):
-    - OICommons (~> 2.0.1)
-  - OISecurity (3.1.2):
-    - OINetwork (~> 2.1.1)
+  - OILiveness3D (3.7.0):
+    - OICommons (~> 2.1.2)
+    - OIComponents (= 1.8.0)
+    - OILiveness3D/Release (= 3.7.0)
+    - OILiveness3D_FT (= 9.7.79)
+    - OINetwork (~> 2.1.2)
+    - OISecurity (~> 4.2)
+  - OILiveness3D/Release (3.7.0):
+    - OICommons (~> 2.1.2)
+    - OIComponents (= 1.8.0)
+    - OILiveness3D_FT (= 9.7.79)
+    - OINetwork (~> 2.1.2)
+    - OISecurity (~> 4.2)
+  - OILiveness3D_FT (9.7.79)
+  - OINetwork (2.1.2):
+    - OICommons (~> 2.1.0)
+  - OISecurity (4.2.0):
+    - OICommons (~> 2.1.1)
+    - OINetwork (~> 2.1.2)
+    - OISecurity/Release (= 4.2.0)
+  - OISecurity/Release (4.2.0):
+    - OICommons (~> 2.1.1)
+    - OINetwork (~> 2.1.2)
 
 DEPENDENCIES:
-  - OILiveness3D (= 2.5.0-rn)
+  - OILiveness3D (= 3.7.0)
 
 SPEC REPOS:
-  https://github.com/oititec/ios-artifactory.git:
+  https://github.com/oititec/ios-artifactory-beta.git:
     - OICommons
     - OIComponents
     - OILiveness3D
@@ -26,13 +38,13 @@ SPEC REPOS:
     - OISecurity
 
 SPEC CHECKSUMS:
-  OICommons: efb4251c578f2517dc222b56cb101f83d5e7ece2
-  OIComponents: 06145be8e23f9d3e89a4ee9293139849e21b22da
-  OILiveness3D: 767fcf922c435b1090ffec477e180e41485238c2
-  OILiveness3D_FT: d8c07b9e95117deaa215b6b12f00bf3bcbaadd1c
-  OINetwork: f551750f82cb46fb8e3f3668a84d1a46fa1872d6
-  OISecurity: 08391ea8e77bb7d793781bdb395988d372a98efc
+  OICommons: a08a554367d396ca5b3e3ba0a5a2f07aca01e54e
+  OIComponents: b056c2e7a2474ac70e4d1bebfe7ae81c85ba3578
+  OILiveness3D: 5a5aff7585d8c2d387c2d635517d1fce3894b950
+  OILiveness3D_FT: 552da7c4a7af9cca15179462603d8f86ea223a66
+  OINetwork: 026528034592540763350410d1ce7c0ddb1349f5
+  OISecurity: 63b15bfda964b6d5f36be691880a1eae3a9eb2df
 
-PODFILE CHECKSUM: 7fd239a949713467bf3bd8310b296d23215c2221
+PODFILE CHECKSUM: 9e092743469d272599b154cb4832ce4b223ac1d8
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.16.2

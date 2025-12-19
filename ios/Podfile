@@ -8,6 +8,6 @@ target 'RnLiveness3d' do
     # Comment the next line if you don't want to use dynamic frameworks
     use_frameworks!
     
-    pod 'OILiveness3D', '3.7.0'
+    pod 'OILiveness3D', '3.10.0'
   
   end
