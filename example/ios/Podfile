@@ -1,17 +1,49 @@
-ENV['RCT_NEW_ARCH_ENABLED'] = '1'
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-source 'https://github.com/oititec/ios-artifactory.git'
-source 'https://cdn.cocoapods.org'
-
-# Resolve react_native_pods.rb with node to allow for hoisting
-require Pod::Executable.execute_command('node', ['-p',
-  'require.resolve(
-    "react-native/scripts/react_native_pods.rb",
-    {paths: [process.argv[1]]},
-  )', __dir__]).strip
-
-platform :ios, min_ios_version_supported
+platform :ios, '12.4'
+source 'https://github.com/oititec/ios-artifactory-beta.git'
+source 'https://github.com/CocoaPods/Specs.git'
 prepare_react_native_project!
+
+# Force pods to match minimum iOS version for React Native
+# Fixes build issue on Xcode Cloud where some pods
+# Use iOS 12 calls despite being set as iOS 11
+def __apply_Xcode_14_3_RC_post_install_workaround(installer)
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      current_target = config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+      minimum_target = '12.4'
+      if current_target.to_f < minimum_target.to_f
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = minimum_target
+      end
+    end
+  end
+end
+
+# Fix for Xcode 14.3+ C++17 compatibility issue
+# std::unary_function and std::binary_function were removed in C++17
+def __apply_Xcode_15_unary_binary_function_fix(installer)
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+      config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << '_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION'
+    end
+  end
+end
+
+# If you are using a `react-native-flipper` your iOS build will fail when `NO_FLIPPER=1` is set.
+# because `react-native-flipper` depends on (FlipperKit,...) that will be excluded
+#
+# To fix this you can also exclude `react-native-flipper` using a `react-native.config.js`
+# ```js
+# module.exports = {
+#   dependencies: {
+#     ...(process.env.NO_FLIPPER ? { 'react-native-flipper': { platforms: { ios: null } } } : {}),
+# ```
+# Flipper desabilitado para evitar erros de build com Xcode 14.3+
+# O erro "no template named 'function' in namespace 'std'" é causado por incompatibilidade
+flipper_config = FlipperConfiguration.disabled
 
 linkage = ENV['USE_FRAMEWORKS']
 if linkage != nil
@@ -19,23 +51,49 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
+
+
 target 'RnLiveness3dExample' do
   config = use_native_modules!
   
+
+  # Flags change depending on the env values.
+  flags = get_default_flags()
+
   use_react_native!(
     :path => config[:reactNativePath],
+    # Hermes is now enabled by default. Disable by setting this flag to false.
+    # Upcoming versions of React Native may rely on get_default_flags(), but
+    # we make it explicit here to aid in the React Native upgrade process.
+    :hermes_enabled => flags[:hermes_enabled],
+    :fabric_enabled => flags[:fabric_enabled],
+    # Enables Flipper.
+    #
+    # Note that if you have use_frameworks! enabled, Flipper will not work and
+    # you should disable the next line.
+    :flipper_configuration => flipper_config,
     # An absolute path to your application root.
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  target 'RnLiveness3dExampleTests' do
+    inherit! :complete
+    # Pods for testing
+  end
+  
+  pod 'OILiveness3D', '3.7.0'
+
   post_install do |installer|
-    # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
-      config[:reactNativePath],
-      :mac_catalyst_enabled => false,
-      # :ccache_enabled => true
+      # Set `mac_catalyst_enabled` to `true` in order to apply patches
+      # necessary for Mac Catalyst builds
+      :mac_catalyst_enabled => false
     )
+   
+    __apply_Xcode_12_5_M1_post_install_workaround(installer)
+    __apply_Xcode_14_3_RC_post_install_workaround(installer)
+    __apply_Xcode_15_unary_binary_function_fix(installer)
   end
+  
 end
-
