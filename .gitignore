@@ -44,6 +44,7 @@ android.iml
 # Cocoapods
 #
 example/ios/Pods
+ios/Pods
 example/ios/Podfile.lock
 
 # Ruby
@@ -93,3 +94,5 @@ example/**/fastlane/nul
 example/**/fastlane/Preview.html
 example/**/fastlane/screenshots
 example/**/fastlane/test_output
+
+Podfile.lock
