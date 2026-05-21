@@ -47,6 +47,9 @@
     "url": "https://github.com/oititec/rn-liveness3d/issues"
   },
   "homepage": "https://github.com/oititec/rn-liveness3d#readme",
+  "workspaces": [
+    "example"
+  ],
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
@@ -133,6 +136,14 @@
     "tabWidth": 2,
     "trailingComma": "es5",
     "useTabs": false
+  },
+  "codegenConfig": {
+    "name": "RnLiveness3dSpec",
+    "type": "modules",
+    "jsSrcsDir": "src",
+    "android": {
+      "javaPackageName": "br.com.oiti.rnliveness3d"
+    }
   },
   "react-native-builder-bob": {
     "source": "src",

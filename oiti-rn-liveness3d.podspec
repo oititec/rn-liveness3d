@@ -1,7 +1,7 @@
 require "json"
 
 package = JSON.parse(File.read(File.join(__dir__, "package.json")))
-folly_compiler_flags = '-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1 -Wno-comma -Wno-shorten-64-to-32'
+new_arch_enabled = ENV["RCT_NEW_ARCH_ENABLED"] == "1"
 
 Pod::Spec.new do |s|
   s.name         = "oiti-rn-liveness3d"
@@ -11,28 +11,24 @@ Pod::Spec.new do |s|
   s.license      = package["license"]
   s.authors      = package["author"]
 
-  s.platforms    = { :ios => "12.4" }
+  s.platforms    = { :ios => "15.1" }
   s.source       = { :git => "https://github.com/oititec/rn-liveness3d.git", :tag => "#{s.version}" }
-  s.source       = { :git => "https://github.com/oititec/ios-artifactory-beta.git" }
-
-  s.source_files = "ios/**/*.{h,m,mm,swift}"
 
   s.dependency "React-Core"
- 
-  s.ios.dependency 'OILiveness3D', '3.10.0'
+  s.ios.dependency "OILiveness3D", "3.14.0"
 
-  # Don't install the dependencies when we run `pod install` in the old architecture.
-  if ENV['RCT_NEW_ARCH_ENABLED'] == '1' then
-    s.compiler_flags = folly_compiler_flags + " -DRCT_NEW_ARCH_ENABLED=1"
-    s.pod_target_xcconfig    = {
-        "HEADER_SEARCH_PATHS" => "\"$(PODS_ROOT)/boost\"",
-        "OTHER_CPLUSPLUSFLAGS" => "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1",
-        "CLANG_CXX_LANGUAGE_STANDARD" => "c++17"
-    }
-    s.dependency "React-Codegen"
-    s.dependency "RCT-Folly"
-    s.dependency "RCTRequired"
-    s.dependency "RCTTypeSafety"
-    s.dependency "ReactCommon/turbomodule/core"
+  s.subspec "Swift" do |ss|
+    ss.source_files = "ios/**/*.swift"
   end
+
+  s.subspec "Bridge" do |ss|
+    ss.source_files = "ios/**/*.{h,mm}"
+    ss.private_header_files = "ios/**/*.h"
+
+    if new_arch_enabled && respond_to?(:install_modules_dependencies, true)
+      install_modules_dependencies(ss, new_arch_enabled: true)
+    end
+  end
+
+  s.default_subspecs = "Swift", "Bridge"
 end
