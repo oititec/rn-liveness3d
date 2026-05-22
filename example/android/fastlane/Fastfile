@@ -11,14 +11,36 @@ platform :android do
   
   # ID do app no Firebase (configurado via google-services.json)
   # Project: rn---liveness-3d
-  FIREBASE_APP_ID = ENV["FIREBASE_APP_ID"] || "1:860321540122:android:0c70d3afd3d6e520b4c9a3"
+  FIREBASE_APP_ID = ENV["FIREBASE_APP_ID"] || "1:943099415715:android:fecb32e295f6878c500316"
   
   # Grupos de testers no Firebase App Distribution
   FIREBASE_TESTERS_GROUP = ENV["FIREBASE_TESTERS_GROUP"] || "testers"
 
+  RELEASE_APK_PATH = File.expand_path("../app/build/outputs/apk/release/app-release.apk", __dir__)
+  DEBUG_APK_PATH = File.expand_path("../app/build/outputs/apk/debug/app-debug.apk", __dir__)
+
   # ============================================
   # LANES PRIVADAS (helpers)
   # ============================================
+
+  desc "Valida que o APK de release contém o bundle JS (não depende do Metro)"
+  private_lane :verify_release_apk do |options|
+    apk_path = options[:apk_path] || RELEASE_APK_PATH
+
+    UI.user_error!("APK não encontrado: #{apk_path}") unless File.exist?(apk_path)
+    UI.user_error!("Não use o APK de debug para distribuição: #{apk_path}") if apk_path.include?("/debug/")
+
+    bundle_list = `unzip -l "#{apk_path}" 2>/dev/null | grep -E "assets/index.android.bundle|assets/index.android.bundle.hbc"`
+    if bundle_list.strip.empty?
+      UI.user_error!(
+        "APK de release sem bundle JS embutido. O app vai tentar conectar ao Metro.\n" \
+        "Gere novamente com: fastlane android build_release"
+      )
+    end
+
+    UI.success("✅ Bundle JS encontrado no APK: #{apk_path}")
+    apk_path
+  end
 
   desc "Incrementa o version code automaticamente"
   private_lane :increment_version do
@@ -57,9 +79,12 @@ platform :android do
       task: "clean assembleRelease",
       project_dir: "./"
     )
-    
-    UI.success("✅ APK Release gerado com sucesso!")
-    lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]
+
+    verify_release_apk(apk_path: RELEASE_APK_PATH)
+    lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH] = RELEASE_APK_PATH
+
+    UI.success("✅ APK Release gerado: #{RELEASE_APK_PATH}")
+    RELEASE_APK_PATH
   end
 
   desc "Build AAB (Android App Bundle) de Release"
@@ -80,6 +105,9 @@ platform :android do
   desc "Distribui APK Debug para Firebase App Distribution"
   lane :distribute_debug do |options|
     build_debug
+
+    UI.important("⚠️  APK DEBUG: exige Metro rodando. Não use para testes de produção.")
+    lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH] = DEBUG_APK_PATH
     
     release_notes = options[:notes] || changelog_from_git_commits(
       commits_count: 10,
@@ -116,8 +144,8 @@ platform :android do
 
   desc "Distribui APK Release para Firebase App Distribution"
   lane :distribute_release do |options|
-    build_release
-    
+    apk_path = build_release
+
     release_notes = options[:notes] || changelog_from_git_commits(
       commits_count: 10,
       pretty: "- %s",
@@ -127,7 +155,7 @@ platform :android do
     # Configuração flexível: groups, testers ou nenhum (apenas upload)
     distribution_config = {
       app: FIREBASE_APP_ID,
-      apk_path: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      apk_path: apk_path,
       release_notes: release_notes,
       firebase_cli_token: ENV["FIREBASE_TOKEN"]
     }
@@ -148,7 +176,7 @@ platform :android do
     
     firebase_app_distribution(distribution_config)
     
-    UI.success("🚀 APK Release enviado com sucesso para Firebase App Distribution!")
+    UI.success("🚀 APK Release (standalone, sem Metro) enviado: #{apk_path}")
   end
 
   desc "Build e distribui com versão incrementada"

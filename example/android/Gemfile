@@ -1,8 +1,2 @@
-source "https://rubygems.org"
-
-gem "fastlane"
-
-plugins_path = File.join(File.dirname(__FILE__), 'fastlane', 'Pluginfile')
-eval_gemfile(plugins_path) if File.exist?(plugins_path)
-
-
+# Usa o Gemfile da raiz do example (um único `bundle install` na pasta example/)
+eval_gemfile File.expand_path("../Gemfile", __dir__)
