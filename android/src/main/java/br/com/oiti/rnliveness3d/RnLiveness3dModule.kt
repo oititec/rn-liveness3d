@@ -19,6 +19,7 @@ import com.facebook.react.bridge.Callback
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.ReadableType
 import com.facebook.react.module.annotations.ReactModule
 import org.json.JSONObject
 
@@ -90,19 +91,18 @@ class RnLiveness3dModule(reactContext: ReactApplicationContext) :
     val textsMap = args?.getMap(name = "liveness3Dtext")
     val loadingMap = args?.getMap(name = "loading")
 
-    val themeBuilder = themeMap?.let { Liveness3DTheme(readableMapToMap(it)).apply() }
+    val themeBuilder = themeMap
+      ?.takeIf { it.hasKeyIteratorEntries() }
+      ?.let { Liveness3DTheme(readableMapToMap(it)).apply() }
     val fonts = fontsMap?.let { getFonts(readableMapToMap(it)) }
     val texts = textsMap?.let { Liveness3DText().getTexts(readableMapToMap(it)) }
 
-    val loadingTypeString = loadingMap?.getString(name = "type") ?: "default"
+    val loadingTypeString = loadingMap.readStringKey("type") ?: "default"
     val loadingType =
       if (loadingTypeString == "default") LoadingType3D.ACTIVITY_INDICATOR else LoadingType3D.SPINNER
-    val loadingColor = loadingMap?.getString(name = "loadingColor") ?: "#000000"
-    val loadingBackground = loadingMap?.getString(name = "backgroundColor") ?: "#FFFFFF"
-    val loadingSize = when(loadingMap?.hasKey(name = "size")) {
-      true -> loadingMap.getInt(name = "size")
-      else -> 10
-    }
+    val loadingColor = loadingMap.readStringKey("loadingColor") ?: "#000000"
+    val loadingBackground = loadingMap.readStringKey("backgroundColor") ?: "#FFFFFF"
+    val loadingSize = normalizeLoadingSize(loadingMap.readIntKey("size") ?: 10)
 
     Log.d("ENV", environmentString)
     Log.d("ENV", appKey)
@@ -188,7 +188,12 @@ class RnLiveness3dModule(reactContext: ReactApplicationContext) :
       val iterator = it.keySetIterator()
       while (iterator.hasNextKey()) {
         val key = iterator.nextKey()
-        val value = it.getString(key)
+        val value = when (it.getType(key)) {
+          ReadableType.String -> it.getString(key)
+          ReadableType.Number -> it.getDouble(key).toString()
+          ReadableType.Boolean -> it.getBoolean(key).toString()
+          else -> null
+        }
         map[key] = value
       }
     }
@@ -234,6 +239,35 @@ class RnLiveness3dModule(reactContext: ReactApplicationContext) :
       "feedbackCustomizationTextFont" -> Liveness3DFontsKey.FEEDBACK_CUSTOMIZATION_TEXT_FONT
       else -> null
     }
+  }
+
+  private fun ReadableMap.hasKeyIteratorEntries(): Boolean {
+    val iterator = keySetIterator()
+    return iterator.hasNextKey()
+  }
+
+  private fun ReadableMap?.readStringKey(key: String): String? {
+    if (this == null || !hasKey(key) || isNull(key)) return null
+    return when (getType(key)) {
+      ReadableType.String -> getString(key)
+      ReadableType.Number -> getDouble(key).toString()
+      ReadableType.Boolean -> getBoolean(key).toString()
+      else -> null
+    }?.takeIf { it.isNotBlank() }
+  }
+
+  private fun ReadableMap?.readIntKey(key: String): Int? {
+    if (this == null || !hasKey(key) || isNull(key)) return null
+    return when (getType(key)) {
+      ReadableType.Number -> getDouble(key).toInt()
+      ReadableType.String -> getString(key)?.toIntOrNull()
+      else -> null
+    }
+  }
+
+  private fun normalizeLoadingSize(rawSize: Int): Int {
+    val safeSize = rawSize.coerceAtLeast(0)
+    return if (safeSize <= 10) safeSize * 30 else safeSize
   }
 
   companion object {

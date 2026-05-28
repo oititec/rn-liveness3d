@@ -13,9 +13,9 @@ export default function Liveness3D({
 
   const newOptions = {
     ...options,
-    theme: theme ? theme : {},
-    fonts: fonts ? fonts : {},
-    liveness3Dtext: texts ? texts : {},
+    ...(theme ? { theme } : {}),
+    ...(fonts ? { fonts } : {}),
+    ...(texts ? { liveness3Dtext: texts } : {}),
   };
 
   const onResultSuccess = (result: onSuccessType) => {
@@ -52,7 +52,7 @@ export default function Liveness3D({
   return (
     <Liveness3dView
       options={newOptions}
-      loading={loading ? loading : {}}
+      loading={loading}
       onSuccess={onResultSuccess}
       onError={onResultError}
       onBack={onBack}

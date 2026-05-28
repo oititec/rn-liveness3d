@@ -1,229 +1,168 @@
 package br.com.oiti.rnliveness3d.theme
 
-import androidx.annotation.DrawableRes
 import br.com.oiti.liveness3d.theme.Liveness3DTheme
 
 class Liveness3DTheme(
   private var themeBuilder: Map<String, String?>?,
 ) {
-  //Guidance customization
+  private fun parseIntThemeValue(key: String): Int? {
+    val raw = themeBuilder?.get(key)?.trim()?.takeIf { it.isNotEmpty() } ?: return null
+    return raw.toIntOrNull() ?: raw.toDoubleOrNull()?.toInt()
+  }
+
   private val guidanceCustomizationBackgroundColors: String? =
-    themeBuilder?.get("guidanceCustomizationBackgroundColors") ?: "#FFFFFF"
+    themeBuilder?.get("guidanceCustomizationBackgroundColors")
   private val guidanceCustomizationForegroundColor: String? =
-    themeBuilder?.get("guidanceCustomizationForegroundColor") ?: "#FFFFFF"
+    themeBuilder?.get("guidanceCustomizationForegroundColor")
 
-  //Buttons
   private val guidanceCustomizationButtonTextNormalColor: String? =
-    themeBuilder?.get("guidanceCustomizationForegroundColor") ?: "#000000"
+    themeBuilder?.get("guidanceCustomizationButtonTextNormalColor")
   private val guidanceCustomizationButtonBackgroundNormalColor: String? =
-    themeBuilder?.get("guidanceCustomizationButtonBackgroundNormalColor") ?: "#4bb75f"
-
+    themeBuilder?.get("guidanceCustomizationButtonBackgroundNormalColor")
   private val guidanceCustomizationButtonTextHighlightColor: String? =
-    themeBuilder?.get("guidanceCustomizationButtonTextHighlightColor") ?: "#000000"
+    themeBuilder?.get("guidanceCustomizationButtonTextHighlightColor")
   private val guidanceCustomizationButtonBackgroundHighlightColor: String? =
-    themeBuilder?.get("guidanceCustomizationButtonBackgroundHighlightColor") ?: "#000000"
+    themeBuilder?.get("guidanceCustomizationButtonBackgroundHighlightColor")
   private val guidanceCustomizationButtonTextDisabledColor: String? =
-    themeBuilder?.get("guidanceCustomizationButtonTextDisabledColor") ?: "#333333"
+    themeBuilder?.get("guidanceCustomizationButtonTextDisabledColor")
   private val guidanceCustomizationButtonBackgroundDisabledColor: String? =
-    themeBuilder?.get("guidanceCustomizationButtonBackgroundDisabledColor") ?: "#333333"
+    themeBuilder?.get("guidanceCustomizationButtonBackgroundDisabledColor")
   private val guidanceCustomizationButtonBorderColor: String? =
-    themeBuilder?.get("guidanceCustomizationButtonBorderColor") ?: "#000000"
+    themeBuilder?.get("guidanceCustomizationButtonBorderColor")
   private val guidanceCustomizationButtonBorderWidth: Int? =
-    themeBuilder?.get("guidanceCustomizationButtonBorderWidth")?.toInt() ?: 0
+    parseIntThemeValue("guidanceCustomizationButtonBorderWidth")
   private val guidanceCustomizationButtonCornerRadius: Int? =
-    themeBuilder?.get("guidanceCustomizationButtonCornerRadius")?.toInt() ?: 25
+    parseIntThemeValue("guidanceCustomizationButtonCornerRadius")
 
-  //Ready Screen
   private val guidanceCustomizationReadyScreenHeaderTextColor: String? =
-    themeBuilder?.get("guidanceCustomizationReadyScreenHeaderTextColor") ?: "#000000"
+    themeBuilder?.get("guidanceCustomizationReadyScreenHeaderTextColor")
   private val guidanceCustomizationReadyScreenSubtextTextColor: String? =
-    themeBuilder?.get("guidanceCustomizationReadyScreenSubtextTextColor") ?: "#333333"
+    themeBuilder?.get("guidanceCustomizationReadyScreenSubtextTextColor")
 
-  //Retry Screen
   private val guidanceCustomizationRetryScreenHeaderTextColor: String? =
-    themeBuilder?.get("guidanceCustomizationRetryScreenHeaderTextColor") ?: "#000000"
+    themeBuilder?.get("guidanceCustomizationRetryScreenHeaderTextColor")
   private val guidanceCustomizationRetryScreenSubtextTextColor: String? =
-    themeBuilder?.get("guidanceCustomizationRetryScreenSubtextTextColor") ?: "#333333"
+    themeBuilder?.get("guidanceCustomizationRetryScreenSubtextTextColor")
   private val guidanceCustomizationReadyScreenOvalFillColor: String? =
-    themeBuilder?.get("guidanceCustomizationReadyScreenOvalFillColor") ?: "#000000"
+    themeBuilder?.get("guidanceCustomizationReadyScreenOvalFillColor")
   private val guidanceCustomizationReadyScreenTextBackgroundColor: String? =
-    themeBuilder?.get("guidanceCustomizationReadyScreenTextBackgroundColor") ?: "#4bb75f"
+    themeBuilder?.get("guidanceCustomizationReadyScreenTextBackgroundColor")
   private val guidanceCustomizationReadyScreenTextBackgroundCornerRadius: Int? =
-    themeBuilder?.get("guidanceCustomizationReadyScreenTextBackgroundCornerRadius")?.toInt() ?: 0
+    parseIntThemeValue("guidanceCustomizationReadyScreenTextBackgroundCornerRadius")
   private val guidanceCustomizationRetryScreenImageBorderColor: String? =
-    themeBuilder?.get("guidanceCustomizationRetryScreenImageBorderColor") ?: "#4bb75f"
+    themeBuilder?.get("guidanceCustomizationRetryScreenImageBorderColor")
   private val guidanceCustomizationRetryScreenImageBorderWidth: Int? =
-    themeBuilder?.get("guidanceCustomizationRetryScreenImageBorderWidth")?.toInt() ?: 0
+    parseIntThemeValue("guidanceCustomizationRetryScreenImageBorderWidth")
   private val guidanceCustomizationRetryScreenImageCornerRadius: Int? =
-    themeBuilder?.get("guidanceCustomizationRetryScreenImageCornerRadius")?.toInt() ?: 3
+    parseIntThemeValue("guidanceCustomizationRetryScreenImageCornerRadius")
   private val guidanceCustomizationRetryScreenOvalStrokeColor: String? =
-    themeBuilder?.get("guidanceCustomizationRetryScreenOvalStrokeColor") ?: "#4bb75f"
+    themeBuilder?.get("guidanceCustomizationRetryScreenOvalStrokeColor")
 
-  //Result Screen Customization
-  private val resultScreenCustomizationAnimationRelativeScale: Float = 1.0F
   private val resultScreenCustomizationForegroundColor: String? =
-    themeBuilder?.get("resultScreenCustomizationForegroundColor") ?: "#FFFFFF"
+    themeBuilder?.get("resultScreenCustomizationForegroundColor")
   private val resultScreenCustomizationBackgroundColors: String? =
-    themeBuilder?.get("resultScreenCustomizationBackgroundColors") ?: "#FFFFFF"
+    themeBuilder?.get("resultScreenCustomizationBackgroundColors")
   private val resultScreenCustomizationActivityIndicatorColor: String? =
-    themeBuilder?.get("resultScreenCustomizationActivityIndicatorColor") ?: "#FFFFFF"
-
-  @DrawableRes
-  private val resultScreenCustomizationCustomActivityIndicatorImage: Int? = null
-  private val resultScreenCustomizationCustomActivityIndicatorRotationInterval: Int = 1000
-  private val resultScreenCustomizationCustomActivityIndicatorAnimation: Int = 0
-  private val resultScreenCustomizationShowUploadProgressBar: Boolean = true
+    themeBuilder?.get("resultScreenCustomizationActivityIndicatorColor")
   private val resultScreenCustomizationUploadProgressFillColor: String? =
-    themeBuilder?.get("resultScreenCustomizationUploadProgressFillColor") ?: "#4bb75f"
+    themeBuilder?.get("resultScreenCustomizationUploadProgressFillColor")
   private val resultScreenCustomizationUploadProgressTrackColor: String? =
-    themeBuilder?.get("resultScreenCustomizationUploadProgressTrackColor") ?: "#333333"
+    themeBuilder?.get("resultScreenCustomizationUploadProgressTrackColor")
   private val resultScreenCustomizationResultAnimationBackgroundColor: String? =
-    themeBuilder?.get("resultScreenCustomizationResultAnimationBackgroundColor") ?: "#05D758"
+    themeBuilder?.get("resultScreenCustomizationResultAnimationBackgroundColor")
   private val resultScreenCustomizationResultAnimationForegroundColor: String? =
-    themeBuilder?.get("resultScreenCustomizationResultAnimationForegroundColor") ?: "#FFFFFF"
+    themeBuilder?.get("resultScreenCustomizationResultAnimationForegroundColor")
 
-
-  //Oval Customization
   private val ovalCustomizationStrokeWidth: Int? =
-    themeBuilder?.get("ovalCustomizationStrokeWidth")?.toInt() ?: 3
+    parseIntThemeValue("ovalCustomizationStrokeWidth")
   private val ovalCustomizationStrokeColor: String? =
-    themeBuilder?.get("ovalCustomizationStrokeColor") ?: "#4bb75f"
+    themeBuilder?.get("ovalCustomizationStrokeColor")
   private val ovalCustomizationProgressStrokeWidth: Int? =
-    themeBuilder?.get("ovalCustomizationProgressStrokeWidth")?.toInt() ?: 2
+    parseIntThemeValue("ovalCustomizationProgressStrokeWidth")
   private val ovalCustomizationProgressColor1: String? =
-    themeBuilder?.get("ovalCustomizationProgressColor1") ?: "#4bb75f"
+    themeBuilder?.get("ovalCustomizationProgressColor1")
   private val ovalCustomizationProgressColor2: String? =
-    themeBuilder?.get("ovalCustomizationProgressColor2") ?: "#4bb75f"
+    themeBuilder?.get("ovalCustomizationProgressColor2")
   private val ovalCustomizationProgressRadialOffset: Int? =
-    themeBuilder?.get("ovalCustomizationProgressRadialOffset")?.toInt() ?: 2
+    parseIntThemeValue("ovalCustomizationProgressRadialOffset")
 
-  //Frame Customization
   private val frameCustomizationBorderWidth: Int? =
-    themeBuilder?.get("frameCustomizationBorderWidth")?.toInt() ?: 0
+    parseIntThemeValue("frameCustomizationBorderWidth")
   private val frameCustomizationCornerRadius: Int? =
-    themeBuilder?.get("frameCustomizationCornerRadius")?.toInt() ?: 0
+    parseIntThemeValue("frameCustomizationCornerRadius")
   private val frameCustomizationBorderColor: String? =
-    themeBuilder?.get("frameCustomizationBorderColor") ?: "#4bb75f"
+    themeBuilder?.get("frameCustomizationBorderColor")
   private val frameCustomizationBackgroundColor: String? =
-    themeBuilder?.get("frameCustomizationBackgroundColor") ?: "#FFFFFF"
+    themeBuilder?.get("frameCustomizationBackgroundColor")
   private val frameCustomizationElevation: Int? =
-    themeBuilder?.get("frameCustomizationElevation")?.toInt() ?: 0
+    parseIntThemeValue("frameCustomizationElevation")
 
-  //Overlay Customization
   private val overlayCustomizationBackgroundColor: String? =
-    themeBuilder?.get("overlayCustomizationBackgroundColor") ?: "#FFFFFF"
+    themeBuilder?.get("overlayCustomizationBackgroundColor")
 
-  //Feedback Customization
   private val feedbackCustomizationCornerRadius: Int? =
-    themeBuilder?.get("feedbackCustomizationCornerRadius")?.toInt() ?: 2
+    parseIntThemeValue("feedbackCustomizationCornerRadius")
   private val feedbackCustomizationBackgroundColors: String? =
-    themeBuilder?.get("overlayCustomizationBackgroundColor") ?: "#666666"
+    themeBuilder?.get("feedbackCustomizationBackgroundColors")
   private val feedbackCustomizationTextColor: String? =
-    themeBuilder?.get("feedbackCustomizationTextColor") ?: "#FFFFFF"
+    themeBuilder?.get("feedbackCustomizationTextColor")
 
 
   fun apply(): Liveness3DTheme {
-    return Liveness3DTheme.Builder()
-      .guidanceCustomizationBackgroundColors(guidanceCustomizationBackgroundColors)
-      .guidanceCustomizationForegroundColor(guidanceCustomizationForegroundColor)
-      //Botões
-      .guidanceCustomizationButtonTextNormalColor(guidanceCustomizationButtonTextNormalColor)
-      .guidanceCustomizationButtonBackgroundNormalColor(
-        guidanceCustomizationButtonBackgroundNormalColor
-      )
-      .guidanceCustomizationButtonTextHighlightColor(guidanceCustomizationButtonTextHighlightColor)
-      .guidanceCustomizationButtonBackgroundHighlightColor(
-        guidanceCustomizationButtonBackgroundHighlightColor
-      )
-      .guidanceCustomizationButtonTextDisabledColor(guidanceCustomizationButtonTextDisabledColor)
-      .guidanceCustomizationButtonBackgroundDisabledColor(
-        guidanceCustomizationButtonBackgroundDisabledColor
-      )
-      .guidanceCustomizationButtonBorderColor(guidanceCustomizationButtonBorderColor)
-      .guidanceCustomizationButtonBorderWidth(guidanceCustomizationButtonBorderWidth)
-      .guidanceCustomizationButtonCornerRadius(guidanceCustomizationButtonCornerRadius)
+    val builder = Liveness3DTheme.Builder()
 
+    guidanceCustomizationBackgroundColors?.let { builder.guidanceCustomizationBackgroundColors(it) }
+    guidanceCustomizationForegroundColor?.let { builder.guidanceCustomizationForegroundColor(it) }
+    guidanceCustomizationButtonTextNormalColor?.let { builder.guidanceCustomizationButtonTextNormalColor(it) }
+    guidanceCustomizationButtonBackgroundNormalColor?.let { builder.guidanceCustomizationButtonBackgroundNormalColor(it) }
+    guidanceCustomizationButtonTextHighlightColor?.let { builder.guidanceCustomizationButtonTextHighlightColor(it) }
+    guidanceCustomizationButtonBackgroundHighlightColor?.let { builder.guidanceCustomizationButtonBackgroundHighlightColor(it) }
+    guidanceCustomizationButtonTextDisabledColor?.let { builder.guidanceCustomizationButtonTextDisabledColor(it) }
+    guidanceCustomizationButtonBackgroundDisabledColor?.let { builder.guidanceCustomizationButtonBackgroundDisabledColor(it) }
+    guidanceCustomizationButtonBorderColor?.let { builder.guidanceCustomizationButtonBorderColor(it) }
+    guidanceCustomizationButtonBorderWidth?.let { builder.guidanceCustomizationButtonBorderWidth(it) }
+    guidanceCustomizationButtonCornerRadius?.let { builder.guidanceCustomizationButtonCornerRadius(it) }
 
-      //Ready Screen
-      .guidanceCustomizationReadyScreenHeaderTextColor(
-        guidanceCustomizationReadyScreenHeaderTextColor
-      )
-      .guidanceCustomizationReadyScreenSubtextTextColor(
-        guidanceCustomizationReadyScreenSubtextTextColor
-      )
+    guidanceCustomizationReadyScreenHeaderTextColor?.let { builder.guidanceCustomizationReadyScreenHeaderTextColor(it) }
+    guidanceCustomizationReadyScreenSubtextTextColor?.let { builder.guidanceCustomizationReadyScreenSubtextTextColor(it) }
 
-      //Retry Screen
-      .guidanceCustomizationRetryScreenHeaderTextColor(
-        guidanceCustomizationRetryScreenHeaderTextColor
-      )
-      .guidanceCustomizationRetryScreenSubtextTextColor(
-        guidanceCustomizationRetryScreenSubtextTextColor
-      )
-      .guidanceCustomizationRetryScreenImageBorderColor(
-        guidanceCustomizationRetryScreenImageBorderColor
-      )
-      .guidanceCustomizationRetryScreenImageBorderWidth(
-        guidanceCustomizationRetryScreenImageBorderWidth
-      )
-      .guidanceCustomizationRetryScreenImageCornerRadius(
-        guidanceCustomizationRetryScreenImageCornerRadius
-      )
-      .guidanceCustomizationRetryScreenOvalStrokeColor(
-        guidanceCustomizationRetryScreenOvalStrokeColor
-      )
-      .guidanceCustomizationReadyScreenOvalFillColor(guidanceCustomizationReadyScreenOvalFillColor)
-      .guidanceCustomizationReadyScreenTextBackgroundColor(
-        guidanceCustomizationReadyScreenTextBackgroundColor
-      )
-      .guidanceCustomizationReadyScreenTextBackgroundCornerRadius(
-        guidanceCustomizationReadyScreenTextBackgroundCornerRadius
-      )
+    guidanceCustomizationRetryScreenHeaderTextColor?.let { builder.guidanceCustomizationRetryScreenHeaderTextColor(it) }
+    guidanceCustomizationRetryScreenSubtextTextColor?.let { builder.guidanceCustomizationRetryScreenSubtextTextColor(it) }
+    guidanceCustomizationRetryScreenImageBorderColor?.let { builder.guidanceCustomizationRetryScreenImageBorderColor(it) }
+    guidanceCustomizationRetryScreenImageBorderWidth?.let { builder.guidanceCustomizationRetryScreenImageBorderWidth(it) }
+    guidanceCustomizationRetryScreenImageCornerRadius?.let { builder.guidanceCustomizationRetryScreenImageCornerRadius(it) }
+    guidanceCustomizationRetryScreenOvalStrokeColor?.let { builder.guidanceCustomizationRetryScreenOvalStrokeColor(it) }
+    guidanceCustomizationReadyScreenOvalFillColor?.let { builder.guidanceCustomizationReadyScreenOvalFillColor(it) }
+    guidanceCustomizationReadyScreenTextBackgroundColor?.let { builder.guidanceCustomizationReadyScreenTextBackgroundColor(it) }
+    guidanceCustomizationReadyScreenTextBackgroundCornerRadius?.let { builder.guidanceCustomizationReadyScreenTextBackgroundCornerRadius(it) }
 
-      //Result Screen
-      .resultScreenCustomizationAnimationRelativeScale(
-        resultScreenCustomizationAnimationRelativeScale
-      )
-      .resultScreenCustomizationForegroundColor(resultScreenCustomizationForegroundColor)
-      .resultScreenCustomizationBackgroundColors(resultScreenCustomizationBackgroundColors)
-      .resultScreenCustomizationActivityIndicatorColor(
-        resultScreenCustomizationActivityIndicatorColor
-      )
-      .resultScreenCustomizationUploadProgressFillColor(
-        resultScreenCustomizationUploadProgressFillColor
-      )
-      .resultScreenCustomizationUploadProgressTrackColor(
-        resultScreenCustomizationUploadProgressTrackColor
-      )
-      .resultScreenCustomizationResultAnimationBackgroundColor(
-        resultScreenCustomizationResultAnimationBackgroundColor
-      )
-      .resultScreenCustomizationResultAnimationForegroundColor(
-        resultScreenCustomizationResultAnimationForegroundColor
-      )
+    resultScreenCustomizationForegroundColor?.let { builder.resultScreenCustomizationForegroundColor(it) }
+    resultScreenCustomizationBackgroundColors?.let { builder.resultScreenCustomizationBackgroundColors(it) }
+    resultScreenCustomizationActivityIndicatorColor?.let { builder.resultScreenCustomizationActivityIndicatorColor(it) }
+    resultScreenCustomizationUploadProgressFillColor?.let { builder.resultScreenCustomizationUploadProgressFillColor(it) }
+    resultScreenCustomizationUploadProgressTrackColor?.let { builder.resultScreenCustomizationUploadProgressTrackColor(it) }
+    resultScreenCustomizationResultAnimationBackgroundColor?.let { builder.resultScreenCustomizationResultAnimationBackgroundColor(it) }
+    resultScreenCustomizationResultAnimationForegroundColor?.let { builder.resultScreenCustomizationResultAnimationForegroundColor(it) }
 
-      //Oval
-      .ovalCustomizationStrokeWidth(ovalCustomizationStrokeWidth)
-      .ovalCustomizationStrokeColor(ovalCustomizationStrokeColor)
-      .ovalCustomizationProgressStrokeWidth(ovalCustomizationProgressStrokeWidth)
-      .ovalCustomizationProgressColor1(ovalCustomizationProgressColor1)
-      .ovalCustomizationProgressColor2(ovalCustomizationProgressColor2)
-      .ovalCustomizationProgressRadialOffset(ovalCustomizationProgressRadialOffset)
+    ovalCustomizationStrokeWidth?.let { builder.ovalCustomizationStrokeWidth(it) }
+    ovalCustomizationStrokeColor?.let { builder.ovalCustomizationStrokeColor(it) }
+    ovalCustomizationProgressStrokeWidth?.let { builder.ovalCustomizationProgressStrokeWidth(it) }
+    ovalCustomizationProgressColor1?.let { builder.ovalCustomizationProgressColor1(it) }
+    ovalCustomizationProgressColor2?.let { builder.ovalCustomizationProgressColor2(it) }
+    ovalCustomizationProgressRadialOffset?.let { builder.ovalCustomizationProgressRadialOffset(it) }
 
-      //Frame
-      .frameCustomizationBorderWidth(frameCustomizationBorderWidth)
-      .frameCustomizationCornerRadius(frameCustomizationCornerRadius)
-      .frameCustomizationBorderColor(frameCustomizationBorderColor)
-      .frameCustomizationBackgroundColor(frameCustomizationBackgroundColor)
-      .frameCustomizationElevation(frameCustomizationElevation)
+    frameCustomizationBorderWidth?.let { builder.frameCustomizationBorderWidth(it) }
+    frameCustomizationCornerRadius?.let { builder.frameCustomizationCornerRadius(it) }
+    frameCustomizationBorderColor?.let { builder.frameCustomizationBorderColor(it) }
+    frameCustomizationBackgroundColor?.let { builder.frameCustomizationBackgroundColor(it) }
+    frameCustomizationElevation?.let { builder.frameCustomizationElevation(it) }
 
-      //Overlay
-      .overlayCustomizationBackgroundColor(overlayCustomizationBackgroundColor)
+    overlayCustomizationBackgroundColor?.let { builder.overlayCustomizationBackgroundColor(it) }
 
-      //Feedback Screen
-      .feedbackCustomizationCornerRadius(feedbackCustomizationCornerRadius)
-      .feedbackCustomizationBackgroundColors(feedbackCustomizationBackgroundColors)
-      .feedbackCustomizationTextColor(feedbackCustomizationTextColor)
+    feedbackCustomizationCornerRadius?.let { builder.feedbackCustomizationCornerRadius(it) }
+    feedbackCustomizationBackgroundColors?.let { builder.feedbackCustomizationBackgroundColors(it) }
+    feedbackCustomizationTextColor?.let { builder.feedbackCustomizationTextColor(it) }
 
-      .build()
+    return builder.build()
   }
 }

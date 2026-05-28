@@ -25,7 +25,7 @@ export default function Home({ navigation }: { navigation: any; route?: any }) {
   const [modal, setModal] = React.useState(false);
   const [configLoading, setLoading] = React.useState<LoadingType>({
     type: 'default',
-    size: 1,
+    size: 5,
     backgroundColor: '#000000',
     loadingColor: '#0CF25D',
   });
@@ -71,8 +71,62 @@ export default function Home({ navigation }: { navigation: any; route?: any }) {
   };
 
   const theme: ThemeType = {
-    guidanceCustomizationButtonBackgroundNormalColor: '#fc03f0',
-    guidanceCustomizationButtonTextHighlightColor: '#fc03f0',
+    guidanceCustomizationButtonBackgroundNormalColor: '#FC03F0',
+    guidanceCustomizationButtonTextNormalColor: '#FFFFFF',
+    guidanceCustomizationButtonBorderColor: '#FC03F0',
+    guidanceCustomizationRetryScreenHeaderTextColor: '#FC03F0',
+    ovalCustomizationStrokeColor: '#FC03F0',
+    ovalCustomizationProgressColor1: '#FC03F0',
+    ovalCustomizationProgressColor2: '#03C6FC',
+    feedbackCustomizationBackgroundColors: '#FC03F0',
+    feedbackCustomizationTextColor: '#FFFFFF',
+  };
+
+  const fullCustomTheme: ThemeType = {
+    guidanceCustomizationBackgroundColors: '#0B1020',
+    guidanceCustomizationForegroundColor: '#F8FAFC',
+    guidanceCustomizationButtonTextNormalColor: '#0F172A',
+    guidanceCustomizationButtonBackgroundNormalColor: '#22D3EE',
+    guidanceCustomizationButtonTextHighlightColor: '#FFFFFF',
+    guidanceCustomizationButtonBackgroundHighlightColor: '#0891B2',
+    guidanceCustomizationButtonTextDisabledColor: '#94A3B8',
+    guidanceCustomizationButtonBackgroundDisabledColor: '#334155',
+    guidanceCustomizationButtonBorderColor: '#A78BFA',
+    guidanceCustomizationButtonBorderWidth: 3,
+    guidanceCustomizationButtonCornerRadius: 16,
+    guidanceCustomizationReadyScreenHeaderTextColor: '#F8FAFC',
+    guidanceCustomizationReadyScreenSubtextTextColor: '#CBD5E1',
+    guidanceCustomizationRetryScreenHeaderTextColor: '#FB7185',
+    guidanceCustomizationRetryScreenSubtextTextColor: '#FCA5A5',
+    guidanceCustomizationRetryScreenImageBorderColor: '#F97316',
+    guidanceCustomizationRetryScreenImageBorderWidth: 4,
+    guidanceCustomizationRetryScreenImageCornerRadius: 16,
+    guidanceCustomizationRetryScreenOvalStrokeColor: '#F59E0B',
+    guidanceCustomizationReadyScreenOvalFillColor: '#334155',
+    guidanceCustomizationReadyScreenTextBackgroundColor: '#1E293B',
+    guidanceCustomizationReadyScreenTextBackgroundCornerRadius: '16',
+    resultScreenCustomizationForegroundColor: '#22D3EE',
+    resultScreenCustomizationBackgroundColors: '#0F172A',
+    resultScreenCustomizationActivityIndicatorColor: '#E879F9',
+    resultScreenCustomizationUploadProgressFillColor: '#10B981',
+    resultScreenCustomizationUploadProgressTrackColor: '#475569',
+    resultScreenCustomizationResultAnimationBackgroundColor: '#8B5CF6',
+    resultScreenCustomizationResultAnimationForegroundColor: '#F8FAFC',
+    ovalCustomizationStrokeWidth: 5,
+    ovalCustomizationStrokeColor: '#22D3EE',
+    ovalCustomizationProgressStrokeWidth: 7,
+    ovalCustomizationProgressColor1: '#E879F9',
+    ovalCustomizationProgressColor2: '#F59E0B',
+    ovalCustomizationProgressRadialOffset: '12',
+    frameCustomizationBorderWidth: 3,
+    frameCustomizationCornerRadius: 12,
+    frameCustomizationBorderColor: '#22D3EE',
+    frameCustomizationBackgroundColor: '#111827',
+    frameCustomizationElevation: '8',
+    overlayCustomizationBackgroundColor: '#0B1020',
+    feedbackCustomizationCornerRadius: 14,
+    feedbackCustomizationBackgroundColors: '#1E293B',
+    feedbackCustomizationTextColor: '#F8FAFC',
   };
 
   const fonts: FontsType = {
@@ -91,6 +145,17 @@ export default function Home({ navigation }: { navigation: any; route?: any }) {
     appkey: 'APP_KEY',
     environment: 'HML',
   });
+
+  const fullCustomTexts = Object.fromEntries(
+    Object.keys(texts).map((key) => [key, `FULL_CUSTOM_${key}`])
+  ) as typeof texts;
+
+  const fullCustomLoading: LoadingType = {
+    type: 'spinner',
+    size: 8,
+    backgroundColor: '#0B1020',
+    loadingColor: '#22D3EE',
+  };
 
   const toggleEnvironment = (value: boolean) =>
     setOptions({ ...options, environment: value ? 'PRD' : 'HML' });
@@ -308,6 +373,24 @@ export default function Home({ navigation }: { navigation: any; route?: any }) {
               style={styles.buttonDefault}
             >
               <Text style={styles.textBtn}>Liveness 3D Custom Views</Text>
+            </Pressable>
+          </View>
+
+          <View style={styles.spacae}></View>
+          <View style={styles.button}>
+            <Pressable
+              onPress={() =>
+                navigation.navigate('Liveness3D', {
+                  options: options,
+                  loading: fullCustomLoading,
+                  theme: fullCustomTheme,
+                  fonts: fonts,
+                  texts: fullCustomTexts,
+                })
+              }
+              style={styles.buttonDefault}
+            >
+              <Text style={styles.textBtn}>Liveness 3D Full Custom Facetec</Text>
             </Pressable>
           </View>
 
