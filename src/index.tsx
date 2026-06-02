@@ -22,13 +22,13 @@ export function startLiveness3d(
   onError: (error: onErrorType) => void,
   loading?: LoadingType
 ) {
-  let args: ArgsType = {
+  const args: ArgsType = {
     appkey: options?.appkey === undefined ? '' : options?.appkey,
     environment:
       options?.environment === undefined ? 'HML' : options?.environment,
-    liveness3Dtext: options?.liveness3Dtext || {},
-    theme: options?.theme || {},
-    fonts: options?.fonts || {},
+    liveness3Dtext: options?.liveness3Dtext,
+    theme: options?.theme,
+    fonts: options?.fonts,
     loading: loading,
   };
 

@@ -15,9 +15,9 @@ export default function Liveness3DCustom({
 
   const newOptions = {
     ...options,
-    theme: theme ? theme : {},
-    fonts: fonts ? fonts : {},
-    liveness3Dtext: texts ? texts : {},
+    ...(theme ? { theme } : {}),
+    ...(fonts ? { fonts } : {}),
+    ...(texts ? { liveness3Dtext: texts } : {}),
   };
 
   const onResultSuccess = (result: onSuccessType) => {
@@ -54,7 +54,7 @@ export default function Liveness3DCustom({
   return (
     <Liveness3dView
       options={newOptions}
-      loading={loading ? loading : {}}
+      loading={loading}
       CustomInstructionView={InstructionsView}
       CustomPermissionView={PermissionView}
       onSuccess={onResultSuccess}

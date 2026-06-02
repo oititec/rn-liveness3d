@@ -84,9 +84,9 @@ public class RnLiveness3dSwiftModule: NSObject {
     // MARK: - Internal methods
 
     private func getCustomAppearance(from args: NSDictionary) -> HybridViewAppearance {
-        let loading = args["loading"] as? Dictionary<String, Any> ?? nil
+        let loading = args["loading"] as? NSDictionary
         let typeLoading = loading?["type"] as? String ?? "default"
-        let sizeLoading = loading?["size"] as? Int ?? 10
+        let sizeLoading = parseLoadingSize(loading?["size"]) ?? 10
         let backgroundColor = loading?["backgroundColor"] as? String ?? "#FFFFFF"
         let loadingColor = loading?["loadingColor"] as? String ?? "#000000"
 
@@ -104,6 +104,21 @@ public class RnLiveness3dSwiftModule: NSObject {
         )
 
         return typeLoading == "spinner" ? .init(configuration: spinnerLoading) : .init(configuration: defaultLoading)
+    }
+
+    private func parseLoadingSize(_ value: Any?) -> Int? {
+        switch value {
+        case let intValue as Int:
+            return intValue
+        case let doubleValue as Double:
+            return Int(doubleValue)
+        case let numberValue as NSNumber:
+            return numberValue.intValue
+        case let stringValue as String:
+            return Int(stringValue)
+        default:
+            return nil
+        }
     }
 
     private func textKey(from identifier: String) -> Liveness3DTextKey? {
@@ -165,100 +180,122 @@ public class RnLiveness3dSwiftModule: NSObject {
     private func liveness3DTheme(theme: Any?, fonts: Any?) -> Liveness3DTheme {
         let themeDictionary = theme as? Dictionary<String, Any>
         let fontsDictionary = fonts as? Dictionary<String, Any>
-        print(fontsDictionary as Any)
 
-        var theme = Liveness3DTheme(.light)
+        var livenessTheme = Liveness3DTheme(.light)
+        let hasThemeCustomizations = !(themeDictionary?.isEmpty ?? true)
+        let hasFontCustomizations = !(fontsDictionary?.isEmpty ?? true)
+        if !hasThemeCustomizations && !hasFontCustomizations {
+            return livenessTheme
+        }
 
-        let guidanceCustomizationHeaderFont = fontsDictionary?["guidanceCustomizationHeaderFont"] as? String ?? ""
-        let guidanceCustomizationSubtextFont = fontsDictionary?["guidanceCustomizationSubtextFont"] as? String ?? ""
-        let guidanceCustomizationButtonFont = fontsDictionary?["guidanceCustomizationButtonFont"] as? String ?? ""
+        func themeString(_ key: String, legacyKey: String? = nil) -> String? {
+            let primary = (themeDictionary?[key] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
+            if let primary, !primary.isEmpty { return primary }
+            guard let legacyKey else { return nil }
+            let legacy = (themeDictionary?[legacyKey] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
+            if let legacy, !legacy.isEmpty { return legacy }
+            return nil
+        }
 
-        let readyScreenCustomizationSubtextFont = fontsDictionary?["readyScreenCustomizationSubtextFont"] as? String ?? ""
-        let readyScreenCustomizationHeaderFont = fontsDictionary?["readyScreenCustomizationHeaderFont"] as? String ?? ""
+        func fontName(_ key: String) -> String? {
+            let name = (fontsDictionary?[key] as? String)?.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard let name, !name.isEmpty else { return nil }
+            return name
+        }
 
-        let retryScreenCustomizationHeaderFont = fontsDictionary?["retryScreenCustomizationHeaderFont"] as? String ?? ""
-        let retryScreenCustomizationSubtextFont = fontsDictionary?["retryScreenCustomizationSubtextFont"] as? String ?? ""
+        func int32Value(_ key: String, legacyKey: String? = nil) -> Int32? {
+            let value = themeDictionary?[key] ?? (legacyKey != nil ? themeDictionary?[legacyKey!] : nil)
+            switch value {
+            case let intValue as Int: return Int32(intValue)
+            case let doubleValue as Double: return Int32(doubleValue)
+            case let numberValue as NSNumber: return numberValue.int32Value
+            case let stringValue as String: return Int32(stringValue)
+            default: return nil
+            }
+        }
 
-        let resultScreenCustomizationMessageFont = fontsDictionary?["resultScreenCustomizationMessageFont"] as? String ?? ""
+        if let name = fontName("readyScreenCustomizationHeaderFont") {
+            livenessTheme.readyScreenCustomizationHeaderFont = UIFont(name: name, size: 14)
+        }
+        if let name = fontName("readyScreenCustomizationSubtextFont") {
+            livenessTheme.readyScreenCustomizationSubtextFont = UIFont(name: name, size: 14)
+        }
+        if let name = fontName("retryScreenCustomizationHeaderFont") {
+            livenessTheme.retryScreenCustomizationHeaderFont = UIFont(name: name, size: 14)
+        }
+        if let name = fontName("retryScreenCustomizationSubtextFont") {
+            livenessTheme.retryScreenCustomizationSubtextFont = UIFont(name: name, size: 14)
+        }
+        if let name = fontName("resultScreenCustomizationMessageFont") {
+            livenessTheme.resultScreenCustomizationMessageFont = UIFont(name: name, size: 15)
+        }
+        if let name = fontName("guidanceCustomizationHeaderFont") {
+            livenessTheme.guidanceCustomizationHeaderFont = UIFont(name: name, size: 14)
+        }
+        if let name = fontName("guidanceCustomizationSubtextFont") {
+            livenessTheme.guidanceCustomizationSubtextFont = UIFont(name: name, size: 14)
+        }
+        if let name = fontName("guidanceCustomizationButtonFont") {
+            livenessTheme.guidanceCustomizationButtonFont = UIFont(name: name, size: 14)
+        }
+        if let name = fontName("feedbackCustomizationTextFont") {
+            livenessTheme.feedbackCustomizationTextFont = UIFont(name: name, size: 14)
+        }
 
-        let feedbackCustomizationTextFont = fontsDictionary?["feedbackCustomizationTextFont"] as? String ?? ""
+        if let hex = themeString("guidanceCustomizationReadyScreenHeaderTextColor") { livenessTheme.readyScreenCustomizationHeaderTextColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationReadyScreenSubtextTextColor") { livenessTheme.readyScreenCustomizationSubtextTextColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationReadyScreenTextBackgroundColor", legacyKey: "guidanceCustomizationTextBackgroundColor") { livenessTheme.readyScreenCustomizationTextBackgroundColor = .init(hex: hex) }
+        if let value = int32Value("guidanceCustomizationReadyScreenTextBackgroundCornerRadius", legacyKey: "guidanceCustomizationTextBackgroundColorRadius") { livenessTheme.readyScreenCustomizationTextBackgroundCornerRadius = value }
 
-        theme.readyScreenCustomizationHeaderFont = UIFont(name: readyScreenCustomizationSubtextFont, size: 14)
-        theme.readyScreenCustomizationHeaderTextColor = .init(hex: themeDictionary?["guidanceCustomizationReadyScreenHeaderTextColor"] as? String ?? "#000000")
-        theme.readyScreenCustomizationSubtextFont = UIFont(name: readyScreenCustomizationHeaderFont, size: 14)
-        theme.readyScreenCustomizationSubtextTextColor = .init(hex: themeDictionary?["guidanceCustomizationReadyScreenSubtextTextColor"] as? String ?? "#333333")
-        theme.readyScreenCustomizationTextBackgroundColor = .init(hex: themeDictionary?["guidanceCustomizationTextBackgroundColor"] as? String ?? "")
-        theme.readyScreenCustomizationTextBackgroundCornerRadius = themeDictionary?["guidanceCustomizationTextBackgroundColorRadius"] as? Int32 ?? 0
+        if let hex = themeString("guidanceCustomizationRetryScreenHeaderTextColor") { livenessTheme.retryScreenCustomizationHeaderTextColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationRetryScreenSubtextTextColor") { livenessTheme.retryScreenCustomizationSubtextTextColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationRetryScreenImageBorderColor") { livenessTheme.retryScreenCustomizationImageBorderColor = .init(hex: hex) }
+        if let value = int32Value("guidanceCustomizationRetryScreenImageBorderWidth") { livenessTheme.retryScreenCustomizationImageBorderWidth = value }
+        if let value = int32Value("guidanceCustomizationRetryScreenImageCornerRadius") { livenessTheme.retryScreenCustomizationImageCornerRadius = value }
 
-        theme.retryScreenCustomizationHeaderFont = UIFont(name: retryScreenCustomizationHeaderFont, size: 14)
-        theme.retryScreenCustomizationHeaderTextColor = .init(hex: themeDictionary?["guidanceCustomizationRetryScreenHeaderTextColor"] as? String ?? "#000000")
-        theme.retryScreenCustomizationSubtextFont = UIFont(name: retryScreenCustomizationSubtextFont, size: 14)
-        theme.retryScreenCustomizationSubtextTextColor = .init(hex: themeDictionary?["guidanceCustomizationRetryScreenSubtextTextColor"] as? String ?? "#333333")
-        theme.retryScreenCustomizationImageBorderColor = .init(hex: themeDictionary?["guidanceCustomizationRetryScreenImageBorderColor"] as? String ?? "#4bb75f")
-        theme.retryScreenCustomizationImageBorderWidth = themeDictionary?["guidanceCustomizationRetryScreenImageBorderWidth"] as? Int32 ?? 0
-        theme.retryScreenCustomizationImageCornerRadius = themeDictionary?["guidanceCustomizationRetryScreenImageCornerRadius"] as? Int32 ?? 0
+        if let hex = themeString("resultScreenCustomizationForegroundColor", legacyKey: "resultScreenCustomizationTextColor") { livenessTheme.resultScreenCustomizationTextColor = .init(hex: hex) }
+        if let hex = themeString("resultScreenCustomizationUploadProgressFillColor") { livenessTheme.resultScreenCustomizationUploadProgressFillColor = .init(hex: hex) }
+        if let hex = themeString("resultScreenCustomizationUploadProgressTrackColor") { livenessTheme.resultScreenCustomizationUploadProgressTrackColor = .init(hex: hex) }
 
-        theme.resultScreenCustomizationAnimationRelativeScale = 1.5
-        theme.resultScreenCustomizationTextColor = .init(hex: themeDictionary?["resultScreenCustomizationTextColor"] as? String ?? "#000000")
-        theme.resultScreenCustomizationShowUploadProgressBar = true
-        theme.resultScreenCustomizationUploadProgressFillColor = .init(hex: themeDictionary?["resultScreenCustomizationUploadProgressFillColor"] as? String ?? "#4bb75f")
-        theme.resultScreenCustomizationUploadProgressTrackColor = .init(hex: themeDictionary?["resultScreenCustomizationUploadProgressTrackColor"] as? String ?? "#333333")
-        theme.resultScreenCustomizationMessageFont = UIFont(name: resultScreenCustomizationMessageFont, size: 15.0)
-        theme.resultScreenCustomizationAnimationStyle = .blob(appearance: BlobAnimationAppearance(
-            blobColor: .blue,
-            checkmarkForegroundColor: .purple,
-            checkmarkBackgroundColor: .yellow
-        ))
+        let blobColorHex = themeString("resultScreenCustomizationActivityIndicatorColor")
+        let checkmarkFgHex = themeString("resultScreenCustomizationResultAnimationForegroundColor")
+        let checkmarkBgHex = themeString("resultScreenCustomizationResultAnimationBackgroundColor")
+        if let blobColorHex, let checkmarkFgHex, let checkmarkBgHex {
+            livenessTheme.resultScreenCustomizationAnimationStyle = .blob(appearance: BlobAnimationAppearance(
+                blobColor: .init(hex: blobColorHex),
+                checkmarkForegroundColor: .init(hex: checkmarkFgHex),
+                checkmarkBackgroundColor: .init(hex: checkmarkBgHex)
+            ))
+        }
 
-        theme.guidanceCustomizationHeaderFont = UIFont(name: guidanceCustomizationHeaderFont, size: 14)
-        theme.guidanceCustomizationSubtextFont = UIFont(name: guidanceCustomizationSubtextFont, size: 14)
-        theme.guidanceCustomizationButtonFont = UIFont(name: guidanceCustomizationButtonFont, size: 14)
+        if let hex = themeString("guidanceCustomizationButtonTextNormalColor") { livenessTheme.guidanceCustomizationButtonTextNormalColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationButtonBackgroundNormalColor") { livenessTheme.guidanceCustomizationButtonBackgroundNormalColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationButtonTextHighlightColor") { livenessTheme.guidanceCustomizationButtonTextHighlightColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationButtonBackgroundHighlightColor") { livenessTheme.guidanceCustomizationButtonBackgroundHighlightColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationButtonTextDisabledColor") { livenessTheme.guidanceCustomizationButtonTextDisabledColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationButtonBackgroundDisabledColor") { livenessTheme.guidanceCustomizationButtonBackgroundDisabledColor = .init(hex: hex) }
+        if let hex = themeString("guidanceCustomizationButtonBorderColor") { livenessTheme.guidanceCustomizationButtonBorderColor = .init(hex: hex) }
+        if let value = int32Value("guidanceCustomizationButtonBorderWidth") { livenessTheme.guidanceCustomizationButtonBorderWidth = value }
+        if let value = int32Value("guidanceCustomizationButtonCornerRadius") { livenessTheme.guidanceCustomizationButtonCornerRadius = value }
 
-        theme.guidanceCustomizationButtonTextNormalColor = .init(hex: themeDictionary?["guidanceCustomizationButtonTextNormalColor"] as? String ?? "#000000")
-        theme.guidanceCustomizationButtonBackgroundNormalColor = .init(hex: themeDictionary?["guidanceCustomizationButtonBackgroundNormalColor"] as? String ?? "#4bb75f")
-        theme.guidanceCustomizationButtonTextHighlightColor = .init(hex: themeDictionary?["guidanceCustomizationButtonTextHighlightColor"] as? String ?? "#000000")
-        theme.guidanceCustomizationButtonBackgroundHighlightColor = .init(hex: themeDictionary?["guidanceCustomizationButtonBackgroundHighlightColor"] as? String ?? "#000000")
-        theme.guidanceCustomizationButtonTextDisabledColor = .init(hex: themeDictionary?["guidanceCustomizationButtonTextDisabledColor"] as? String ?? "#333333")
-        theme.guidanceCustomizationButtonBackgroundDisabledColor = .init(hex: themeDictionary?["guidanceCustomizationButtonBackgroundDisabledColor"] as? String ?? "#333333")
-        theme.guidanceCustomizationButtonBorderColor = .init(hex: themeDictionary?["guidanceCustomizationButtonBorderColor"] as? String ?? "#000000")
-        theme.guidanceCustomizationButtonBorderWidth = themeDictionary?["guidanceCustomizationButtonBorderWidth"] as? Int32 ?? 0
-        theme.guidanceCustomizationButtonCornerRadius = themeDictionary?["guidanceCustomizationButtonCornerRadius"] as? Int32 ?? 25
+        if let value = int32Value("frameCustomizationBorderWidth") { livenessTheme.frameCustomizationBorderWidth = value }
+        if let value = int32Value("frameCustomizationCornerRadius") { livenessTheme.frameCustomizationCornerRadius = value }
+        if let hex = themeString("frameCustomizationBorderColor") { livenessTheme.frameCustomizationBorderColor = .init(hex: hex) }
+        if let hex = themeString("frameCustomizationBackgroundColor") { livenessTheme.frameCustomizationBackgroundColor = .init(hex: hex) }
 
-        theme.frameCustomizationBorderWidth = themeDictionary?["frameCustomizationBorderWidth"] as? Int32 ?? 0
-        theme.frameCustomizationCornerRadius = themeDictionary?["frameCustomizationCornerRadius"] as? Int32 ?? 0
-        theme.frameCustomizationBorderColor = .init(hex: themeDictionary?["frameCustomizationBorderColor"] as? String ?? "#4bb75f")
-        theme.frameCustomizationBackgroundColor = .init(hex: themeDictionary?["frameCustomizationBackgroundColor"] as? String ?? "#FFFFFF")
-        theme.frameCustomizationShadow = Liveness3DShadow(
-            color: .red, opacity: 0.8,
-            radius: 1.0, offset: .zero,
-            insets: .init(top: 1.0, left: 0.5, bottom: 0.7, right: 0.5)
-        )
+        if let value = int32Value("ovalCustomizationStrokeWidth") { livenessTheme.ovalCustomizationStrokeWidth = value }
+        if let hex = themeString("ovalCustomizationStrokeColor") { livenessTheme.ovalCustomizationStrokeColor = .init(hex: hex) }
+        if let value = int32Value("ovalCustomizationProgressStrokeWidth") { livenessTheme.ovalCustomizationProgressStrokeWidth = value }
+        if let hex = themeString("ovalCustomizationProgressColor1") { livenessTheme.ovalCustomizationProgressColor1 = .init(hex: hex) }
+        if let hex = themeString("ovalCustomizationProgressColor2") { livenessTheme.ovalCustomizationProgressColor2 = .init(hex: hex) }
+        if let value = int32Value("ovalCustomizationProgressRadialOffset") { livenessTheme.ovalCustomizationProgressRadialOffset = value }
 
-        theme.ovalCustomizationStrokeWidth = themeDictionary?["ovalCustomizationStrokeWidth"] as? Int32 ?? 3
-        theme.ovalCustomizationStrokeColor = .init(hex: themeDictionary?["ovalCustomizationStrokeColor"] as? String ?? "#4bb75f")
-        theme.ovalCustomizationProgressStrokeWidth = themeDictionary?["ovalCustomizationProgressStrokeWidth"] as? Int32 ?? 2
-        theme.ovalCustomizationProgressColor1 = .init(hex: themeDictionary?["ovalCustomizationProgressColor1"] as? String ?? "#4bb75f")
-        theme.ovalCustomizationProgressColor2 = .init(hex: themeDictionary?["ovalCustomizationProgressColor2"] as? String ?? "#4bb75f")
-        theme.ovalCustomizationProgressRadialOffset = themeDictionary?["ovalCustomizationProgressRadialOffset"] as? Int32 ?? 2
+        if let hex = themeString("overlayCustomizationBackgroundColor") { livenessTheme.overlayCustomizationBackgroundColor = .init(hex: hex) }
+        if let hex = themeString("feedbackCustomizationTextColor") { livenessTheme.feedbackCustomizationTextColor = .init(hex: hex) }
+        if let value = int32Value("feedbackCustomizationCornerRadius") { livenessTheme.feedbackCustomizationCornerRadius = value }
+        if let hex = themeString("feedbackCustomizationBackgroundColors") { livenessTheme.feedbackCustomizationBackgroundColor = .init(hex: hex) }
 
-        theme.overlayCustomizationBackgroundColor = .init(hex: themeDictionary?["overlayCustomizationBackgroundColor"] as? String ?? "#FFFFFF")
-        theme.overlayCustomizationBrandingImage = UIImage(named: "")
-        theme.overlayCustomizationShowBrandingImage = false
-
-        theme.feedbackCustomizationTextColor = .init(hex: themeDictionary?["feedbackCustomizationTextColor"] as? String ?? "#FFFFFF")
-        theme.feedbackCustomizationTextFont = UIFont(name: feedbackCustomizationTextFont, size: 14)
-        theme.feedbackCustomizationShadow = Liveness3DShadow(
-            color: .purple, opacity: 0.5,
-            radius: 3.0, offset: .init(width: 2.0, height: 5.0),
-            insets: .init(top: 3.0, left: 1.5, bottom: 3.7, right: 7.5)
-        )
-        theme.feedbackCustomizationCornerRadius = themeDictionary?["feedbackCustomizationCornerRadius"] as? Int32 ?? 2
-        theme.feedbackCustomizationBackgroundColor = .init(hex: themeDictionary?["feedbackCustomizationBackgroundColors"] as? String ?? "#666666")
-
-        theme.cancelButtonCustomizationCustomImage = UIImage(named: "")
-        theme.cancelButtonCustomizationLocation = .topLeft
-
-        return theme
+        return livenessTheme
     }
 }
 
@@ -290,6 +327,7 @@ extension UIColor {
 
         if cString.count != 6 {
             self.init(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            return
         }
 
         var rgbValue: UInt64 = 0
