@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/oititec/rn-liveness3d.git", :tag => "#{s.version}" }
 
   s.dependency "React-Core"
-  s.ios.dependency "OILiveness3D", "3.14.0"
+  s.ios.dependency "OILiveness3D", "3.16.0"
 
   s.subspec "Swift" do |ss|
     ss.source_files = "ios/**/*.swift"
