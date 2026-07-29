@@ -1,2 +1,2 @@
-# Usa o Gemfile da raiz do example (um único `bundle install` na pasta example/)
+# Usa o Gemfile da raiz do example (já inclui o Pluginfile do fastlane)
 eval_gemfile File.expand_path("../Gemfile", __dir__)

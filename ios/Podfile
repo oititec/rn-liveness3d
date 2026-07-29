@@ -5,9 +5,9 @@ source 'https://github.com/CocoaPods/Specs.git'
  
 
 target 'RnLiveness3d' do
-    # Comment the next line if you don't want to use dynamic frameworks
     use_frameworks!
-    
-    pod 'OILiveness3D', '3.15.0'
+    pod 'OILiveness3D', '3.16.0'
+    # pod 'OILiveness3D_FT', git: 'https://github.com/oititec/ios-liveness3d-ft.git', branch: 'feature/31194-framework-update'
+    # pod 'OILiveness3D', git: 'https://github.com/oititec/ios-liveness-3d.git', branch: 'chore/31198-facetec-update'
   
   end

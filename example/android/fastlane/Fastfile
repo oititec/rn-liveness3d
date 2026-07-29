@@ -1,6 +1,8 @@
 # Fastfile para build e distribuição do app Android via Firebase App Distribution
 # Documentação: https://docs.fastlane.tools
 
+require "fileutils"
+
 default_platform(:android)
 
 platform :android do
@@ -14,7 +16,7 @@ platform :android do
   FIREBASE_APP_ID = ENV["FIREBASE_APP_ID"] || "1:943099415715:android:fecb32e295f6878c500316"
   
   # Grupos de testers no Firebase App Distribution
-  FIREBASE_TESTERS_GROUP = ENV["FIREBASE_TESTERS_GROUP"] || "testers"
+  FIREBASE_TESTERS_GROUP = ENV["FIREBASE_TESTERS_GROUP"] || "mobile-android"
 
   RELEASE_APK_PATH = File.expand_path("../app/build/outputs/apk/release/app-release.apk", __dir__)
   DEBUG_APK_PATH = File.expand_path("../app/build/outputs/apk/debug/app-debug.apk", __dir__)
@@ -22,6 +24,20 @@ platform :android do
   # ============================================
   # LANES PRIVADAS (helpers)
   # ============================================
+
+  desc "Upload via Firebase CLI (mais confiável que o plugin fastlane com login local)"
+  private_lane :upload_to_firebase do |options|
+    apk_path = options[:apk_path]
+    release_notes = options[:release_notes].to_s.gsub('"', '\\"')
+    groups = options[:groups]
+    testers = options[:testers]
+
+    cmd = %(firebase appdistribution:distribute "#{apk_path}" --app "#{FIREBASE_APP_ID}" --release-notes "#{release_notes}")
+    cmd += %( --groups "#{groups}") if groups && !groups.to_s.empty?
+    cmd += %( --testers "#{testers}") if testers && !testers.to_s.empty?
+
+    sh(cmd)
+  end
 
   desc "Valida que o APK de release contém o bundle JS (não depende do Metro)"
   private_lane :verify_release_apk do |options|
@@ -62,10 +78,16 @@ platform :android do
   # LANES DE BUILD
   # ============================================
 
+  private_lane :clear_native_build_cache do
+    cxx_dir = File.expand_path("../app/.cxx", __dir__)
+    FileUtils.rm_rf(cxx_dir) if Dir.exist?(cxx_dir)
+  end
+
   desc "Build APK de Debug"
   lane :build_debug do
+    clear_native_build_cache
     gradle(
-      task: "clean assembleDebug",
+      task: "assembleDebug",
       project_dir: "./"
     )
     
@@ -75,8 +97,9 @@ platform :android do
 
   desc "Build APK de Release"
   lane :build_release do
+    clear_native_build_cache
     gradle(
-      task: "clean assembleRelease",
+      task: "assembleRelease",
       project_dir: "./"
     )
 
@@ -89,8 +112,9 @@ platform :android do
 
   desc "Build AAB (Android App Bundle) de Release"
   lane :build_bundle do
+    clear_native_build_cache
     gradle(
-      task: "clean bundleRelease",
+      task: "bundleRelease",
       project_dir: "./"
     )
     
@@ -115,29 +139,15 @@ platform :android do
       merge_commit_filtering: "exclude_merges"
     )
     
-    # Configuração flexível: groups, testers ou nenhum (apenas upload)
-    distribution_config = {
-      app: FIREBASE_APP_ID,
+    groups = options[:groups] || FIREBASE_TESTERS_GROUP
+    testers = options[:testers] || ENV["FIREBASE_TESTERS"]
+
+    upload_to_firebase(
       apk_path: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
       release_notes: release_notes,
-      firebase_cli_token: ENV["FIREBASE_TOKEN"]
-    }
-    
-    # Adiciona grupos se especificado
-    if options[:groups]
-      distribution_config[:groups] = options[:groups]
-    elsif ENV["FIREBASE_TESTERS_GROUP"] && !ENV["FIREBASE_TESTERS_GROUP"].empty?
-      distribution_config[:groups] = ENV["FIREBASE_TESTERS_GROUP"]
-    end
-    
-    # Adiciona testers individuais se especificado
-    if options[:testers]
-      distribution_config[:testers] = options[:testers]
-    elsif ENV["FIREBASE_TESTERS"] && !ENV["FIREBASE_TESTERS"].empty?
-      distribution_config[:testers] = ENV["FIREBASE_TESTERS"]
-    end
-    
-    firebase_app_distribution(distribution_config)
+      groups: groups,
+      testers: testers
+    )
     
     UI.success("🚀 APK Debug enviado com sucesso para Firebase App Distribution!")
   end
@@ -151,30 +161,16 @@ platform :android do
       pretty: "- %s",
       merge_commit_filtering: "exclude_merges"
     )
-    
-    # Configuração flexível: groups, testers ou nenhum (apenas upload)
-    distribution_config = {
-      app: FIREBASE_APP_ID,
+
+    groups = options[:groups] || FIREBASE_TESTERS_GROUP
+    testers = options[:testers] || ENV["FIREBASE_TESTERS"]
+
+    upload_to_firebase(
       apk_path: apk_path,
       release_notes: release_notes,
-      firebase_cli_token: ENV["FIREBASE_TOKEN"]
-    }
-    
-    # Adiciona grupos se especificado
-    if options[:groups]
-      distribution_config[:groups] = options[:groups]
-    elsif ENV["FIREBASE_TESTERS_GROUP"] && !ENV["FIREBASE_TESTERS_GROUP"].empty?
-      distribution_config[:groups] = ENV["FIREBASE_TESTERS_GROUP"]
-    end
-    
-    # Adiciona testers individuais se especificado
-    if options[:testers]
-      distribution_config[:testers] = options[:testers]
-    elsif ENV["FIREBASE_TESTERS"] && !ENV["FIREBASE_TESTERS"].empty?
-      distribution_config[:testers] = ENV["FIREBASE_TESTERS"]
-    end
-    
-    firebase_app_distribution(distribution_config)
+      groups: groups,
+      testers: testers
+    )
     
     UI.success("🚀 APK Release (standalone, sem Metro) enviado: #{apk_path}")
   end
