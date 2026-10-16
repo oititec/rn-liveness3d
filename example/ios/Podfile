@@ -46,9 +46,6 @@ target 'RnLiveness3dExample' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  # pod 'OILiveness3D_FT', git: 'https://github.com/oititec/ios-liveness3d-ft.git', branch: 'chore/32857'
-  # pod 'OILiveness3D', git: 'https://github.com/oititec/ios-liveness-3d.git', branch: 'chore/32994-facetec-update'
-
   target 'RnLiveness3dExampleTests' do
     inherit! :complete
   end
