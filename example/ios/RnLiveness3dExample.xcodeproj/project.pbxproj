@@ -13,6 +13,7 @@
 		65691E0140DEC176852D192B /* libPods-RnLiveness3dExample-RnLiveness3dExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 66143FA4A2218E43260772AB /* libPods-RnLiveness3dExample-RnLiveness3dExampleTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		959A395A92A64A4D1E4BD5B5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A6986D94396DDDFA609F9AB9 /* PrivacyInfo.xcprivacy */; };
+		A1B2C3D4E5F60718293A4B5D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F60718293A4B5C /* SceneDelegate.swift */; };
 		A8D3FC5D92F03D3EE64532FC /* libPods-RnLiveness3dExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E940C038B3A5815F00BB2A4 /* libPods-RnLiveness3dExample.a */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		66143FA4A2218E43260772AB /* libPods-RnLiveness3dExample-RnLiveness3dExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RnLiveness3dExample-RnLiveness3dExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66C9A21A0EE421FC89255BBC /* Pods-RnLiveness3dExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RnLiveness3dExample.debug.xcconfig"; path = "Target Support Files/Pods-RnLiveness3dExample/Pods-RnLiveness3dExample.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = RnLiveness3dExample/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A1B2C3D4E5F60718293A4B5C /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = RnLiveness3dExample/SceneDelegate.swift; sourceTree = "<group>"; };
 		A6986D94396DDDFA609F9AB9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = RnLiveness3dExample/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07FB01A68108700A75B9A /* AppDelegate.swift */,
+				A1B2C3D4E5F60718293A4B5C /* SceneDelegate.swift */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
@@ -412,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.swift in Sources */,
+				A1B2C3D4E5F60718293A4B5D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

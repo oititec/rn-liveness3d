@@ -5,56 +5,56 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000152">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.000178">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: Switch to android distribute_release lane" time="6.4e-05">
+      <testcase classname="fastlane.lanes" name="1: Switch to android distribute_release lane" time="6.1e-05">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: Switch to android build_release lane" time="4.8e-05">
+      <testcase classname="fastlane.lanes" name="2: Switch to android build_release lane" time="5.2e-05">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: Switch to android clear_native_build_cache lane" time="4.2e-05">
+      <testcase classname="fastlane.lanes" name="3: Switch to android clear_native_build_cache lane" time="4.1e-05">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: assembleRelease" time="60.422918">
+      <testcase classname="fastlane.lanes" name="4: assembleRelease" time="109.313902">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: Switch to android verify_release_apk lane" time="0.000127">
+      <testcase classname="fastlane.lanes" name="5: Switch to android verify_release_apk lane" time="0.000209">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: changelog_from_git_commits" time="0.018597">
+      <testcase classname="fastlane.lanes" name="6: changelog_from_git_commits" time="0.015044">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: Switch to android upload_to_firebase lane" time="0.000121">
+      <testcase classname="fastlane.lanes" name="7: Switch to android upload_to_firebase lane" time="0.000135">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: firebase appdistribution:distribute &quot;/Users/gukiub/React native projects/rn-liveness3d/example/android/app/build/outputs/apk/release/app-release.apk&quot; --app &quot;1:943099415715:android:fecb32e295f6878c500316&quot; --release-notes &quot;- fix: package
+      <testcase classname="fastlane.lanes" name="8: firebase appdistribution:distribute &quot;/Users/gukiub/React native projects/rn-liveness3d/example/android/app/build/outputs/apk/release/app-release.apk&quot; --app &quot;1:943099415715:android:fecb32e295f6878c500316&quot; --release-notes &quot;- chore: update Maven repository URL and bump liveness3d-sdk version to 9.5.10
+- fix: orca
+- fix: orca warnings
+- fix: ios bug
+- feat: before launch prd version
+- feat: increasing facetec android
+- fix: package
 - feat: updating prd version
 - feat: increasing version
-- fix: custom facetec
-- fix: publish fastlane
-- feat(facetec): updating sdks for lastest facetec version
-- feat(facetec): updating sdks for lastest facetec version
-- release/5.1.0
-- release/5.1.0
-- [27602] Atualização da FaceTec e arquitetura do React Native (#29)&quot; --groups &quot;mobile-android&quot;" time="8.226583">
+- fix: custom facetec&quot; --groups &quot;mobile-android&quot;" time="18.276507">
         
       </testcase>
     
